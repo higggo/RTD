@@ -12,7 +12,7 @@ public class Tile : MonoBehaviour
         Possible
 
     }
-    STATE state;
+    STATE state = STATE.Normal;
     public STATE State
     {
         get
@@ -25,6 +25,8 @@ public class Tile : MonoBehaviour
         }
 
     }
+    [SerializeField, Range(0f, 2)]
+    public float CollisionRadiusRate = 1f;
 
     Sprite Hide;
     Sprite Impossible;
@@ -33,17 +35,26 @@ public class Tile : MonoBehaviour
 
     bool isColliding = false;
 
+    private void Awake()
+    {
+        gameObject.layer = transform.parent.gameObject.layer;
+    }
     // Start is called before the first frame update
     void Start()
     {
+        Vector3 localscale = transform.localScale;
+        localscale.x *= CollisionRadiusRate;
+        localscale.y *= CollisionRadiusRate;
+        transform.localScale = localscale;
+
+        GetComponent<SphereCollider>().radius *= CollisionRadiusRate;
+
         Hide = null;
         Impossible = Resources.Load<Sprite>("UI/tileimpossible");
         Normal = Resources.Load<Sprite>("UI/tileormal");
         Possible = Resources.Load<Sprite>("UI/tilepossible");
-
         ChangeState(STATE.Hide);
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -59,6 +70,7 @@ public class Tile : MonoBehaviour
         {
             case STATE.Hide:
                 GetComponent<SpriteRenderer>().sprite = Hide;
+                isColliding = false;
                 break;
             case STATE.Normal:
                 GetComponent<SpriteRenderer>().sprite = Normal;
@@ -93,10 +105,6 @@ public class Tile : MonoBehaviour
                 if (transform.childCount == 0)
                 {
                     State = STATE.Possible;
-                }
-                else if (!isColliding)
-                {
-                    State = STATE.Normal;
                 }
                 break;
             case STATE.Possible:

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterTileEvent : MonoBehaviour
+public class CharacterTileCollision : MonoBehaviour
 {
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +18,9 @@ public class CharacterTileEvent : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Tile" &&
-            collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            //collision.gameObject.layer != gameObject.layer &&
+            collision.gameObject != gameObject)
+
         {
             collision.gameObject.GetComponent<Tile>().InRange();
         }
@@ -27,7 +28,8 @@ public class CharacterTileEvent : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         if (collision.transform.tag == "Tile" &&
-            collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            //collision.gameObject.layer != gameObject.layer &&
+            collision.gameObject != gameObject)
         {
             collision.gameObject.GetComponent<Tile>().OutRange();
         }

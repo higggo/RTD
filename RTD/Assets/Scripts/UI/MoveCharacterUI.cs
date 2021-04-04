@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragMoveCharacter : MonoBehaviour
+public class MoveCharacterUI : MonoBehaviour
 {
     enum STATE
     {
@@ -13,12 +13,13 @@ public class DragMoveCharacter : MonoBehaviour
     }
     STATE myState = STATE.Normal;
 
-    GameObject PickUpObject = null;
+    public GameObject PickUpObject = null;
     Vector3 OriginPos = Vector3.zero;
-    public TileManager TileManager;
+    TileManager TileManager;
     // Start is called before the first frame update
     void Start()
     {
+        TileManager = GetComponent<TileManager>();
     }
 
     // Update is called once per frame
@@ -41,7 +42,7 @@ public class DragMoveCharacter : MonoBehaviour
                 {
                     OriginPos = PickUpObject.transform.position;
                 }
-                    break;
+                break;
             case STATE.MouseButtonDragging:
                 if (PickUpObject != null)
                 {
@@ -56,7 +57,6 @@ public class DragMoveCharacter : MonoBehaviour
                         Transform parent = TileManager.GetClosestTile(PickUpObject.transform.position);
                         PickUpObject.transform.parent = parent;
                         PickUpObject.transform.localPosition = Vector3.zero;
-                        parent.GetComponent<Tile>().State = Tile.STATE.Impossible;
                         PickUpObject.layer = LayerMask.NameToLayer("Ground");
                     }
                     else
@@ -78,13 +78,12 @@ public class DragMoveCharacter : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit hit;
-
-                    if (Physics.Raycast(ray, out hit, 1000.0f))
+                    RaycastHit[] hits = Physics.RaycastAll(ray, 50.0f, ~(1 << LayerMask.NameToLayer("UI")));
+                    for (int i = 0; i < hits.Length; i++)
                     {
-                        if (hit.transform.tag == "Player")
+                        if (hits[i].transform.tag == "Player")
                         {
-                            PickUpObject = hit.transform.gameObject;
+                            PickUpObject = hits[i].transform.gameObject;
                         }
                     }
                     ChangeState(STATE.MouseButtonDown);
@@ -94,23 +93,32 @@ public class DragMoveCharacter : MonoBehaviour
                     ChangeState(STATE.MouseButtonDragging);
                 break;
             case STATE.MouseButtonDragging:
-
                 if (PickUpObject != null)
                 {
+                    //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    //RaycastHit[] hits = Physics.RaycastAll(ray, 50.0f, ~(1<<LayerMask.NameToLayer("UI") & (1 << LayerMask.NameToLayer("Map"))));
+                    //for (int i = 0; i < hits.Length; i++)
+                    //{
+                    //    if (hits[i].transform.gameObject.tag != "Tile" && hits[i].transform.gameObject.tag != "Player")
+                    //    {
+                    //        PickUpObject.transform.position = new Vector3(
+                    //                hits[i].point.x,
+                    //                PickUpObject.transform.position.y,
+                    //                hits[i].point.z
+                    //        );
+                    //    }
+                    //}
+                    
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit[] hits = Physics.RaycastAll(ray, 50.0f, ~(1<<LayerMask.NameToLayer("UI")));
-                    for (int i = 0; i < hits.Length; i++)
+                    RaycastHit hit;
+                    if(Physics.Raycast(ray, out hit, 50.0f, (~(1<<LayerMask.NameToLayer("UI")) & (1 << LayerMask.NameToLayer("Map")))))
                     {
-                        if (hits[i].transform.gameObject.tag != "Tile")
-                        {
-                            PickUpObject.transform.position = new Vector3(
-                                    hits[i].point.x,
-                                    PickUpObject.transform.position.y,
-                                    hits[i].point.z
-                            );
-                        }
+                        PickUpObject.transform.position = new Vector3(
+                            hit.point.x,
+                            PickUpObject.transform.position.y,
+                            hit.point.z
+                        );
                     }
-
                 }
                 
                 if (Input.GetMouseButtonUp(0))
