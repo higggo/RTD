@@ -18,6 +18,12 @@ namespace CharacterKit
     {
         float HP;
         public UnityAction onDeadDel = null;
+        bool isDead = false;
+
+        public bool IsDead 
+        {
+            get { return isDead; } 
+        }
 
         void Start()
         {
@@ -33,8 +39,15 @@ namespace CharacterKit
                 msg.amount = 1;
 
             HP = Mathf.Clamp(HP - msg.amount, 0.0f, GetComponent<CharacterStat>().MaxHP);
-            if (HP < Mathf.Epsilon)
+            Debug.Log(HP);
+
+            if (HP <= Mathf.Epsilon)
+            {
+                Debug.Log("SetDead");
+                isDead = true;
                 onDeadDel?.Invoke();
+            }
+                
         }
 
         // @Summary: 아직 사용 x

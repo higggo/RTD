@@ -10,12 +10,12 @@ public class CharacterStat : MonoBehaviour
     [SerializeField] UNION _union;
     [SerializeField] FCharacterStat basicStat;
     [SerializeField] FCharacterStat bonusStat;
-    FCharacterStat currentStat;
+    [SerializeField] FCharacterStat currentStat;
 
     // Delegate
     public UnityAction BuffDel = null;
 
-    void Start()
+    void Awake()
     {
         currentStat = basicStat;
         UpdateStat();
@@ -84,12 +84,11 @@ public class CharacterStat : MonoBehaviour
     }
 
 
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
         Color color = Color.green;
         color.a = 0.2f;
         Gizmos.color = color;
-        
         Gizmos.DrawSphere(transform.position, attackRange);
     }
 }

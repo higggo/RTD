@@ -5,10 +5,9 @@ using CharacterKit;
 
 public class BasicAttack : MonoBehaviour
 {
-    CharacterStat statInfo;
-
-    float _attackDelay = 0.0f;
-    bool _nowAttack = false;
+    protected CharacterStat statInfo;
+    protected float _attackDelay = 0.0f;
+    protected bool _nowAttack = false;
 
     void Start()
     {
@@ -16,7 +15,7 @@ public class BasicAttack : MonoBehaviour
     }
 
     // 이 함수를 override해서 다른 캐릭터의 기본공격 로직을 바꾸세요.
-    public void OnAttack(GameObject Target)
+    public virtual void OnAttack(GameObject Target)
     {
         if (Target == null)
             return;

@@ -31,7 +31,8 @@ namespace CharacterKit
             {
                 Debug.Log("FindTargetAll");
                 GameObject hitObj = hit.collider.gameObject;
-                TargetContainer.Add(hitObj);
+                if (!hitObj.GetComponent<Damageable>().IsDead)
+                    TargetContainer.Add(hitObj);
             }
 
             return true;

@@ -21,11 +21,10 @@ public class CharController : MonoBehaviour
 
 
     // flags
-    bool _isDead = false;
-    [SerializeField, Tooltip("켜주면 공격합니다.")] bool _isInField = false;
-    bool _nowAttack = false;
+    [SerializeField, Tooltip("켜주면 공격합니다.")]
+    bool _isInField = false;
 
-
+    // Delay
     float _attackDelay = 0.0f;
     [SerializeField] float destroyDelay = 3.0f;
 
@@ -39,10 +38,6 @@ public class CharController : MonoBehaviour
         get { return _statInfo; }
     }
 
-    public bool isDead
-    {
-        get { return _isDead; }
-    }
 
     public bool isInField
     {
@@ -79,6 +74,7 @@ public class CharController : MonoBehaviour
         switch (characterState)
         {
             case BASICSTATE.CREATE:
+                Debug.Log("CREATE");
                 CharacterRigidbody = GetComponent<Rigidbody>();
                 _statInfo = GetComponent<CharacterStat>();
                 CharacterAnimator = GetComponentInChildren<Animator>();
@@ -86,7 +82,6 @@ public class CharController : MonoBehaviour
                 CharacterAnimEvent.AttackDel += OnAttack;
                 GetComponent<Damageable>().onDeadDel += OnDead;
                 Targets = new List<GameObject>();
-                Debug.Log("CREATE");
                 break;
             case BASICSTATE.POSTCREATE:
                 statInfo.UpdateStat();
@@ -141,12 +136,11 @@ public class CharController : MonoBehaviour
                     ChangeState(BASICSTATE.DETACHFIELD);
                     return;
                 }    
-                    
-
-
+                
                 if (Target != null)
                 {
-                    if (!CharUtils.IsInRange(this.transform, Target.transform, statInfo.attackRange))
+                    if (!CharUtils.IsInRange(this.transform, Target.transform, statInfo.attackRange)
+                        || Target.GetComponent<Damageable>().IsDead)
                         Target = null;
                 }
                 else
@@ -177,7 +171,6 @@ public class CharController : MonoBehaviour
                 break;
             case BASICSTATE.USESKILL:
                 break;
-
             case BASICSTATE.DEAD:
                 break;
         }
@@ -185,7 +178,6 @@ public class CharController : MonoBehaviour
     
     public void OnDead()
     {
-        _isDead = true;
         ChangeState(BASICSTATE.DEAD);
         // CharacterAnimator.SetBool("isDead", true);
     }
@@ -197,7 +189,6 @@ public class CharController : MonoBehaviour
         if (Target == null)
             return;
 
-        
         GetComponent<BasicAttack>().OnAttack(Target);
         StartCoroutine(StartAttack());
     }
