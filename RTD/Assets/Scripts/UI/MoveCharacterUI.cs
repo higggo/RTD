@@ -57,7 +57,7 @@ public class MoveCharacterUI : MonoBehaviour
                         Transform parent = TileManager.GetClosestTile(PickUpObject.transform.position);
                         PickUpObject.transform.parent = parent;
                         PickUpObject.transform.localPosition = Vector3.zero;
-                        PickUpObject.layer = LayerMask.NameToLayer("Ground");
+                        //PickUpObject.layer = LayerMask.NameToLayer("Ground");
                     }
                     else
                     {
