@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af12ff4bef7afe04ca634650fe61cad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitPoint: {fileID: 8131653954872396094}
 --- !u!54 &4569854371119762489
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1354,6 +1355,12 @@ GameObject:
 --- !u!4 &4098798117553822265 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1efd9d16b535cdf48b9b1189c4e85b4e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4569854370894101970}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8131653954872396094 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3480699329000672020, guid: 1efd9d16b535cdf48b9b1189c4e85b4e,
     type: 3}
   m_PrefabInstance: {fileID: 4569854370894101970}
   m_PrefabAsset: {fileID: 0}

@@ -16,8 +16,9 @@ namespace CharacterKit
      */
     public class Damageable : MonoBehaviour
     {
-        float HP;
         public UnityAction onDeadDel = null;
+        public Transform HitPoint = null;
+        float HP;
         bool isDead = false;
 
         public bool IsDead 

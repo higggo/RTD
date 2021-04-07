@@ -81,6 +81,7 @@ public class CharController : MonoBehaviour
                 CharacterAnimEvent = GetComponentInChildren<AnimEvent>();
                 CharacterAnimEvent.AttackDel += OnAttack;
                 GetComponent<Damageable>().onDeadDel += OnDead;
+                CharUtils.SettingGradeRing(statInfo.grade, this.transform);
                 Targets = new List<GameObject>();
                 break;
             case BASICSTATE.POSTCREATE:
@@ -188,7 +189,7 @@ public class CharController : MonoBehaviour
     {
         if (Target == null)
             return;
-
+        
         GetComponent<BasicAttack>().OnAttack(Target);
         StartCoroutine(StartAttack());
     }

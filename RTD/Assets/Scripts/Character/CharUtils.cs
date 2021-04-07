@@ -64,6 +64,37 @@ namespace CharacterKit
             return TargetObj;
         }
 
+
+
+        /// <summary>
+        /// 캐릭터 Grade에 맞는 식별 가능한 Ring Object를 달아줍니다.
+        /// </summary>
+        /// <param name="grade">해당 캐릭터의 등급</param>
+        /// <param name="parent">붙여줄 트랜스폼</param>
+        public static void SettingGradeRing(GRADE grade, Transform parent)
+        {
+            string path = "Tile/Unit Ring_";
+            int i = (int)grade;
+            switch (i)
+            {
+                case 0:
+                    path += "Normal";
+                    break;
+                case 1:
+                    path += "Magic";
+                    break;
+                case 2:
+                    path += "Rare";
+                    break;
+                case 3:
+                    path += "Unique";
+                    break;
+            }
+            GameObject obj = Instantiate(Resources.Load(path), parent) as GameObject;
+            float ModifiedUpDir = 0.25f;
+            obj.transform.Translate(parent.up * ModifiedUpDir, Space.World);
+        }
+
     }
 }
 

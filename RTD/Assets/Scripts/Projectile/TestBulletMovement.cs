@@ -29,11 +29,11 @@ public class TestBulletMovement : MonoBehaviour, ProjectileMovement
         this.bulletSpeed = bulletSpeed;
         fireBullet = true;
         StartCoroutine(Move(target, bulletSpeed));
+        Debug.DrawLine(transform.position, target.transform.position, Color.blue, 2.0f);
     }
 
     public void SetRotate(Vector3 target)
     {
-        target.y = transform.position.y;
         Vector3 dir = target - transform.position;
         dir.Normalize();
         transform.rotation = Quaternion.LookRotation(dir);
@@ -42,7 +42,6 @@ public class TestBulletMovement : MonoBehaviour, ProjectileMovement
     IEnumerator Move(Transform target, float bulletSpeed)
     {
         Vector3 ClonePos = target.position;
-        ClonePos.y = transform.position.y;
         Vector3 dir = transform.forward;
         dir.Normalize();
         SetRotate(ClonePos);
@@ -52,6 +51,7 @@ public class TestBulletMovement : MonoBehaviour, ProjectileMovement
         while (distance > Mathf.Epsilon)
         {
             SetRotate(ClonePos);
+            dir = transform.forward;
             if (delta > distance)
                 delta = distance;
 
@@ -61,7 +61,6 @@ public class TestBulletMovement : MonoBehaviour, ProjectileMovement
             if (target != null)
             {
                 ClonePos = target.position;
-                ClonePos.y = transform.position.y;
                 distance = Vector3.Distance(ClonePos, transform.position);
             }
             yield return null;
@@ -77,4 +76,8 @@ public class TestBulletMovement : MonoBehaviour, ProjectileMovement
         GetComponent<ProjectileController>().SetHit();
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        //
+    }
 }

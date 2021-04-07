@@ -114,7 +114,11 @@ public class ProjectileController : MonoBehaviour
             case STATE.READY:
                 break;
             case STATE.SHOOT:
-                moveDel?.Invoke(target.transform, bulletSpeed);
+                Transform HitPoint = target.transform;
+                if (target.GetComponent<CharacterKit.Damageable>().HitPoint != null)
+                    HitPoint = target.GetComponent<CharacterKit.Damageable>().HitPoint;
+
+                moveDel?.Invoke(HitPoint, bulletSpeed);
                 break;
             case STATE.HIT:
                 HitDel?.Invoke(bulletDmg);
@@ -157,8 +161,6 @@ public class ProjectileController : MonoBehaviour
         if (!(_bulletState == STATE.CREATE || _bulletState == STATE.WAIT))
             return;
 
-
-        
         if (target == null)
             Debug.Log("Target is Null!");
 
