@@ -11,7 +11,7 @@ public class CharacterStat : MonoBehaviour
     [SerializeField] FCharacterStat basicStat;
     [SerializeField] FCharacterStat bonusStat;
     [SerializeField] FCharacterStat currentStat;
-
+    [SerializeField] ID _id = ID.UNKNOWN;
     // Delegate
     public UnityAction BuffDel = null;
 
@@ -83,6 +83,19 @@ public class CharacterStat : MonoBehaviour
         }
     }
 
+    public ID id
+    {
+        get { return _id; }
+    }
+    
+    /// <summary>
+    /// 캐릭터 고유 id를 Get합니다.
+    /// </summary>
+    /// <returns>ID정보를 Get</returns>
+    public ID GetID()
+    {
+        return _id;
+    }
 
     void OnDrawGizmosSelected()
     {

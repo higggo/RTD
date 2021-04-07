@@ -4,17 +4,39 @@ using UnityEngine;
 
 namespace CharacterKit
 {
+
+    /// <summary>
+    /// 캐릭터 등급을 세팅합니다.
+    /// </summary>
     public enum GRADE
     {
         NORMAL, MAGIC, RARE, UNIQUE
     }
 
+    /// <summary>
+    /// 추후 캐릭터 업그레이드에 쓰일 진영값
+    /// </summary>
     public enum UNION
     {
         ENEMY, UNION001
     }
 
+    /// <summary>
+    /// 캐릭터 고유 ID값입니다.
+    /// 해당 값을 CharacterStat의 인스펙터창에서 넣어주면 됩니다. (UNKNOWN, NORMAL, MAGIC, RARE, UNIQUE는 넣으면 x)
+    /// </summary>
+    public enum ID
+    {
+        UNKNOWN = -1,
+        NORMAL = 0 , N_MUTANT, N_MAGICIAN,
+        MAGIC = 100, M_MUTANT, M_MAGICIAN,
+        RARE = 200, R_MUTANT, R_MAGICIAN,
+        UNIQUE = 300, Q_MUTANT, Q_MAGICIAN,
+    }
     
+    /// <summary>
+    /// For PlayerCharacter STATE MACHINE
+    /// </summary>
     public enum BASICSTATE
     {
         NONE, CREATE, POSTCREATE,
@@ -23,6 +45,11 @@ namespace CharacterKit
         DEAD
     }
 
+
+    /// <summary>
+    /// Struct: 아군, 적의 스텟값을 저장하기 위한 구조체입니다.
+    /// 인스펙터창에서 해당 값을 수정할 수 있습니다.
+    /// </summary>
     [System.Serializable]
     public struct FCharacterStat
     {

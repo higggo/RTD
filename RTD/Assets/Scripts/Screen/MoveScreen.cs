@@ -55,7 +55,6 @@ public class MoveScreen : MonoBehaviour
             if (i == 9)
                 code = KeyCode.Alpha0;
             hotKeys[i] = code;
-            Debug.Log(code);
         }
         
         camSavePoint[0].savePoint = mainCam.transform.position;

@@ -95,6 +95,41 @@ namespace CharacterKit
             obj.transform.Translate(parent.up * ModifiedUpDir, Space.World);
         }
 
+
+        /// <summary>
+        /// CharacterID를 넘기면 해당 캐릭터의 Grade정보를 반환합니다.
+        /// </summary>
+        /// <param name="characterID">캐릭터의 고유 코드</param>
+        /// <returns></returns>
+        public static GRADE SetCharacterGrade(ID characterID)
+        {
+            if (characterID == ID.UNKNOWN
+                || characterID == ID.NORMAL || characterID == ID.MAGIC
+                || characterID == ID.RARE || characterID == ID.UNIQUE)
+                return GRADE.NORMAL;
+
+            int i = (int)characterID / 100;
+            GRADE grade;
+            switch (i)
+            {
+                case 0:
+                    grade = GRADE.NORMAL;
+                    break;
+                case 1:
+                    grade = GRADE.MAGIC;
+                    break;
+                case 2:
+                    grade = GRADE.RARE;
+                    break;
+                case 3:
+                    grade = GRADE.UNIQUE;
+                    break;
+                default:
+                    grade = GRADE.NORMAL;
+                    break;
+            }
+            return grade;
+        }
     }
 }
 

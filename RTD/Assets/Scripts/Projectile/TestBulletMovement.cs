@@ -56,7 +56,7 @@ public class TestBulletMovement : MonoBehaviour, ProjectileMovement
                 delta = distance;
 
             distance -= delta;
-            transform.Translate(dir * delta);
+            transform.Translate(dir * delta, Space.World);
             
             if (target != null)
             {

@@ -38,12 +38,13 @@ public class CharController : MonoBehaviour
         get { return _statInfo; }
     }
 
-
     public bool isInField
     {
         get { return _isInField; }
     }
 
+
+    // Function
     [ContextMenu("Attatch To Field")]
     public void AttatchField()
     {
@@ -53,8 +54,16 @@ public class CharController : MonoBehaviour
         _isInField = true;
     }
 
+    [ContextMenu("Detach from Field")]
+    public void DetachField()
+    {
+        if (characterState != BASICSTATE.DETECT
+            && characterState != BASICSTATE.ATTACK)
+            return;
 
-    // Function
+        _isInField = false;
+    }
+
     void Start()
     {
         ChangeState(BASICSTATE.CREATE);
@@ -99,6 +108,8 @@ public class CharController : MonoBehaviour
                 break;
             case BASICSTATE.DETACHFIELD:
                 // To Do SomeThing
+                StopAllCoroutines();
+                _attackDelay = 0.0f;
                 Target = null;
                 Targets.Clear();
                 ChangeState(BASICSTATE.WAIT);
