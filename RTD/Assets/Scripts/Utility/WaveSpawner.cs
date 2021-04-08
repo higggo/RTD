@@ -6,7 +6,7 @@ public class WaveSpawner : MonoBehaviour
 {
     public Transform enemyPrefeb;
     public Transform SpawnPoint;
-    public float TimeBetweenWaves = 2.0f;
+    public float TimeBetweenWaves = 1.0f;
 
     private float CountDown = 1f;
     private int WaveNumber = 1;
@@ -23,10 +23,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void SpawnWaves()
     {
-        for (int i = 0; i < WaveNumber; i++)
-        {
-            SpawnEnemy();
-        }
+        SpawnEnemy();
         WaveNumber++;
     }
 
