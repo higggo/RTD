@@ -6,12 +6,13 @@ using CharacterKit;
 
 public class CharacterStat : MonoBehaviour
 {
-    [SerializeField] GRADE _grade;
+    GRADE _grade;
     [SerializeField] UNION _union;
+    [SerializeField] ID _id = ID.UNKNOWN;
     [SerializeField] FCharacterStat basicStat;
     [SerializeField] FCharacterStat bonusStat;
     [SerializeField] FCharacterStat currentStat;
-    [SerializeField] ID _id = ID.UNKNOWN;
+    
     // Delegate
     public UnityAction BuffDel = null;
 
@@ -35,6 +36,7 @@ public class CharacterStat : MonoBehaviour
     public GRADE grade
     {
         get { return _grade; }
+        set { _grade = value; }
     }
     
     public UNION union

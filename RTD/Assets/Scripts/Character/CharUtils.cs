@@ -73,7 +73,7 @@ namespace CharacterKit
         /// <param name="parent">붙여줄 트랜스폼</param>
         public static void SettingGradeRing(GRADE grade, Transform parent)
         {
-            string path = "Tile/Unit Ring_";
+            string path = "Tile/Grade Rings/Unit Ring_";
             int i = (int)grade;
             switch (i)
             {

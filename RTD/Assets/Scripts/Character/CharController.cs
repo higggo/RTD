@@ -7,7 +7,7 @@ using CharacterKit;
 public class CharController : MonoBehaviour
 {
     // Basic Component
-    Rigidbody CharacterRigidbody;
+    //Rigidbody CharacterRigidbody;
     CharacterStat _statInfo;
     Animator CharacterAnimator;
     AnimEvent CharacterAnimEvent;
@@ -86,14 +86,7 @@ public class CharController : MonoBehaviour
         {
             case BASICSTATE.CREATE:
                 Debug.Log("CREATE");
-                CharacterRigidbody = GetComponent<Rigidbody>();
-                _statInfo = GetComponent<CharacterStat>();
-                CharacterAnimator = GetComponentInChildren<Animator>();
-                CharacterAnimEvent = GetComponentInChildren<AnimEvent>();
-                CharacterAnimEvent.AttackDel += OnAttack;
-                GetComponent<Damageable>().onDeadDel += OnDead;
-                CharUtils.SettingGradeRing(statInfo.grade, this.transform);
-                Targets = new List<GameObject>();
+                InitComponents();
                 break;
             case BASICSTATE.POSTCREATE:
                 statInfo.UpdateStat();
@@ -121,6 +114,7 @@ public class CharController : MonoBehaviour
                 break;
             case BASICSTATE.ATTACK:
                 CharacterAnimator.SetTrigger("T_Attack");
+                
                 break;
             case BASICSTATE.USESKILL:
                 break;
@@ -177,7 +171,9 @@ public class CharController : MonoBehaviour
                 else
                 {
                     // Rotate to Target
-                    Vector3 dir = Target.transform.position - transform.position;
+                    Vector3 TargetPos = Target.transform.position;
+                    TargetPos.y = transform.position.y;
+                    Vector3 dir = TargetPos - transform.position;
                     dir.Normalize();
                     Quaternion targetRot = Quaternion.LookRotation(dir);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 10.0f);
@@ -219,6 +215,34 @@ public class CharController : MonoBehaviour
         }
         _attackDelay = 0.0f;
         ChangeState(BASICSTATE.DETECT);
+    }
+
+
+    // Init
+    void InitComponents()
+    {
+        //CharacterRigidbody = GetComponent<Rigidbody>();
+
+        // GetStat Script
+        _statInfo = GetComponent<CharacterStat>();
+
+        // Get Animator
+        CharacterAnimator = GetComponentInChildren<Animator>();
+        CharacterAnimator.SetFloat("AttackSpeed", statInfo.attackSpeed);
+        
+        // Get AnimEvent
+        CharacterAnimEvent = GetComponentInChildren<AnimEvent>();
+        CharacterAnimEvent.AttackDel += OnAttack;
+
+        // Get Damageable Script
+        GetComponent<Damageable>().onDeadDel += OnDead;
+
+        // Set Grade Ring
+        statInfo.grade = CharUtils.SetCharacterGrade(statInfo.GetID());
+        CharUtils.SettingGradeRing(statInfo.grade, this.transform);
+
+        // Set List of Targets
+        Targets = new List<GameObject>();
     }
 
 }
