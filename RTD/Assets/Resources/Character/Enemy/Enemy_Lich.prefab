@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 812259772296298587}
   - component: {fileID: 812259772296298586}
   - component: {fileID: 8603373473070244426}
-  m_Layer: 0
-  m_Name: Test_Enemy
+  m_Layer: 8
+  m_Name: Enemy_Lich
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

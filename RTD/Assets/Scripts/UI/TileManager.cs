@@ -15,6 +15,10 @@ public class TileManager : MonoBehaviour
     void Update()
     {
     }
+    public void Init()
+    {
+        DestroyAllCharacter();
+    }
     public Transform GetClosestTile(Vector3 pos)
     {
         Transform closestTile = null;
@@ -137,5 +141,39 @@ public class TileManager : MonoBehaviour
                 cnt++;
         }
         return cnt;
+    }
+
+    public Transform GetEmptyOtherFieldTile(Transform obj)
+    {
+        Transform emptyTile = null;
+        if (obj.parent.parent.parent.name == GroundSpace.parent.name)
+        {
+            foreach (Transform child in StorageSpace)
+            {
+                if (child.childCount == 0)
+                    emptyTile = child;
+            }
+        }
+        else if (obj.parent.parent.parent.name == StorageSpace.parent.name)
+        {
+            foreach (Transform child in GroundSpace)
+            {
+                if (child.childCount == 0)
+                    emptyTile = child;
+            }
+        }
+        return emptyTile;
+    }
+
+    public void DestroyAllCharacter()
+    {
+        foreach (Transform child in GroundSpace)
+        {
+            if(child.childCount > 0) Destroy(child.GetChild(0).gameObject);
+        }
+        foreach (Transform child in StorageSpace)
+        {
+            if (child.childCount > 0) Destroy(child.GetChild(0).gameObject);
+        }
     }
 }

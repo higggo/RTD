@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using ResponseMessage;
 
 public class SelectCharacterCard : MonoBehaviour
 {
@@ -10,41 +11,33 @@ public class SelectCharacterCard : MonoBehaviour
     MoneyManager MoneyManager;
     Transform CharacterSelectArea;
     int  MaxSalesNum = 5;
-    ResponseCode Response;
-    string[] CardDB = new string[] {
-        "UI/EmptyCard",
-        "UI/Shyvana",
-        "UI/Tristana",
-        "UI/Zyra"
-    };
+    GameDB GameDB;
     GameObject[] SalesList = new GameObject[5];
     public GameObject Storage;
-    ResponseCode.TRADE respone;
+    ResponseMessage.Trade.CODE response;
 
     // Start is called before the first frame update
     void Start()
     {
-        Response = GetComponent<ResponseCode>();
         MoneyManager = GetComponent<MoneyManager>();
+        GameDB = GetComponent<GameDB>();
         CharacterSelectArea = CharacterPickerUI.transform.Find("CharacterSelectArea");
+        Init();
+    }
+    public void Init()
+    {
         RefreshCardsFree();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void RefreshCards()
     {
-        if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, 50, ref respone, "Refresh Card"))
+        if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, 50, response, "Refresh Card"))
         {
             for (int i = 0; i < MaxSalesNum; i++)
             {
                 int temp = i;
                 if (SalesList[i] != null) Destroy(SalesList[i]);
                 GameObject obj = Instantiate(
-                    Resources.Load(CardDB[Random.Range(1, CardDB.Length)]),
+                    Resources.Load(GameDB.Card[Random.Range(1, GameDB.Card.Length)]),
                     CharacterSelectArea
                     ) as GameObject;
                 SalesList[i] = obj;
@@ -53,7 +46,7 @@ public class SelectCharacterCard : MonoBehaviour
         }
         else
         {
-            Debug.Log(Response.TradeMessage(respone));
+            Debug.Log(ResponseMessage.Trade.Receive(response));
         }
     }
     void RefreshCardsFree()
@@ -63,7 +56,7 @@ public class SelectCharacterCard : MonoBehaviour
             int temp = i;
             if (SalesList[i] != null) Destroy(SalesList[i]);
             GameObject obj = Instantiate(
-                Resources.Load(CardDB[Random.Range(1, CardDB.Length)]),
+                Resources.Load(GameDB.Card[Random.Range(1, GameDB.Card.Length)]),
                 CharacterSelectArea
                 ) as GameObject;
             SalesList[i] = obj;
@@ -84,21 +77,21 @@ public class SelectCharacterCard : MonoBehaviour
             return;
         }
 
-        if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, 100, ref respone, "Buy Card"))
+        if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, 100, response, "Buy Card"))
         {
-            Storage.GetComponent<Storage>().Push(SalesList[i]);
+            Storage.GetComponent<Storage>().Push(SalesList[i].GetComponent<CardInfo>().CharacterPrefab);
 
+            // Destry Select Card
             if (SalesList[i] != null) Destroy(SalesList[i]);
-            GameObject obj = Instantiate(
-                    Resources.Load(CardDB[0]),
-                    CharacterSelectArea
-                    ) as GameObject;
+
+            // Instantiate Empty Card
+            GameObject obj = Instantiate(Resources.Load(GameDB.Card[0]), CharacterSelectArea) as GameObject;
             obj.transform.SetSiblingIndex(i);
             SalesList[i] = obj;
         }
         else
         {
-            Debug.Log(Response.TradeMessage(respone));
+            Debug.Log(ResponseMessage.Trade.Receive(response));
         }
     }
 

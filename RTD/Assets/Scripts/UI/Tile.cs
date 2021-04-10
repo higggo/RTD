@@ -42,12 +42,13 @@ public class Tile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 localscale = transform.localScale;
-        localscale.x *= CollisionRadiusRate;
-        localscale.y *= CollisionRadiusRate;
-        transform.localScale = localscale;
+        float RadiusOrigin = GetComponent<SphereCollider>().radius;
+        Vector3 localScale = transform.localScale;
+        localScale *= CollisionRadiusRate;
+        //localScale.y *= CollisionRadiusRate;
+        transform.localScale = localScale;
 
-        GetComponent<SphereCollider>().radius *= CollisionRadiusRate;
+        //GetComponent<SphereCollider>().radius = RadiusOrigin * transform.localScale.x;
 
         Hide = null;
         Impossible = Resources.Load<Sprite>("UI/tileimpossible");
@@ -125,6 +126,7 @@ public class Tile : MonoBehaviour
     public void AppearTile()
     {
         State = STATE.Normal;
+        isColliding = false;
     }
     public void InRange()
     {

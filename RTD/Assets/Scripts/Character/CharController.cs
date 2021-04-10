@@ -41,6 +41,8 @@ public class CharController : MonoBehaviour
     public bool isInField
     {
         get { return _isInField; }
+        // jdh : Map 이동시 Set
+        set { _isInField = value; }
     }
 
 
@@ -98,7 +100,7 @@ public class CharController : MonoBehaviour
                 Debug.Log("POSTCREATE");
                 break;
             case BASICSTATE.WAIT:
-                _isInField = false;
+                //_isInField = false;
                 Debug.Log("WAIT");
                 break;
             case BASICSTATE.ATTACHFIELD:

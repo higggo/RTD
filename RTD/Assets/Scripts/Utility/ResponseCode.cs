@@ -2,34 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResponseCode : MonoBehaviour
+namespace ResponseMessage
 {
-    public enum TRADE
+    public class Trade : MonoBehaviour
     {
-        SUCCESS,
-        WAITING,        // my task calculating
-        NEEDMOREMONEY,
-        BUSY
-    };
+        public enum CODE
+        {
+            SUCCESS,
+            WAITING,        // my task calculating
+            NEEDMOREMONEY,
+            BUSY
+        };
 
-    public string TradeMessage(TRADE Trade)
-    {
-        string output = "";
-            switch (Trade)
+        public static string Receive(CODE code)
+        {
+            string output = "";
+            switch (code)
             {
-                case TRADE.SUCCESS:
+                case CODE.SUCCESS:
                     output = "Success";
                     break;
-                case TRADE.WAITING:
+                case CODE.WAITING:
                     output = "Waiting";
                     break;
-                case TRADE.NEEDMOREMONEY:
+                case CODE.NEEDMOREMONEY:
                     output = "NeedMoreMoney";
                     break;
-                case TRADE.BUSY:
+                case CODE.BUSY:
                     output = "Busy";
                     break;
+            }
+            return output;
         }
-        return output;
     }
 }

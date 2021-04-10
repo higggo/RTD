@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using ResponseMessage;
 
 public class MoneyManager : MonoBehaviour
 {
@@ -37,9 +38,13 @@ public class MoneyManager : MonoBehaviour
     {
     }
 
-    void Init()
+    public void Init()
     {
-        SetMoney(500);
+        SetMoney(1000); 
+        foreach(Transform child in gameObject.transform.Find("Account"))
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     public float GetMoney()
@@ -52,12 +57,12 @@ public class MoneyManager : MonoBehaviour
         this.money = money;
     }
 
-    public bool CalculateMoney(ACTION act, uint money, ref ResponseCode.TRADE respone, string Message)
+    public bool CalculateMoney(ACTION act, uint money, ResponseMessage.Trade.CODE respone, string Message)
     {
         bool output = false;
         if (IsCalculatingMoney)
         {
-            respone = ResponseCode.TRADE.BUSY;
+            respone = ResponseMessage.Trade.CODE.BUSY;
             return false;
         }
 
@@ -68,22 +73,22 @@ public class MoneyManager : MonoBehaviour
             if (this.money >= money)
             {
                 this.money -= money;
-                respone = ResponseCode.TRADE.SUCCESS;
+                respone = ResponseMessage.Trade.CODE.SUCCESS;
             }
             else
             {
-                respone = ResponseCode.TRADE.NEEDMOREMONEY;
+                respone = ResponseMessage.Trade.CODE.NEEDMOREMONEY;
                 output = false;
             }
         }
         else if (act == ACTION.Receive)
         {
             this.money += money;
-            respone = ResponseCode.TRADE.SUCCESS;
+            respone = ResponseMessage.Trade.CODE.SUCCESS;
         }
 
         //
-        if(respone == ResponseCode.TRADE.SUCCESS)
+        if(respone == ResponseMessage.Trade.CODE.SUCCESS)
         {
             output = true;
             GameObject obj = Instantiate(Resources.Load("UI/TradeAmount")) as GameObject;

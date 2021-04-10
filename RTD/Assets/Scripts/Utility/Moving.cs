@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using CharacterKit;
 
 public class Moving : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class Moving : MonoBehaviour
 
     float rotTime = 1.0f;
     float rotSumDelta = 0.0f;
+
+    public UnityAction DestroySpawnDelegate;
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +40,8 @@ public class Moving : MonoBehaviour
     void Update()
     {
         CurrentPosition = transform.position;
-
-        if (wayPointIndex < wayPoints.Length)
+        if (wayPointIndex < wayPoints.Length &&
+            GetComponent<EnemyController>().GetState() != ENEMYSTATE.DEAD)
         {
             float step = Time.deltaTime * speed;
             transform.position = Vector3.MoveTowards(CurrentPosition, wayPoints[wayPointIndex], step);
@@ -58,6 +62,7 @@ public class Moving : MonoBehaviour
                 wayPointIndex++;
                 if (wayPointIndex == wayPoints.Length)  //목적지에 도착시 에네미 캐릭터를 삭제합니다.
                 {
+                    DestroySpawnDelegate?.Invoke();
                     Destroy(gameObject);
                     return;
                 }

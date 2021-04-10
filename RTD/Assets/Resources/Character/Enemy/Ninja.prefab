@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 4569854371119762488}
   - component: {fileID: 4569854371119762489}
   - component: {fileID: 4569854371119762494}
+  - component: {fileID: -5360462102066707227}
   m_Layer: 8
   m_Name: Ninja
   m_TagString: Untagged
@@ -120,6 +121,7 @@ MonoBehaviour:
     attackRange: 0
     moveSpeed: 0
     rotateSpeed: 0
+  _id: -1
 --- !u!114 &4569854371119762488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +149,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!136 &4569854371119762494
 CapsuleCollider:
@@ -163,6 +165,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &-5360462102066707227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569854371119762495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44478231f0daf9a4780197c2335123ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wayPoints: []
+  CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &4569854370894101970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -174,6 +190,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1efd9d16b535cdf48b9b1189c4e85b4e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1efd9d16b535cdf48b9b1189c4e85b4e,
         type: 3}
@@ -192,6 +213,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1efd9d16b535cdf48b9b1189c4e85b4e,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1efd9d16b535cdf48b9b1189c4e85b4e,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -203,16 +229,6 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1efd9d16b535cdf48b9b1189c4e85b4e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1efd9d16b535cdf48b9b1189c4e85b4e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1efd9d16b535cdf48b9b1189c4e85b4e,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1efd9d16b535cdf48b9b1189c4e85b4e,

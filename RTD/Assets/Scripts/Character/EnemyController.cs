@@ -98,4 +98,9 @@ public class EnemyController : MonoBehaviour
     {
         Destroy(gameObject, destroyDelay);
     }
+
+    public ENEMYSTATE GetState()
+    {
+        return enemyState;
+    }
 }
