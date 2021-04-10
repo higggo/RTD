@@ -6,12 +6,14 @@ using UnityEngine.Events;
 public class AnimEvent : MonoBehaviour
 {
     public UnityAction AttackDel;
+    public UnityAction BasicAttackEffectDel;
     public UnityAction DeadDel;
 
 
     public void OnAttack()
     {
         AttackDel?.Invoke();
+        BasicAttackEffectDel?.Invoke();
     }
 
     public void OnDead()

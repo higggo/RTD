@@ -28,10 +28,10 @@ namespace CharacterKit
     public enum ID
     {
         UNKNOWN = -1,
-        NORMAL = 0 , N_MUTANT, N_MAGICIAN,
-        MAGIC = 100, M_MUTANT, M_MAGICIAN,
-        RARE = 200, R_MUTANT, R_MAGICIAN,
-        UNIQUE = 300, Q_MUTANT, Q_MAGICIAN,
+        NORMAL = 0 , N_WARRIOR, N_MARINE, N_LICH,
+        MAGIC = 100, M_WARRIOR, M_MARINE, M_LICH,
+        RARE = 200,  R_WARRIOR, R_MARINE, R_LICH,
+        UNIQUE = 300, Q_WARRIOR, Q_MARINE, Q_LICH,
     }
     
     /// <summary>

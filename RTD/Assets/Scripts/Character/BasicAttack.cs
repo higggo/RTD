@@ -5,13 +5,20 @@ using CharacterKit;
 
 public class BasicAttack : MonoBehaviour
 {
+    
     protected CharacterStat statInfo;
     protected float _attackDelay = 0.0f;
     protected bool _nowAttack = false;
 
+    public Transform EffectStartPos;
+    [SerializeField] GameObject AttackEffect;
+
     void Start()
     {
         statInfo = GetComponent<CharacterStat>();
+
+        if (AttackEffect != null)
+            GetComponentInChildren<AnimEvent>().BasicAttackEffectDel += OnEffectStart;
     }
 
     // 이 함수를 override해서 다른 캐릭터의 기본공격 로직을 바꾸세요.
@@ -31,4 +38,14 @@ public class BasicAttack : MonoBehaviour
         targetDamageComp.GetDamage(msg);
     }
 
+    public virtual void OnEffectStart()
+    {
+        // Modify Effect Rotation.        
+        var obj = Instantiate<GameObject>(AttackEffect, EffectStartPos);
+        obj.transform.Rotate(AttackEffect.transform.rotation.eulerAngles);
+
+        // Set Destroy Time
+        float DestroyDelay = obj.GetComponentInChildren<ParticleSystem>().main.duration;
+        Destroy(obj, DestroyDelay);
+    }
 }
