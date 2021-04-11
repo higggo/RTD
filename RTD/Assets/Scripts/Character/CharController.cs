@@ -237,7 +237,7 @@ public class CharController : MonoBehaviour
         // Get Damageable Script
         GetComponent<Damageable>().onDeadDel += OnDead;
 
-        // Set Grade Ring
+        // Set Character Grade And Set Grade Ring 
         statInfo.grade = CharUtils.SetCharacterGrade(statInfo.GetID());
         CharUtils.SettingGradeRing(statInfo.grade, this.transform);
 
