@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 5339255478295829855}
   - component: {fileID: -3617831094254365235}
   m_Layer: 0
-  m_Name: N_Magician
+  m_Name: Magician
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,8 +82,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a933caf9d4e82a488b629ea5330777b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _grade: 0
   _union: 1
+  _id: 2
   basicStat:
     MaxHP: 100
     HP: 100
@@ -93,11 +93,11 @@ MonoBehaviour:
     moveSpeed: 0
     rotateSpeed: 0
   bonusStat:
-    MaxHP: 0
-    HP: 0
-    attackDamage: 0
-    attackSpeed: 0
-    attackRange: 0
+    MaxHP: 10
+    HP: 10
+    attackDamage: 15
+    attackSpeed: 0.1
+    attackRange: 0.125
     moveSpeed: 0
     rotateSpeed: 0
   currentStat:
@@ -108,7 +108,6 @@ MonoBehaviour:
     attackRange: 0
     moveSpeed: 0
     rotateSpeed: 0
-  _id: 2
 --- !u!114 &4181459526244076984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2388ff0a3d61e43be5305838028b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EffectStartPos: {fileID: 0}
+  AttackEffect: {fileID: 0}
   bulletStartPos: {fileID: 3064005006279063740}
 --- !u!114 &4181459526244076989
 MonoBehaviour:

@@ -4,10 +4,27 @@ using UnityEngine;
 
 namespace ProjectileKit
 {
-    public interface ProjectileMovement
+    //public interface ProjectileMovement
+    //{
+    //    void SetMovement(Transform target, float bulletSpeed);
+    //}
+
+    public class ProjectileMovement : MonoBehaviour
     {
-        void SetMovement(Transform target, float bulletSpeed);
+        protected bool fireBullet = false;
+        protected bool endMove = false;
+        protected Transform target = null;
+        protected float bulletSpeed = 0.0f;
+
+        public virtual void SetMovement(Transform target, float bulletSpeed)
+        {
+
+        }
+
+        public virtual void SetRotate(Vector3 target)
+        {
+
+        }
     }
 
-    
 }

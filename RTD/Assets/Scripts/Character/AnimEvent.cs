@@ -8,7 +8,7 @@ public class AnimEvent : MonoBehaviour
     public UnityAction AttackDel;
     public UnityAction BasicAttackEffectDel;
     public UnityAction DeadDel;
-
+    public UnityAction MainSkillDel;
 
     public void OnAttack()
     {
@@ -19,5 +19,10 @@ public class AnimEvent : MonoBehaviour
     public void OnDead()
     {
         DeadDel?.Invoke();
+    }
+
+    public void OnSkillFire()
+    {
+        MainSkillDel?.Invoke();
     }
 }

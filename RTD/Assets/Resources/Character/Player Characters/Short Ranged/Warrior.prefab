@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4124375706150853621}
   m_Layer: 0
   m_Name: Warrior
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,11 +90,11 @@ MonoBehaviour:
     moveSpeed: 0
     rotateSpeed: 0
   bonusStat:
-    MaxHP: 0
-    HP: 0
-    attackDamage: 0
-    attackSpeed: 0
-    attackRange: 0
+    MaxHP: 25
+    HP: 25
+    attackDamage: 15
+    attackSpeed: 0.125
+    attackRange: 0.05
     moveSpeed: 0
     rotateSpeed: 0
   currentStat:

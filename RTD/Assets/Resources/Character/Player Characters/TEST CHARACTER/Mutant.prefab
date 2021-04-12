@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: -291560925291621628}
   - component: {fileID: -3322971426054328372}
   m_Layer: 0
-  m_Name: N_Mutant
+  m_Name: Mutant
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,8 +81,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a933caf9d4e82a488b629ea5330777b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _grade: 0
   _union: 1
+  _id: 1
   basicStat:
     MaxHP: 100
     HP: 100
@@ -92,11 +92,11 @@ MonoBehaviour:
     moveSpeed: 100
     rotateSpeed: 100
   bonusStat:
-    MaxHP: 0
-    HP: 0
-    attackDamage: 0
-    attackSpeed: 0
-    attackRange: 0
+    MaxHP: 25
+    HP: 25
+    attackDamage: 15
+    attackSpeed: 0.125
+    attackRange: 0.1
     moveSpeed: 0
     rotateSpeed: 0
   currentStat:
@@ -107,7 +107,6 @@ MonoBehaviour:
     attackRange: 0
     moveSpeed: 0
     rotateSpeed: 0
-  _id: 1
 --- !u!114 &588409984282590223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71556c3f46071ca4bb63e26263403f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EffectStartPos: {fileID: 0}
+  AttackEffect: {fileID: 0}
 --- !u!136 &588409984282590226
 CapsuleCollider:
   m_ObjectHideFlags: 0

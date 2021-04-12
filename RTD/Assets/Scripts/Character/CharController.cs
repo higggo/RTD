@@ -89,7 +89,7 @@ public class CharController : MonoBehaviour
                 InitComponents();
                 break;
             case BASICSTATE.POSTCREATE:
-                statInfo.UpdateStat();
+                statInfo.UpdateStat(1);
                 Debug.Log("POSTCREATE");
                 break;
             case BASICSTATE.WAIT:
@@ -117,6 +117,8 @@ public class CharController : MonoBehaviour
                 
                 break;
             case BASICSTATE.USESKILL:
+                // CharacterAnimator.SetTrigger("T_Skill01");
+                // StartCoroutine(StartSkill())
                 break;
             case BASICSTATE.DEAD:
                 Destroy(this.gameObject, destroyDelay);
@@ -185,7 +187,34 @@ public class CharController : MonoBehaviour
                 break;
         }
     }
-    
+
+    // Init
+    void InitComponents()
+    {
+        //CharacterRigidbody = GetComponent<Rigidbody>();
+
+        // GetStat Script
+        _statInfo = GetComponent<CharacterStat>();
+
+        // Get Animator
+        CharacterAnimator = GetComponentInChildren<Animator>();
+        CharacterAnimator.SetFloat("AttackSpeed", statInfo.attackSpeed);
+
+        // Get AnimEvent
+        CharacterAnimEvent = GetComponentInChildren<AnimEvent>();
+        CharacterAnimEvent.AttackDel += OnAttack;
+
+        // Get Damageable Script
+        GetComponent<Damageable>().onDeadDel += OnDead;
+
+        // Set Character Grade And Set Grade Ring 
+        statInfo.grade = CharUtils.SetCharacterGrade(statInfo.GetID());
+        CharUtils.SettingGradeRing(statInfo.grade, this.transform);
+
+        // Set List of Targets
+        Targets = new List<GameObject>();
+    }
+
     public void OnDead()
     {
         ChangeState(BASICSTATE.DEAD);
@@ -215,34 +244,6 @@ public class CharController : MonoBehaviour
         }
         _attackDelay = 0.0f;
         ChangeState(BASICSTATE.DETECT);
-    }
-
-
-    // Init
-    void InitComponents()
-    {
-        //CharacterRigidbody = GetComponent<Rigidbody>();
-
-        // GetStat Script
-        _statInfo = GetComponent<CharacterStat>();
-
-        // Get Animator
-        CharacterAnimator = GetComponentInChildren<Animator>();
-        CharacterAnimator.SetFloat("AttackSpeed", statInfo.attackSpeed);
-        
-        // Get AnimEvent
-        CharacterAnimEvent = GetComponentInChildren<AnimEvent>();
-        CharacterAnimEvent.AttackDel += OnAttack;
-
-        // Get Damageable Script
-        GetComponent<Damageable>().onDeadDel += OnDead;
-
-        // Set Character Grade And Set Grade Ring 
-        statInfo.grade = CharUtils.SetCharacterGrade(statInfo.GetID());
-        CharUtils.SettingGradeRing(statInfo.grade, this.transform);
-
-        // Set List of Targets
-        Targets = new List<GameObject>();
     }
 
 }

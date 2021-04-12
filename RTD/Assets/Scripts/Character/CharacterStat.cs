@@ -19,17 +19,36 @@ public class CharacterStat : MonoBehaviour
     void Awake()
     {
         currentStat = basicStat;
-        UpdateStat();
         // To Do: CharController의 LevelUpDel에 UpdateStat을 연결?
     }
 
-    public void UpdateStat()
-    {
-        // To Do: 캐릭터의 Stat이 변경될 때, 호출되는 함수 작성
-        //         1) ex: UNION LevelUp시 Level을 받아 보너스 스텟만큼 더한다.
 
-        // currentStat = basicStat + bonusStat * (UnionLevel - 1);
-        BuffDel?.Invoke();
+    /// <summary>
+    /// 해당 인스턴스 캐릭터의 스텟을 업데이트 합니다.
+    /// </summary>
+    /// <param name="unionLevel">각 캐릭터의 union에 맞는 레벨값을 넘겨주세요.</param>
+    public void UpdateStat(int unionLevel)
+    {
+        if (unionLevel <= 0)
+        {
+            currentStat = basicStat;
+            return;
+        }
+        // level이 1인 경우 bonusStat이 더해지면 안되므로 -1 계산
+        unionLevel -= 1;
+
+
+        FCharacterStat tempStat = basicStat;
+        tempStat.attackDamage += bonusStat.attackDamage * unionLevel;
+        tempStat.attackRange += bonusStat.attackRange * unionLevel;
+        tempStat.attackSpeed += bonusStat.attackSpeed * unionLevel;
+        tempStat.MaxHP += bonusStat.MaxHP * unionLevel;
+        tempStat.HP += bonusStat.HP * unionLevel;
+
+        // To Do: 버프나 디버프가 있으면, 해당 델리게이트를 발동시켜서 작동할 수 있도록
+        //BuffDel?.Invoke();
+
+        currentStat = tempStat;
     }
 
     // Property

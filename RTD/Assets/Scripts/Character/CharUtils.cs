@@ -130,6 +130,24 @@ namespace CharacterKit
             }
             return grade;
         }
+
+        /// <summary>
+        /// 특정 유니온의 캐릭터들의 스텟을 전부 업데이트합니다.
+        /// </summary>
+        /// <param name="union">업데이트할 유니온</param>
+        /// <param name="unionLevel">해당 유니온 레벨</param>
+        public static void UpdateSpecificUnion(UNION union, int unionLevel)
+        {
+            GameObject[] characters = GameObject.FindGameObjectsWithTag("Player");
+            foreach(GameObject character in characters)
+            {
+                if (character.GetComponent<CharacterStat>() == null
+                    || character.GetComponent<CharacterStat>().union != union)
+                    continue;
+
+                character.GetComponent<CharacterStat>().UpdateStat(unionLevel);
+            }
+        }
     }
 }
 
