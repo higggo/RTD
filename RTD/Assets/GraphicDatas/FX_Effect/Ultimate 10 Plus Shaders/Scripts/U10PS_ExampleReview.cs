@@ -8,7 +8,7 @@ public class U10PS_ExampleReview : MonoBehaviour
 {
     public Text exampleName;
 
-    public Example[] examples;
+    public U10PS_Example[] examples;
     private int currentIndex = -1;
 
     private void Start()
@@ -55,7 +55,7 @@ public class U10PS_ExampleReview : MonoBehaviour
 }
 
 [System.Serializable]
-public class Example
+public class U10PS_Example
 {
     public GameObject[] objects;
     public string name;

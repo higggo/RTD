@@ -6,6 +6,10 @@ namespace CharacterKit
 {
     public class CharUtils : MonoBehaviour
     {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// Calculate
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         // @Summary: Target이 Instance로부터 Range안에 있는지 검사합니다. (높낮이의 차이는 무시됩니다.)
         public static bool IsInRange(Transform Instance, Transform Target, float Range)
         {
@@ -18,6 +22,29 @@ namespace CharacterKit
             return true;
         }
 
+        public static bool FindTarget(CharController Instance, LayerMask Mask, float Range, out GameObject obj)
+        {
+            List<GameObject> list = new List<GameObject>();
+            if (FindTargetAll(Instance.transform, Mask, ref list, Range))
+                obj = GetCloseTarget(Instance, list);
+            else
+                obj = null;
+
+
+            return (obj == null) ? false : true;
+        }
+
+        public static bool FindTarget(Transform Instance, LayerMask Mask, float Range, out GameObject obj)
+        {
+            List<GameObject> list = new List<GameObject>();
+            if (FindTargetAll(Instance, Mask, ref list, Range))
+                obj = GetCloseTarget(Instance, list);
+            else
+                obj = null;
+
+            return (obj == null) ? false : true;
+        }
+
         // @Summary: 해당 Instance의 위치에서 LayerMask에 따른 SphereCast를 하고, 목표가 있으면 TargetContainer에 담고 true를 리턴합니다.
         public static bool FindTargetAll(CharController Instance, LayerMask Mask, ref List<GameObject> TargetContainer)
         {
@@ -26,6 +53,24 @@ namespace CharacterKit
             if (hitInfo.Length == 0)
                 return false;
             
+            TargetContainer.Clear();
+            foreach (RaycastHit hit in hitInfo)
+            {
+                Debug.Log("FindTargetAll");
+                GameObject hitObj = hit.collider.gameObject;
+                if (!hitObj.GetComponent<Damageable>().IsDead)
+                    TargetContainer.Add(hitObj);
+            }
+
+            return true;
+        }
+
+        public static bool FindTargetAll(Transform Instance, LayerMask Mask, ref List<GameObject> TargetContainer, float range)
+        {
+            RaycastHit[] hitInfo = Physics.SphereCastAll(Instance.transform.position, range, Instance.transform.forward, 0.0f, Mask);
+            if (hitInfo.Length == 0)
+                return false;
+
             TargetContainer.Clear();
             foreach (RaycastHit hit in hitInfo)
             {
@@ -64,7 +109,36 @@ namespace CharacterKit
             return TargetObj;
         }
 
+        public static GameObject GetCloseTarget(Transform Instance, List<GameObject> Targets)
+        {
+            if (Targets.Count == 0)
+            {
+                Debug.Log("Targets is Empty!");
+                return null;
+            }
 
+            GameObject TargetObj = Targets[0];
+            float MinDist = Vector3.Distance(Instance.transform.position, Targets[0].transform.position);
+
+            foreach (GameObject target in Targets)
+            {
+                float dist = Vector3.Distance(Instance.transform.position, target.transform.position);
+                if (MinDist > dist)
+                {
+                    MinDist = dist;
+                    TargetObj = target;
+                }
+            }
+
+            Debug.DrawLine(Instance.transform.position, TargetObj.transform.position, Color.red, 0.5f);
+            return TargetObj;
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// Grade
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
         /// 캐릭터 Grade에 맞는 식별 가능한 Ring Object를 달아줍니다.
@@ -131,6 +205,13 @@ namespace CharacterKit
             return grade;
         }
 
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// Stat
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         /// <summary>
         /// 특정 유니온의 캐릭터들의 스텟을 전부 업데이트합니다.
         /// </summary>
@@ -147,6 +228,44 @@ namespace CharacterKit
 
                 character.GetComponent<CharacterStat>().UpdateStat(unionLevel);
             }
+        }
+
+
+
+        /// <summary>
+        /// 필드의 모든 플레이어 캐릭터의 스킬 쿨다운 스위치를 라운드 시작, 끝에 따라 변경합니다.
+        /// </summary>
+        /// <param name="RoundStart">라운드가 시작하면 true를, 끝났을 때는 false를 대입해주세요.</param>
+        public static void SetSkillCoolDownTrigger(bool RoundStart)
+        {
+            GameObject[] characters = GameObject.FindGameObjectsWithTag("Player");
+
+            foreach (GameObject character in characters)
+            {
+                CharController controller = character.GetComponent<CharController>();
+                if (controller == null)
+                    continue;
+
+                if (RoundStart)
+                {
+                    if (controller.isInField)
+                    {
+                        if (controller.skillController != null)
+                            controller.skillController.startCoolDown = true;
+                    }
+                    else
+                    {
+                        if (controller.skillController != null)
+                            controller.skillController.startCoolDown = false;
+                    }
+                }
+                else
+                {
+                    if (controller.skillController != null)
+                        controller.skillController.ResetAll();
+                }
+            }
+
         }
     }
 }

@@ -6,19 +6,23 @@ using CharacterKit;
 
 public class CharController : MonoBehaviour
 {
-    // Basic Component
-    //Rigidbody CharacterRigidbody;
-    CharacterStat _statInfo;
+    // Basic Components
+    Rigidbody CharacterRigidbody;
     Animator CharacterAnimator;
-    AnimEvent CharacterAnimEvent;
 
-    // 함수 진행에 필요한 변수들
+    // Script Components
+    AnimEvent CharacterAnimEvent;
+    CharacterStat _statInfo;
+    SkillController _skillController;
+
+    // LayerMask
     public LayerMask enemyLayer;
     
-
     // StateMachine
     public BASICSTATE characterState = BASICSTATE.NONE;
 
+    // skillController에서 bNowSkill을 받아온다?
+    // skillController에서 델리게이트를 선언해서 bNowSKill on/off를 해준다?
 
     // flags
     [SerializeField, Tooltip("켜주면 공격합니다.")]
@@ -38,6 +42,17 @@ public class CharController : MonoBehaviour
         get { return _statInfo; }
     }
 
+    public SkillController skillController
+    {
+        get 
+        { 
+            if (_skillController == null) 
+                return null;
+
+            return _skillController;
+        }
+    }
+
     public bool isInField
     {
         get { return _isInField; }
@@ -45,8 +60,31 @@ public class CharController : MonoBehaviour
         set { _isInField = value; }
     }
 
+    // Test
+    [ContextMenu("CoolTime")]
+    public void SetCoolTime()
+    {
+        if (!_isInField)
+            return;
 
-    // Function
+        CharUtils.SetSkillCoolDownTrigger(true);
+    }
+
+
+    // Basic Functions
+    void Start()
+    {
+        ChangeState(BASICSTATE.CREATE);
+    }
+
+    void Update()
+    {
+        StateProcess();
+    }
+
+
+
+    // public Function
     [ContextMenu("Attatch To Field")]
     public void AttatchField()
     {
@@ -66,16 +104,15 @@ public class CharController : MonoBehaviour
         _isInField = false;
     }
 
-    void Start()
+    public void OnDead()
     {
-        ChangeState(BASICSTATE.CREATE);
+        ChangeState(BASICSTATE.DEAD);
+        CharacterAnimator.SetTrigger("T_Dead");
     }
 
-    void Update()
-    {
-        StateProcess();
-    }
 
+
+    // private Functions
     void ChangeState(BASICSTATE state)
     {
         if (characterState == state)
@@ -102,23 +139,22 @@ public class CharController : MonoBehaviour
                 Debug.Log("ATTATCH");
                 break;
             case BASICSTATE.DETACHFIELD:
-                // To Do SomeThing
                 StopAllCoroutines();
-                _attackDelay = 0.0f;
-                Target = null;
-                Targets.Clear();
+                ResetComp();
                 ChangeState(BASICSTATE.WAIT);
+                Debug.Log("DETACH");
                 break;
             case BASICSTATE.DETECT:
                 Debug.Log("DETECT");
                 break;
             case BASICSTATE.ATTACK:
                 CharacterAnimator.SetTrigger("T_Attack");
-                
+                break;
+            case BASICSTATE.READYSKILL:
+                Debug.Log("READY To SKILL");
                 break;
             case BASICSTATE.USESKILL:
-                // CharacterAnimator.SetTrigger("T_Skill01");
-                // StartCoroutine(StartSkill())
+                CharacterAnimator.SetTrigger("T_Skill01");
                 break;
             case BASICSTATE.DEAD:
                 Destroy(this.gameObject, destroyDelay);
@@ -160,19 +196,29 @@ public class CharController : MonoBehaviour
                         Target = CharUtils.GetCloseTarget(this, Targets);
                     }
                 }
+
+                // skill 사용이 가능하면 READYSKILL로 변경
+                if (_skillController != null)
+                {
+                    if (_skillController.canUseSkill)
+                    {
+                        ChangeState(BASICSTATE.READYSKILL);
+                        break;
+                    }
+                }
+                
                 if (Target != null && _attackDelay < Mathf.Epsilon)
                     ChangeState(BASICSTATE.ATTACK);
 
                 break;
             case BASICSTATE.ATTACK:
-                // if Target is null 
                 if (Target == null)
                 {
                     ChangeState(BASICSTATE.DETECT);
                 }
                 else
                 {
-                    // Rotate to Target
+                    // Rotate to Target (CharacterKit에 하나 만들자)
                     Vector3 TargetPos = Target.transform.position;
                     TargetPos.y = transform.position.y;
                     Vector3 dir = TargetPos - transform.position;
@@ -181,7 +227,13 @@ public class CharController : MonoBehaviour
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 10.0f);
                 }
                 break;
+            case BASICSTATE.READYSKILL:
+                if (_skillController.PrepareSkill())
+                    ChangeState(BASICSTATE.USESKILL);
+                break;
             case BASICSTATE.USESKILL:
+                if (!_skillController.canUseSkill)
+                    ChangeState(BASICSTATE.DETECT);
                 break;
             case BASICSTATE.DEAD:
                 break;
@@ -191,10 +243,11 @@ public class CharController : MonoBehaviour
     // Init
     void InitComponents()
     {
-        //CharacterRigidbody = GetComponent<Rigidbody>();
+        CharacterRigidbody = GetComponent<Rigidbody>();
 
         // GetStat Script
         _statInfo = GetComponent<CharacterStat>();
+        _skillController = GetComponent<SkillController>();
 
         // Get Animator
         CharacterAnimator = GetComponentInChildren<Animator>();
@@ -215,11 +268,6 @@ public class CharController : MonoBehaviour
         Targets = new List<GameObject>();
     }
 
-    public void OnDead()
-    {
-        ChangeState(BASICSTATE.DEAD);
-        // CharacterAnimator.SetBool("isDead", true);
-    }
 
     // @Summary: 공격 애니메이션의 Call Function에서 실행될 델리게이트에 붙여질 함수입니다.
     //           기본적으로는 BasicAttack()의 OnAttack함수를 여기서 호출합니다.
@@ -246,6 +294,14 @@ public class CharController : MonoBehaviour
         ChangeState(BASICSTATE.DETECT);
     }
 
+
+    void ResetComp()
+    {
+        _attackDelay = 0.0f;
+        Target = null;
+        Targets.Clear();
+        _skillController?.ResetAll();
+    }
 }
 
 

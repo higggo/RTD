@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 8275055700053163395}
   - component: {fileID: 8275055700053163405}
   - component: {fileID: 8275055700053163404}
+  - component: {fileID: 2863324065752129485}
   m_Layer: 0
   m_Name: Marine
   m_TagString: Player
@@ -193,6 +194,32 @@ MonoBehaviour:
   EffectStartPos: {fileID: 8275055698534351338}
   AttackEffect: {fileID: 8101977060832719537, guid: cdad87ebce7c5cc4a8295031c83220fd,
     type: 3}
+--- !u!114 &2863324065752129485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8275055700053163407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f2eb2112d6b3f4b8d3bf2b91614cc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillClass: -1
+  skillState: 0
+  SkillParticle: {fileID: 180852, guid: ec556a9042d03af468d34a1d5906ced6, type: 3}
+  SkillReadyParticle: {fileID: 100008, guid: 9bd02134821a4c1408cccd494af446e0, type: 3}
+  _attachToParent: 0
+  SkillParticleStartPos: {fileID: 8275055698534351338}
+  SkillReadyParticleStartPos: {fileID: 8275055698534351338}
+  coolTime: 5
+  skillDamage: 2
+  skillRange: 10
+  collisionRadius: 0.5
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &8275055698674407047
 PrefabInstance:
   m_ObjectHideFlags: 0

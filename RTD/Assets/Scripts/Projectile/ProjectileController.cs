@@ -12,13 +12,12 @@ namespace ProjectileKit
     }
 }
 
-
+// 타겟팅형 발사체 스크립트
 public class ProjectileController : MonoBehaviour
 {
     [SerializeField] protected STATE _bulletState = STATE.CREATE;
     [SerializeField] protected float _bulletDmg;
     [SerializeField] protected float _bulletSpeed = 0.0f;
-    [SerializeField] protected bool _isTargeting = true;
 
     protected GameObject _target = null;
     public UnityAction<Transform, float> moveDel = null;
@@ -69,13 +68,50 @@ public class ProjectileController : MonoBehaviour
         get { return _target; }
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// public Func
 
+    /// <summary>
+    /// 이 함수를 총알 생성 직후에 바로 call 해주면 됩니다.
+    /// </summary>
+    /// <param name="target">공격 대상</param>
+    /// <param name="bulletDmg">공격력</param>
+    /// <param name="bulletSpeed">총알 속도(Time.deltaTime * bulletSpeed)</param>
+    public void InitBullet(GameObject target, float bulletDmg, float bulletSpeed)
+    {
+        Debug.Log("InitBullet");
+        if (!(_bulletState == STATE.CREATE || _bulletState == STATE.WAIT))
+            return;
+
+        if (target == null)
+            Debug.Log("Target is Null!");
+
+        _target = target;
+        this.bulletDmg = bulletDmg;
+        this.bulletSpeed = bulletSpeed;
+        ChangeState(STATE.READY);
+    }
+
+    /// <summary>
+    /// bullet의 state를 HIT로 바꿉니다.
+    /// </summary>
+    public void SetHit()
+    {
+        if (_bulletState != STATE.SHOOT)
+            return;
+
+        Debug.Log("SetHIT");
+        ChangeState(STATE.HIT);
+    }
+
+
+
+    // Private Func
     void Awake()
     {
         _bulletState = STATE.CREATE;
     }
-
-    // Basic Func    
+  
     void Start()
     {
 
@@ -89,9 +125,6 @@ public class ProjectileController : MonoBehaviour
     // Colision Set
     void OnTriggerEnter(Collider other)
     {
-        if (!_isTargeting)
-            return;
-
         Debug.Log("충돌");
 
         if (other.gameObject == target)
@@ -143,44 +176,4 @@ public class ProjectileController : MonoBehaviour
                 break;
         }
     }
-
-
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /// 
-
-    /// <summary>
-    /// 이 함수를 총알 생성 직후에 바로 call 해주면 됩니다.
-    /// </summary>
-    /// <param name="target">공격 대상</param>
-    /// <param name="bulletDmg">공격력</param>
-    /// <param name="bulletSpeed">총알 속도(Time.deltaTime * bulletSpeed)</param>
-    public void InitBullet(GameObject target, float bulletDmg, float bulletSpeed)
-    {
-        Debug.Log("InitBullet");
-        if (!(_bulletState == STATE.CREATE || _bulletState == STATE.WAIT))
-            return;
-
-        if (target == null)
-            Debug.Log("Target is Null!");
-
-        _target = target;
-        this.bulletDmg = bulletDmg;
-        this.bulletSpeed = bulletSpeed;
-        ChangeState(STATE.READY);
-    }
-
-    /// <summary>
-    /// bullet의 state를 HIT로 바꿉니다.
-    /// </summary>
-    public void SetHit()
-    {
-        if (_bulletState != STATE.SHOOT)
-            return;
-
-        Debug.Log("SetHIT");
-        ChangeState(STATE.HIT);
-    }
-
-
 }

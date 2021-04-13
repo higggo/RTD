@@ -18,7 +18,7 @@ namespace CharacterKit
     /// </summary>
     public enum UNION
     {
-        ENEMY, UNION001
+        ENEMY, UNION001, UNION002, UNION003
     }
 
     /// <summary>
@@ -41,7 +41,8 @@ namespace CharacterKit
     {
         NONE, CREATE, POSTCREATE,
         WAIT, ATTACHFIELD, DETACHFIELD,
-        DETECT, ATTACK, USESKILL,
+        DETECT, ATTACK, 
+        READYSKILL, USESKILL,
         DEAD
     }
 
