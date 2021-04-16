@@ -34,6 +34,8 @@ namespace CharacterKit
             return (obj == null) ? false : true;
         }
 
+
+
         public static bool FindTarget(Transform Instance, LayerMask Mask, float Range, out GameObject obj)
         {
             List<GameObject> list = new List<GameObject>();
@@ -43,6 +45,24 @@ namespace CharacterKit
                 obj = null;
 
             return (obj == null) ? false : true;
+        }
+
+        public static bool FindRandomTarget(Transform Instance, LayerMask Mask, float Range, out GameObject obj)
+        {
+            List<GameObject> list = new List<GameObject>();
+            if (FindTargetAll(Instance, Mask, ref list, Range))
+            {
+                if (list.Count != 0)
+                    obj = list[Random.Range(0, list.Count - 1)];
+                else
+                    obj = null;
+            }
+                
+            else
+                obj = null;
+
+            return (obj == null) ? false : true;
+            
         }
 
         // @Summary: 해당 Instance의 위치에서 LayerMask에 따른 SphereCast를 하고, 목표가 있으면 TargetContainer에 담고 true를 리턴합니다.

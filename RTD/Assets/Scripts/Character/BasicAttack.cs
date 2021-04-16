@@ -5,11 +5,7 @@ using CharacterKit;
 
 public class BasicAttack : MonoBehaviour
 {
-    
     protected CharacterStat statInfo;
-    protected float _attackDelay = 0.0f;
-    protected bool _nowAttack = false;
-
     public Transform EffectStartPos;
     [SerializeField] GameObject AttackEffect;
 

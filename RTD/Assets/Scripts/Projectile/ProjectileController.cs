@@ -20,8 +20,8 @@ public class ProjectileController : MonoBehaviour
     [SerializeField] protected float _bulletSpeed = 0.0f;
 
     protected GameObject _target = null;
-    public UnityAction<Transform, float> moveDel = null;
-    public UnityAction<float> HitDel = null;
+    public UnityAction moveDel = null;
+    public UnityAction HitDel = null;
 
     // Trigger
     public bool fireTrigger = false;
@@ -131,8 +131,10 @@ public class ProjectileController : MonoBehaviour
             ChangeState(STATE.HIT);
     }
 
-    // STATE MACHINE
 
+
+
+    // STATE MACHINE
     void ChangeState(STATE state)
     {
         if (_bulletState == state)
@@ -151,10 +153,10 @@ public class ProjectileController : MonoBehaviour
                 if (target.GetComponent<CharacterKit.Damageable>().HitPoint != null)
                     HitPoint = target.GetComponent<CharacterKit.Damageable>().HitPoint;
 
-                moveDel?.Invoke(HitPoint, bulletSpeed);
+                moveDel?.Invoke();
                 break;
             case STATE.HIT:
-                HitDel?.Invoke(bulletDmg);
+                HitDel?.Invoke();
                 Destroy(this.gameObject, 0.1f);
                 break;
         }

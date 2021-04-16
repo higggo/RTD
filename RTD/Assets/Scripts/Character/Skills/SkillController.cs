@@ -81,7 +81,7 @@ public class SkillController : MonoBehaviour
         StateProcess();
     }
 
-    protected void InitComponents()
+    protected virtual void InitComponents()
     {
         animEvent = GetComponentInChildren<AnimEvent>();
         animEvent.SkillStartDel += SkillOn;
@@ -103,7 +103,7 @@ public class SkillController : MonoBehaviour
         _readyToShot = false;
     }
 
-    public void EndUseSkill()
+    public virtual void EndUseSkill()
     {
         // 스킬 애님 끝에 꼭 붙여주세요.
         if (!_canUseSkill)

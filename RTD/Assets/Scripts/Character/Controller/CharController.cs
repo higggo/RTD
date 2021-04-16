@@ -21,9 +21,6 @@ public class CharController : MonoBehaviour
     // StateMachine
     public BASICSTATE characterState = BASICSTATE.NONE;
 
-    // skillController에서 bNowSkill을 받아온다?
-    // skillController에서 델리게이트를 선언해서 bNowSKill on/off를 해준다?
-
     // flags
     [SerializeField, Tooltip("켜주면 공격합니다.")]
     bool _isInField = false;
@@ -39,15 +36,37 @@ public class CharController : MonoBehaviour
     // Property
     public CharacterStat statInfo
     {
-        get { return _statInfo; }
+        get 
+        {
+            if (_statInfo == null)
+            {
+                if (GetComponent<CharacterStat>() != null)
+                {
+                    _statInfo = GetComponent<CharacterStat>();
+                    return _statInfo;
+                }
+                else
+                    return null;
+            }
+            return _statInfo;
+        }
     }
 
     public SkillController skillController
     {
         get 
         { 
-            if (_skillController == null) 
-                return null;
+            if (_skillController == null)
+            {
+                if (GetComponent<SkillController>() != null)
+                {
+                    _skillController = GetComponent<SkillController>();
+                    return _skillController;
+                }
+                else
+                    return null;
+            }
+                
 
             return _skillController;
         }
@@ -126,7 +145,6 @@ public class CharController : MonoBehaviour
                 InitComponents();
                 break;
             case BASICSTATE.POSTCREATE:
-                statInfo.UpdateStat(1);
                 Debug.Log("POSTCREATE");
                 break;
             case BASICSTATE.WAIT:

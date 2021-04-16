@@ -124,5 +124,6 @@ public class CharacterStat : MonoBehaviour
         color.a = 0.2f;
         Gizmos.color = color;
         Gizmos.DrawSphere(transform.position, attackRange);
+        DebugExtension.DrawCircle(transform.position, attackRange);
     }
 }

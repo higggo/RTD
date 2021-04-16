@@ -46,7 +46,7 @@ public class SkillController_Marine : SkillController
 
     public sealed override bool PrepareSkill()
     {
-        if (CharUtils.FindTarget(GetComponent<CharController>(), mask, skillRange, out skillTarget))
+        if (CharUtils.FindTarget(transform, mask, skillRange, out skillTarget))
         {
             Debug.Log("Prepare: Target = " + skillTarget.name);
             _readyToShot = true;
