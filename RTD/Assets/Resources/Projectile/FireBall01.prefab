@@ -19079,7 +19079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 100012, guid: ff7e77244aae62544833b12c266d9cf0, type: 3}
-  explosionRange: 2
+  explosionRange: 5
   targetLayer:
     serializedVersion: 2
     m_Bits: 4096

@@ -23,7 +23,7 @@ namespace ProjectileKit
             if (controller == null)
                 return;
 
-            target = controller.target.transform;
+            target = controller.targetHitPoint;
             fireBullet = true;
         }
 

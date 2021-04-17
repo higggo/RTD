@@ -20,6 +20,7 @@ public class ProjectileController : MonoBehaviour
     [SerializeField] protected float _bulletSpeed = 0.0f;
 
     protected GameObject _target = null;
+    protected Transform _hitPoint = null;
     public UnityAction moveDel = null;
     public UnityAction HitDel = null;
 
@@ -66,6 +67,11 @@ public class ProjectileController : MonoBehaviour
     public GameObject target
     {
         get { return _target; }
+    }
+
+    public Transform targetHitPoint
+    {
+        get { return _hitPoint; }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -149,10 +155,12 @@ public class ProjectileController : MonoBehaviour
             case STATE.READY:
                 break;
             case STATE.SHOOT:
-                Transform HitPoint = target.transform;
+                _hitPoint = target.transform;
                 if (target.GetComponent<CharacterKit.Damageable>().HitPoint != null)
-                    HitPoint = target.GetComponent<CharacterKit.Damageable>().HitPoint;
-
+                {
+                    Debug.Log("HitPoint = " + target.GetComponent<CharacterKit.Damageable>().HitPoint.name);
+                    _hitPoint = target.GetComponent<CharacterKit.Damageable>().HitPoint;
+                }
                 moveDel?.Invoke();
                 break;
             case STATE.HIT:

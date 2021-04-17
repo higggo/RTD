@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 19891704}
   - component: {fileID: 19942270}
   m_Layer: 0
-  m_Name: Hit_01
+  m_Name: Icebolt Hit Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ ParticleSystem:
   serializedVersion: 6
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
