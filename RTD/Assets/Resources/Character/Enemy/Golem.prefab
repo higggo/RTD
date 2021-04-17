@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2865295368791129791}
   - component: {fileID: 2865295368791129788}
   - component: {fileID: 2865295368791129789}
+  - component: {fileID: -8688293969021304231}
   m_Layer: 8
   m_Name: Golem
   m_TagString: Untagged
@@ -132,6 +133,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 2867733520193704035}
+--- !u!114 &-8688293969021304231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2865295368791129787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44478231f0daf9a4780197c2335123ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  Canvas: {fileID: 0}
+  wayPoints: []
+  CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &2865295368426001503
 MonoBehaviour:
   m_ObjectHideFlags: 0

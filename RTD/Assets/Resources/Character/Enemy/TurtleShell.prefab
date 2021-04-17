@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 4998718462406216191}
   - component: {fileID: 4998718462406216188}
   - component: {fileID: 4998718462406216189}
+  - component: {fileID: 6109396522969131350}
   m_Layer: 8
   m_Name: TurtleShell
   m_TagString: Untagged
@@ -144,6 +145,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 4994886336310019945}
+--- !u!114 &6109396522969131350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998718462406217216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44478231f0daf9a4780197c2335123ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  Canvas: {fileID: 0}
+  wayPoints: []
+  CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &4998718462965569879
 PrefabInstance:
   m_ObjectHideFlags: 0

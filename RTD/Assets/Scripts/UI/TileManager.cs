@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
-    public Transform GroundSpace;
-    public Transform StorageSpace;
+    public Transform GroundSpace = null;
+    public Transform StorageSpace = null;
+    public Transform BossSpace = null;
+    public GameObject BossWarpTile = null;
+    public GameObject ReturnWarpTile = null;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (GroundSpace == null) GroundSpace = GameObject.Find("Ground").transform.Find("Space").transform;
+        if (StorageSpace == null) StorageSpace = GameObject.Find("Storage").transform.Find("Space").transform;
+        if (BossSpace == null) BossSpace = GameObject.Find("FieldMap").transform.Find("Space").transform;
+        if (BossWarpTile == null) BossWarpTile = GameObject.Find("BossWarpTile");
+        if (ReturnWarpTile == null) ReturnWarpTile = GameObject.Find("ReturnWarp");
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -22,21 +30,6 @@ public class TileManager : MonoBehaviour
     public Transform GetClosestTile(Vector3 pos)
     {
         Transform closestTile = null;
-        //for(int i=0; i< transform.childCount; i++)
-        //{
-        //    if (transform.GetChild(i).GetComponent<Tile>().State == Tile.STATE.Possible && closestTile == null)
-        //    {
-        //        closestTile = transform.GetChild(i);
-        //        continue;
-        //    }
-        //    else if (transform.GetChild(i).GetComponent<Tile>().State == Tile.STATE.Possible)
-        //    {
-        //        if (Vector3.Distance(transform.GetChild(i).position, pos) < Vector3.Distance(closestTile.position, pos))
-        //        {
-        //            closestTile = transform.GetChild(i);
-        //        }
-        //    }
-        //}
         for (int i = 0; i < GroundSpace.childCount; i++)
         {
             if (GroundSpace.GetChild(i).GetComponent<Tile>().State == Tile.STATE.Possible)
@@ -67,17 +60,24 @@ public class TileManager : MonoBehaviour
                 }
             }
         }
+        //if (BossWarpTile.GetComponent<Tile>().State == Tile.STATE.Possible)
+        //{
+        //    if (closestTile == null)
+        //    {
+        //        closestTile = BossWarpTile.transform;
+        //    }
+        //    if (Vector3.Distance(BossWarpTile.transform.position, pos) < Vector3.Distance(closestTile.position, pos))
+        //    {
+        //        closestTile = BossWarpTile.transform;
+        //    }
+        //}
+            
         return closestTile;
     }
 
     public int GetPossibleTileCount()
     {
         int cnt = 0;
-        //foreach(Transform child in transform)
-        //{
-        //    if (child.GetComponent<Tile>().State == Tile.STATE.Possible)
-        //        cnt++;
-        //}
         foreach (Transform child in GroundSpace)
         {
             if (child.GetComponent<Tile>().State == Tile.STATE.Possible)
@@ -88,15 +88,14 @@ public class TileManager : MonoBehaviour
             if (child.GetComponent<Tile>().State == Tile.STATE.Possible)
                 cnt++;
         }
+        //if (BossWarpTile.GetComponent<Tile>().State == Tile.STATE.Possible)
+        //    cnt++;
+
         return cnt;
     }
 
     public void AllHide()
     {
-        //foreach (Transform child in transform)
-        //{
-        //    child.GetComponent<Tile>().State = Tile.STATE.Hide;
-        //}
         foreach (Transform child in GroundSpace)
         {
             child.GetComponent<Tile>().State = Tile.STATE.Hide;
@@ -105,13 +104,11 @@ public class TileManager : MonoBehaviour
         {
             child.GetComponent<Tile>().State = Tile.STATE.Hide;
         }
+        BossWarpTile.GetComponent<Tile>().State = Tile.STATE.Hide;
+        ReturnWarpTile.GetComponent<Tile>().State = Tile.STATE.Hide;
     }
     public void AllAppear()
     {
-        //foreach (Transform child in transform)
-        //{
-        //    child.GetComponent<Tile>().AppearTile();
-        //}
         foreach (Transform child in GroundSpace)
         {
             child.GetComponent<Tile>().AppearTile();
@@ -120,6 +117,8 @@ public class TileManager : MonoBehaviour
         {
             child.GetComponent<Tile>().AppearTile();
         }
+        BossWarpTile.GetComponent<Tile>().AppearTile();
+        ReturnWarpTile.GetComponent<Tile>().AppearTile();
     }
 
     public int GetCountStorageCharacter()
@@ -143,6 +142,7 @@ public class TileManager : MonoBehaviour
         return cnt;
     }
 
+    // Storage <--> Ground
     public Transform GetEmptyOtherFieldTile(Transform obj)
     {
         Transform emptyTile = null;
@@ -175,5 +175,70 @@ public class TileManager : MonoBehaviour
         {
             if (child.childCount > 0) Destroy(child.GetChild(0).gameObject);
         }
+        foreach (Transform child in BossSpace)
+        {
+            if (child.childCount > 0) Destroy(child.GetChild(0).gameObject);
+        }
+    }
+
+    public Transform GetBossTile()
+    {
+        Transform bossTile = null;
+
+        foreach (Transform child in BossSpace)
+        {
+            if (child.childCount == 0)
+            {
+                bossTile = child;
+                break;
+            }
+        }
+        return bossTile;
+    }
+
+    public bool IsBossTile()
+    {
+        bool result = false;
+        if (BossWarpTile.GetComponent<Tile>().State == Tile.STATE.Possible)
+        {
+            result = true;
+        }
+        return result;
+    }
+    public bool IsReturnTile()
+    {
+        bool result = false;
+        if (ReturnWarpTile.GetComponent<Tile>().State == Tile.STATE.Possible)
+        {
+            result = true;
+        }
+        return result;
+    }
+    public Transform GetEmptyGroundTile()
+    {
+        Transform result = null;
+
+        foreach (Transform child in GroundSpace)
+        {
+            if (child.childCount == 0)
+            {
+                result = child;
+                break;
+            }
+        }
+        return result;
+    }
+    public Transform GetEmptyStorageTile()
+    {
+        Transform result = null;
+        foreach (Transform child in StorageSpace)
+        {
+            if (child.childCount == 0)
+            {
+                result = child;
+                break;
+            }
+        }
+        return result;
     }
 }

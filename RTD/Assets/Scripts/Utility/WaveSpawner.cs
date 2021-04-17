@@ -6,14 +6,22 @@ using UnityEngine.Events;
 public class WaveSpawner : MonoBehaviour
 {
     public Transform EnemyPrefeb;
-    public Transform SpawnPoint;
+    public Transform SpawnPoint = null;
     public float TimeBetweenWaves = 1.0f;
-    public Transform EnemyPoket;
+    public Transform EnemyPoket = null;
 
     private float Count = 0f;
     private int WaveNumber = 0;
 
-    private void Update()
+    string SpawnPath;
+
+    private void Start()
+    {
+        // Set Reference
+        if(SpawnPoint == null) SpawnPoint = GameObject.Find("SpawnPoint").transform;
+        if(EnemyPoket == null) EnemyPoket = GameObject.Find("Enemies").transform;
+    }
+private void Update()
     {
         //if(Count <= 0f)
         //{
@@ -39,14 +47,16 @@ public class WaveSpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Transform obj = Instantiate(EnemyPrefeb, SpawnPoint.position, SpawnPoint.rotation);
+        GameObject obj = Instantiate(Resources.Load(SpawnPath), SpawnPoint.position, SpawnPoint.rotation) as GameObject;
+        //obj = Instantiate(EnemyPrefeb, SpawnPoint.position, SpawnPoint.rotation);
         obj.GetComponent<Moving>().DestroySpawnDelegate += GetComponent<GamePlay>().MinusLife;
-        obj.parent = EnemyPoket;
+        obj.transform.parent = EnemyPoket;
     }
-    public IEnumerator StartSpawnWaves(int endCount, UnityAction done)
+    public IEnumerator StartSpawnWaves(string path, int endCount, UnityAction done)
     {
         Count = 0f;
         WaveNumber = 0;
+        SpawnPath = path;
         while (WaveNumber < endCount)
         {
             Count += Time.deltaTime;

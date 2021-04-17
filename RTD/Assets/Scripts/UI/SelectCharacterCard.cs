@@ -7,21 +7,23 @@ using ResponseMessage;
 
 public class SelectCharacterCard : MonoBehaviour
 {
-    public GameObject CharacterPickerUI;
+    public Transform CharacterSelectArea = null;
+    public GameObject Storage = null;
     MoneyManager MoneyManager;
-    Transform CharacterSelectArea;
     int  MaxSalesNum = 5;
     GameDB GameDB;
     GameObject[] SalesList = new GameObject[5];
-    public GameObject Storage;
     ResponseMessage.Trade.CODE response;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Set Reference
         MoneyManager = GetComponent<MoneyManager>();
         GameDB = GetComponent<GameDB>();
-        CharacterSelectArea = CharacterPickerUI.transform.Find("CharacterSelectArea");
+        if (CharacterSelectArea == null) CharacterSelectArea = GameObject.Find("CharacterSelectArea").transform;
+        if (Storage == null) Storage = GameObject.Find("Storage");
+
         Init();
     }
     public void Init()
@@ -79,6 +81,7 @@ public class SelectCharacterCard : MonoBehaviour
 
         if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, 100, response, "Buy Card"))
         {
+            // Instantiate Character
             Storage.GetComponent<Storage>().Push(SalesList[i].GetComponent<CardInfo>().CharacterPrefab);
 
             // Destry Select Card

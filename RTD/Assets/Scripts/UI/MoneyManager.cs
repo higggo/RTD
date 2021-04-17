@@ -11,7 +11,7 @@ public class MoneyManager : MonoBehaviour
     uint money;
     bool IsCalculatingMoney;
     uint SerialNumber = 0;
-    public TMPro.TextMeshProUGUI GoldText;
+    public TMPro.TextMeshProUGUI GoldText = null;
 
     Coroutine CalculateCoroutine;
 
@@ -25,12 +25,13 @@ public class MoneyManager : MonoBehaviour
     private void Awake()
     {
         IsCalculatingMoney = false;
-        Init();
     }
     // Start is called before the first frame update
     void Start()
     {
-        GoldText.text = money.ToString();
+        if (GoldText == null) GameObject.Find("Gold").GetComponent<TMPro.TextMeshProUGUI>();
+
+        Init();
     }
 
     // Update is called once per frame
@@ -45,6 +46,7 @@ public class MoneyManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        GoldText.text = money.ToString();
     }
 
     public float GetMoney()

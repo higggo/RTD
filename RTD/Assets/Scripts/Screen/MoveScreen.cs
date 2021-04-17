@@ -58,6 +58,7 @@ public class MoveScreen : MonoBehaviour
         }
         
         camSavePoint[0].savePoint = mainCam.transform.position;
+        camSavePoint[1].savePoint = new Vector3(72f, -30f, -61f);
     }
 
     // Update is called once per frame

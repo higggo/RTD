@@ -8,8 +8,8 @@ using ResponseMessage;
 
 public class GamePlay : MonoBehaviour
 {
-    public UnityAction RoundStartDelegate;
-    public UnityAction RoundEndDelegate;
+    //public UnityAction RoundStartDelegate;
+    //public UnityAction RoundEndDelegate;
     public enum STATE
     {
         StandBy,
@@ -22,23 +22,22 @@ public class GamePlay : MonoBehaviour
     }
     STATE state = STATE.StandBy;
 
-    public GameObject IntroPanel;
-    public GameObject RoundText;
-    public GameObject BreakTimeText;
-    public GameObject GameLifeText;
-    public GameObject GameEndText;
+    public GameObject IntroPanel = null;
+    public GameObject RoundText = null;
+    public GameObject BreakTimeText = null;
+    public GameObject GameLifeText = null;
+    public GameObject GameEndText = null;
+    public GameObject LevelUpActiveButton = null;
 
     WaveSpawner WaveSpawner;
     Coroutine MoveCoroutine;
 
 
-    const int GameStartBreakTime = 30;
-    int CurBreakTime = 0;
+    const int GameStartBreakTime = 15;
     int GameLife = 10;
 
     int CurrentRound = 0;
-    const int RoundMaxCount = 2;
-    public Round[] RoundList = new Round[RoundMaxCount];
+    public List<Round> RoundList = new List<Round>();
 
     ResponseMessage.Trade.CODE response;
 
@@ -55,40 +54,22 @@ public class GamePlay : MonoBehaviour
         public string addr;
         public int enemyCount;
         public int breakTime;
+
+        public Round(string addr, int enemyCount, int breakTime)
+        {
+            this.addr = addr;
+            this.enemyCount = enemyCount;
+            this.breakTime = breakTime;
+        }
     }
 
     private void Awake()
     {
-        RoundList[0].addr = "Character/Enemy";
-        RoundList[0].enemyCount = 15;
-        RoundList[0].breakTime = 15;
-        RoundList[1].addr = "Character/Enemy";
-        RoundList[1].enemyCount = 15;
-        RoundList[1].breakTime = 15;
-        //RoundList[2].addr = "Character/Enemy";
-        //RoundList[2].enemyCount = 15;
-        //RoundList[2].breakTime = 15;
-        //RoundList[3].addr = "Character/Enemy";
-        //RoundList[3].enemyCount = 15;
-        //RoundList[4].breakTime = 15;
-        //RoundList[4].addr = "Character/Enemy";
-        //RoundList[4].enemyCount = 15;
-        //RoundList[5].breakTime = 15;
-        //RoundList[5].addr = "Character/Enemy";
-        //RoundList[5].enemyCount = 15;
-        //RoundList[6].breakTime = 15;
-        //RoundList[6].addr = "Character/Enemy";
-        //RoundList[6].enemyCount = 15;
-        //RoundList[6].breakTime = 15;
-        //RoundList[7].addr = "Character/Enemy";
-        //RoundList[7].enemyCount = 15;
-        //RoundList[7].breakTime = 15;
-        //RoundList[8].addr = "Character/Enemy";
-        //RoundList[8].enemyCount = 15;
-        //RoundList[8].breakTime = 15;
-        //RoundList[9].addr = "Character/Enemy";
-        //RoundList[9].enemyCount = 15;
-        //RoundList[9].breakTime = 15;
+        RoundList.Add(new Round("Character/Enemy/TurtleShell", 11, 25));
+        RoundList.Add(new Round("Character/Enemy/TurtleShell", 5, 25));
+        RoundList.Add(new Round("Character/Enemy/TurtleShell", 5, 25));
+        RoundList.Add(new Round("Character/Enemy/Golem", 5, 25));
+        RoundList.Add(new Round("Character/Enemy/Slime", 5, 25));
     }
 
     public enum MAP
@@ -101,6 +82,14 @@ public class GamePlay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Find Reference
+        if (IntroPanel == null) IntroPanel = GameObject.Find("IntroPanel");
+        if (RoundText == null)  RoundText = GameObject.Find("Round");
+        if (BreakTimeText == null) BreakTimeText = GameObject.Find("BreakTime");
+        if (GameLifeText == null) GameLifeText = GameObject.Find("GameLife");
+        if (GameEndText == null) GameEndText = GameObject.Find("GameEnd");
+        if (LevelUpActiveButton == null) LevelUpActiveButton = GameObject.Find("ActiveBtn");
+
         GameLifeText.GetComponent<TMPro.TextMeshProUGUI>().text = "Life " + GameLife.ToString();
 
         WaveSpawner = GetComponent<WaveSpawner>();
@@ -122,50 +111,88 @@ public class GamePlay : MonoBehaviour
                 IntroPanel.SetActive(true);
                 break;
             case STATE.GameStart:
-                init();
+                Init();
                 SetRoundText(CurrentRound);
                 StartCoroutine(CountDownTime(GameStartBreakTime, ()=> {ChangeState(STATE.RoundStart); RoundText.SetActive(true); }));
+                GetComponent<BossRoundManager>().State = BossRoundManager.STATE.BreakTime;
+
                 break;
             case STATE.RoundStart:
-                GetComponent<CharacterInfoManager>().UpdateCharacterField();
+                // Start Attack
+                GetComponent<CharacterInfoManager>().CharacterAttackFlagOn();
 
-                RoundStartDelegate?.Invoke();
-                BreakTimeText.SetActive(false);
+                // Restrict
+                GetComponent<PickController>().SetDisable();
+                LevelUpActiveButton.GetComponent<BtnLevelUpActive>().SetDeactive();
+
+                // Update Round
                 CurrentRound++;
+                GetComponent<BossRoundManager>().Round = CurrentRound;
+                GetComponent<BossRoundManager>().State = BossRoundManager.STATE.RoundStart;
+
+                // Update Info
+                BreakTimeText.SetActive(false);
                 SetRoundText(CurrentRound);
-                MoveCoroutine = StartCoroutine(WaveSpawner.StartSpawnWaves(RoundList[CurrentRound-1].enemyCount, ()=> {ChangeState(STATE.SpawnEnd);}));
+
+                // Enemy Spawn
+                MoveCoroutine = StartCoroutine(
+                    WaveSpawner.StartSpawnWaves(
+                        RoundList[CurrentRound - 1].addr,
+                        RoundList[CurrentRound - 1].enemyCount,   // Enemy Count
+                        ()=> {ChangeState(STATE.SpawnEnd); }    // If Spawn Done
+                        )
+                    );
+
                 break;
             case STATE.SpawnEnd:
                 break;
             case STATE.BreakTime:
+                // Stop Attack
+                GetComponent<CharacterInfoManager>().CharacterAttackFlagOff();
+
+                // Set Boss Round
+                GetComponent<BossRoundManager>().State = BossRoundManager.STATE.BreakTime;
+
+                // Receive Money
                 if (GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Receive, 500, response, "Refresh Card"))
                 {
-
+                    // Succeed
                 }
                 else
                 {
+                    // Fail
                     Debug.Log(ResponseMessage.Trade.Receive(response));
                 }
 
-                if (CurrentRound >= RoundList.Length)
+
+                // GameOver?
+                if (CurrentRound >= RoundList.Count || GetComponent<BossRoundManager>().State == BossRoundManager.STATE.GameOver)
                 {
-                    ChangeState(STATE.GameEnd);
+                    ChangeState(STATE.GameEnd); 
+                    GetComponent<BossRoundManager>().State = BossRoundManager.STATE.GameOver;
                 }
+                // Next Round
                 else
                 {
-                    RoundEndDelegate?.Invoke();
+                    GetComponent<PickController>().SetNormal();
+                    LevelUpActiveButton.GetComponent<BtnLevelUpActive>().SetActive();
                     BreakTimeText.SetActive(true);
                     StartCoroutine(CountDownTime(RoundList[CurrentRound - 1].breakTime, () => { ChangeState(STATE.RoundStart); }));
                 }
+
                 break;
             case STATE.GameEnd:
                 if(GameLife <= 0)
                 {
-                    GameEndText.GetComponent<TMPro.TextMeshProUGUI>().text = "Game Over";
+                    GameEndText.GetComponent<TMPro.TextMeshProUGUI>().text = "GAMEOVER";
+                }
+                else if(GetComponent<BossRoundManager>().State == BossRoundManager.STATE.GameOver)
+                {
+                    GameEndText.GetComponent<TMPro.TextMeshProUGUI>().text = "Boss is alive";
                 }
                 else
                 {
-                    GameEndText.GetComponent<TMPro.TextMeshProUGUI>().text = "Clear";
+                    GameEndText.GetComponent<TMPro.TextMeshProUGUI>().text = "CLEAR";
                 }
                 GameEndText.SetActive(true);
                 break;
@@ -219,10 +246,9 @@ public class GamePlay : MonoBehaviour
         }
         Done?.Invoke();
     }
-    void init()
+    void Init()
     {
         CurrentRound = 0;
-        CurBreakTime = 0;
         GameLife = 10;
         RoundText.SetActive(false);
         GameEndText.SetActive(false); 
@@ -234,7 +260,10 @@ public class GamePlay : MonoBehaviour
         GetComponent<MoneyManager>().Init();
         GetComponent<WaveSpawner>().Init();
         GetComponent<SelectCharacterCard>().Init();
-        GetComponent<MoveCharacterUI>().Init();
+        GetComponent<PickController>().Init();
+        GetComponent<LevelUpManager>().Init();
+        GetComponent<BossRoundManager>().Init();
+        LevelUpActiveButton.GetComponent<BtnLevelUpActive>().Init();
     }
     void SetRoundText(int round)
     {
@@ -267,5 +296,6 @@ public class GamePlay : MonoBehaviour
         GameLifeText.GetComponent<TMPro.TextMeshProUGUI>().text = "Life " + GameLife.ToString();
 
     }
+
 }
 

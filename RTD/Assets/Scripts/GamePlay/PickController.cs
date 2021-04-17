@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MoveCharacterUI : MonoBehaviour
+public class PickController : MonoBehaviour
 {
     enum STATE
     {
@@ -19,15 +19,13 @@ public class MoveCharacterUI : MonoBehaviour
     Vector3 OriginPos = Vector3.zero;
     TileManager TileManager;
     CharacterInfoManager CharacterInfoManager;
-    GamePlay Gameplay;
+    //BossZoneWarp BossZoneWarp;
     // Start is called before the first frame update
     void Start()
     {
         TileManager = GetComponent<TileManager>();
         CharacterInfoManager = GetComponent<CharacterInfoManager>();
-        Gameplay = GetComponent<GamePlay>();
-        Gameplay.RoundStartDelegate += SetDisable;
-        Gameplay.RoundEndDelegate += SetNormal;
+        //BossZoneWarp = GameObject.Find("BossWarp").GetComponent<BossZoneWarp>();
     }
 
     // Update is called once per frame
@@ -65,8 +63,40 @@ public class MoveCharacterUI : MonoBehaviour
             case STATE.MouseButtonUp:
                 if(PickUpObject != null)
                 {
-                    // SetLocate
-                    if(TileManager.GetPossibleTileCount() > 0)
+                    // BossZone Warp
+                    if (TileManager.IsBossTile())
+                    {
+                        Transform parent = TileManager.GetBossTile();
+                        if (parent != null)
+                        {
+                            PickUpObject.transform.parent = parent;
+                            PickUpObject.transform.localPosition = Vector3.zero;
+                        }
+                        else
+                        {
+                            Debug.Log("BossZone Full");
+                            PickUpObject.transform.position = OriginPos;
+                        }
+                    }
+                    // Return Warp to Storage or Ground
+                    else if (TileManager.IsReturnTile())
+                    {
+                        Transform parent = TileManager.GetEmptyStorageTile();
+                        if(parent == null)
+                            parent = TileManager.GetEmptyGroundTile();
+                        if (parent != null)
+                        {
+                            PickUpObject.transform.parent = parent;
+                            PickUpObject.transform.localPosition = Vector3.zero;
+                        }
+                        else
+                        {
+                            Debug.Log("BossZone Full");
+                            PickUpObject.transform.position = OriginPos;
+                        }
+                    }
+                    // Storage <--> Ground
+                    else if (TileManager.GetPossibleTileCount() > 0)
                     {
                         Transform parent = TileManager.GetClosestTile(PickUpObject.transform.position);
                         PickUpObject.transform.parent = parent;
@@ -102,8 +132,17 @@ public class MoveCharacterUI : MonoBehaviour
                         if (hits[i].transform.tag == "Player")
                         {
                             PickUpObject = hits[i].transform.gameObject;
-                           CharacterInfoManager.UpgradeCharacter(PickUpObject);
-
+                            GameObject target = CharacterInfoManager.GetUpgradeTarget(PickUpObject);
+                            if (target != null)
+                            {
+                                string[] charList = CharacterInfoManager.GetGradeCharacterList(CharacterInfoManager.GetNextGrade(PickUpObject.GetComponent<CharController>().statInfo.grade));
+                                GameObject upgradeCharacter = Instantiate(Resources.Load(charList[Random.Range(0, charList.Length)])) as GameObject;
+                                upgradeCharacter.transform.parent = PickUpObject.transform.parent;
+                                upgradeCharacter.transform.localPosition = Vector3.zero;
+                                GetComponent<LevelUpManager>().UpdateCharacterLevel(upgradeCharacter);
+                                Destroy(PickUpObject);
+                                Destroy(target);
+                            }
                             PickUpObject = null;
                         }
                     }
@@ -135,9 +174,8 @@ public class MoveCharacterUI : MonoBehaviour
                 // 좌클릭
                 else if (Input.GetMouseButtonDown(0))
                 {
-                    Debug.Log("좌클릭");
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit[] hits = Physics.RaycastAll(ray, 50.0f, ~(1 << LayerMask.NameToLayer("UI")));
+                    RaycastHit[] hits = Physics.RaycastAll(ray, 100.0f, ~(1 << LayerMask.NameToLayer("UI")));
                     for (int i = 0; i < hits.Length; i++)
                     {
                         if (hits[i].transform.tag == "Player")
@@ -173,7 +211,6 @@ public class MoveCharacterUI : MonoBehaviour
                     RaycastHit hit;
                     if(Physics.Raycast(ray, out hit, 50.0f, (~(1<<LayerMask.NameToLayer("UI")) & (1 << LayerMask.NameToLayer("Map")))))
                     {
-                        Debug.Log("map clicking");
                         PickUpObject.transform.position = new Vector3(
                             hit.point.x,
                             PickUpObject.transform.position.y,
@@ -208,7 +245,7 @@ public class MoveCharacterUI : MonoBehaviour
             return false;
     }
 
-    void SetDisable()
+    public void SetDisable()
     {
         if (PickUpObject != null)
         {
@@ -219,9 +256,8 @@ public class MoveCharacterUI : MonoBehaviour
         ChangeState(STATE.Disable);
     }
 
-    void SetNormal()
+    public void SetNormal()
     {
         ChangeState(STATE.Normal);
-
     }
 }

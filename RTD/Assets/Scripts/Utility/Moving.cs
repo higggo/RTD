@@ -6,6 +6,10 @@ using CharacterKit;
 
 public class Moving : MonoBehaviour
 {
+    public GameObject slider;
+    public GameObject Canvas;
+    //GameObject HpBar;
+
     public Vector3[] wayPoints;     //이동할 포인트들을 배열에 저장
     public Vector3 CurrentPosition; //현재위치
     private int wayPointIndex = 0;  //이동 포인트 인덱스
@@ -33,6 +37,17 @@ public class Moving : MonoBehaviour
         wayPoints.SetValue(new Vector3(-9, 0, -9), 9);
         wayPoints.SetValue(new Vector3(-3, 0, -9), 10);
         wayPoints.SetValue(new Vector3(-3, 0, 9), 11);
+        
+
+        // Create Slider
+        GameObject Canvas = GameObject.Find("Canvas");
+
+        //HpBar = Instantiate(slider);
+        //HpBar.transform.parent = Canvas.transform;
+       // HpBar.transform.SetParent(Canvas.transform);
+
+        //HpBar.GetComponent<AdjustSlider>().Enemy = transform;
+        //
 
     }
 
@@ -64,6 +79,8 @@ public class Moving : MonoBehaviour
                 {
                     DestroySpawnDelegate?.Invoke();
                     Destroy(gameObject);
+                    //Destroy Slider 
+                    //Destroy(HpBar);
                     return;
                 }
             }

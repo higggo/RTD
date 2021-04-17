@@ -57,7 +57,7 @@ public class DragonController : BossController
     // 스킬 쿨타임이 다 차면, 스킬 사용. (Ground일때, Sky일때 다름)
 
     [ContextMenu("_canAction")]
-    void SetAction()
+    public void SetAction()
     {
         _canAction = true;
     }
@@ -150,7 +150,10 @@ public class DragonController : BossController
                 break;
             case STATE.DETECT:
                 if (!canAction)
+                {
                     ChangeState(STATE.WAIT);
+                    break;
+                }
 
                 if (_target != null && !_target.GetComponent<Damageable>().IsDead)
                 {

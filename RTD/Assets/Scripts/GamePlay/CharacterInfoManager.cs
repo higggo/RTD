@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class CharacterInfoManager : MonoBehaviour
 {
-    public Transform GroundSpace;
-    public Transform StorageSpace;
+    public Transform GroundSpace = null;
+    public Transform StorageSpace = null;
+    public Transform BossSpace = null;
 
-    GameObject upgradeCharacter;
+    private void Start()
+    {
+        if (GroundSpace == null)
+            GroundSpace = GameObject.Find("Ground").transform.Find("Space").transform;
+        if (StorageSpace == null)
+            StorageSpace = GameObject.Find("Storage").transform.Find("Space").transform;
+        if (BossSpace == null)
+            BossSpace = GameObject.Find("FieldMap").transform.Find("Space").transform;
+    }
 
-    public GameObject UpgradeCharacter(GameObject obj)
+    public GameObject GetUpgradeTarget(GameObject obj)
     {
         GameObject target = null;
         CharacterKit.GRADE grade = obj.GetComponent<CharController>().statInfo.grade;
@@ -48,16 +57,16 @@ public class CharacterInfoManager : MonoBehaviour
             }
         }
 
-        if (target != null)
-        {
-            string[] charList = GetGradeCharacterList(GetNextGrade(grade));
-            upgradeCharacter = Instantiate(Resources.Load(charList[Random.Range(0, charList.Length)])) as GameObject;
-            upgradeCharacter.transform.parent = obj.transform.parent;
-            upgradeCharacter.transform.localPosition = Vector3.zero;
-            //UpdateCharacterField(upgradeCharacter);
-            Destroy(obj);
-            Destroy(target);
-        }
+        //if (target != null)
+        //{
+        //    string[] charList = GetGradeCharacterList(GetNextGrade(grade));
+        //    upgradeCharacter = Instantiate(Resources.Load(charList[Random.Range(0, charList.Length)])) as GameObject;
+        //    upgradeCharacter.transform.parent = obj.transform.parent;
+        //    upgradeCharacter.transform.localPosition = Vector3.zero;
+        //    //UpdateCharacterField(upgradeCharacter);
+        //    Destroy(obj);
+        //    Destroy(target);
+        //}
         return target;
     }
     GamePlay.MAP GetFieldLocated(GameObject obj)
@@ -71,28 +80,29 @@ public class CharacterInfoManager : MonoBehaviour
             case "Storage":
                 map = GamePlay.MAP.Storage;
                 break;
-            case "Boss":
+            case "FieldMap":
                 map = GamePlay.MAP.Boss;
                 break;
         }
 
         return map;
     }
-    public void UpdateCharacterField()
+    public void CharacterAttackFlagOn()
     {
         for (int i = 0; i < GroundSpace.childCount; i++)
         {
             if (GroundSpace.GetChild(i).childCount > 0)
             {
                 GameObject character = GroundSpace.GetChild(i).GetChild(0).gameObject;
-                if (GetFieldLocated(character) == GamePlay.MAP.Ground)
-                {
-                    character.GetComponent<CharController>().isInField = true;
-                }
-                else
-                {
-                    character.GetComponent<CharController>().isInField = false;
-                }
+                character.GetComponent<CharController>().isInField = true;
+                //if (GetFieldLocated(character) == GamePlay.MAP.Ground)
+                //{
+                //    character.GetComponent<CharController>().isInField = true;
+                //}
+                //else
+                //{
+                //    character.GetComponent<CharController>().isInField = false;
+                //}
             }
         }
 
@@ -101,18 +111,54 @@ public class CharacterInfoManager : MonoBehaviour
             if (StorageSpace.GetChild(i).childCount > 0)
             {
                 GameObject character = StorageSpace.GetChild(i).GetChild(0).gameObject;
-                if (GetFieldLocated(character) == GamePlay.MAP.Ground)
-                {
-                    character.GetComponent<CharController>().isInField = true;
-                }
-                else
-                {
-                    character.GetComponent<CharController>().isInField = false;
-                }
+                character.GetComponent<CharController>().isInField = false;
+                //if (GetFieldLocated(character) == GamePlay.MAP.Ground)
+                //{
+                //    character.GetComponent<CharController>().isInField = true;
+                //}
+                //else
+                //{
+                //    character.GetComponent<CharController>().isInField = false;
+                //}
+            }
+        }
+        for (int i = 0; i < BossSpace.childCount; i++)
+        {
+            if (BossSpace.GetChild(i).childCount > 0)
+            {
+                GameObject character = BossSpace.GetChild(i).GetChild(0).gameObject;
+                character.GetComponent<CharController>().isInField = true;
             }
         }
     }
+    public void CharacterAttackFlagOff()
+    {
+        for (int i = 0; i < GroundSpace.childCount; i++)
+        {
+            if (GroundSpace.GetChild(i).childCount > 0)
+            {
+                GameObject character = GroundSpace.GetChild(i).GetChild(0).gameObject;
+                character.GetComponent<CharController>().isInField = false;
+            }
+        }
 
+        for (int i = 0; i < StorageSpace.childCount; i++)
+        {
+            if (StorageSpace.GetChild(i).childCount > 0)
+            {
+                GameObject character = StorageSpace.GetChild(i).GetChild(0).gameObject;
+                character.GetComponent<CharController>().isInField = false;
+            }
+        }
+        for (int i = 0; i < BossSpace.childCount; i++)
+        {
+            if (BossSpace.GetChild(i).childCount > 0)
+            {
+                GameObject character = BossSpace.GetChild(i).GetChild(0).gameObject;
+                character.GetComponent<CharController>().isInField = false;
+            }
+        }
+    }
     public bool HasNextGrade(CharacterKit.GRADE grade)
     {
         if (grade == CharacterKit.GRADE.UNIQUE)
@@ -150,4 +196,34 @@ public class CharacterInfoManager : MonoBehaviour
         }
         return strList;
     }
+
+    public List<GameObject> GetCharacters(CharacterKit.UNION union)
+    {
+        List<GameObject> characters = new List<GameObject>();
+
+        for (int i = 0; i < GroundSpace.childCount; i++)
+        {
+            if (GroundSpace.GetChild(i).childCount > 0)
+            {
+                if (GroundSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo.union == union)
+                {
+                    characters.Add(GroundSpace.GetChild(i).GetChild(0).gameObject);
+                }
+            }
+        }
+
+        for (int i = 0; i < StorageSpace.childCount; i++)
+        {
+            if (StorageSpace.GetChild(i).childCount > 0)
+            {
+                if (StorageSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo.union == union)
+                {
+                    characters.Add(StorageSpace.GetChild(i).GetChild(0).gameObject);
+                }
+            }
+        }
+
+        return characters;
+    }
+
 }
