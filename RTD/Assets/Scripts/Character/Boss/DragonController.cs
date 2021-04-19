@@ -7,15 +7,18 @@ using CharacterKit;
 public class DragonController : BossController
 {
     // BossController.SetCanAction(bool)으로 행동 제어 가능
-
-
     public enum STATE
     {
         NONE, CREATE, POSTCREATE,
-        WAIT, MOVE, FLYSTART,
+        WAIT, MOVE, CHANGEPHASE,
         DETECT, ATTACK,
         READYSKILL, USESKILL,
         DEAD
+    }
+
+    public enum PHASE
+    {
+        PHASE01, PHASE02
     }
 
     // 추가 정보
@@ -23,16 +26,21 @@ public class DragonController : BossController
     [SerializeField] float _fireBallDamage;
     [SerializeField] float detectRange;
     [SerializeField] float flyAttackSpeed;
-    float attackDelay = 0.0f;
 
     AnimatorStateInfo info;
     
     // STATE MACHINE
     STATE dragonState = STATE.NONE;
+    PHASE dragonPhase = PHASE.PHASE01;
 
     // flags
     bool isInAir = false;
     bool isAttackNow = false;
+
+    // Coroutine
+    Coroutine MoveSet = null;
+
+    Vector3 StartPosition;
 
     // property
     public float fireBallDamage
@@ -56,13 +64,22 @@ public class DragonController : BossController
     // 타겟을 발견하면 기본공격이 우선
     // 스킬 쿨타임이 다 차면, 스킬 사용. (Ground일때, Sky일때 다름)
 
+<<<<<<< Updated upstream
     [ContextMenu("_canAction")]
     public void SetAction()
+=======
+    [ContextMenu("_canAction true")]
+    void SetAction()
+>>>>>>> Stashed changes
     {
         _canAction = true;
     }
 
-
+    [ContextMenu("_canAction false")]
+    void SetActionfalse()
+    {
+        _canAction = false;
+    }
 
 
 
@@ -82,8 +99,18 @@ public class DragonController : BossController
     protected override void InitComponents()
     {
         base.InitComponents();
-
         // 추가
+        StartPosition = transform.position;
+        GetComponent<Damageable>().onDeadDel += () => { ChangeState(STATE.DEAD); };
+        AnimEvent_Dragon tmpEvent;
+        if (bossAnimEvent is AnimEvent_Dragon)
+        {
+            tmpEvent = bossAnimEvent as AnimEvent_Dragon;
+            tmpEvent.AttackDel += OnAttack;
+            tmpEvent.AttackInAirDel += OnAttack;
+            tmpEvent.DeadDel += OnDead;
+        }
+        ChangeState(STATE.POSTCREATE);
     }
 
     void ChangeState(STATE state)
@@ -95,27 +122,34 @@ public class DragonController : BossController
         switch (dragonState)
         {
             case STATE.CREATE:
-                Debug.Log("Dragon : CREATE");
                 InitComponents();
-                AnimEvent_Dragon tmpEvent;
-                if (bossAnimEvent is AnimEvent_Dragon)
-                {
-                    tmpEvent = bossAnimEvent as AnimEvent_Dragon;
-                    tmpEvent.AttackDel += OnAttack;
-                    tmpEvent.AttackInAirDel += OnAttack;
-                }
-                ChangeState(STATE.POSTCREATE);
                 break;
             case STATE.POSTCREATE:
                 statInfo.UpdateStat(Level);
                 ChangeState(STATE.WAIT);
                 break;
             case STATE.WAIT:
+                ResetDragon();
                 break;
-            case STATE.FLYSTART:
-                StartCoroutine(Fly());
+            case STATE.CHANGEPHASE:
+                StartCoroutine(ChangePhase());
                 break;
             case STATE.MOVE:
+                bossAnimator.SetBool("B_Move", true);
+                if (MoveSet != null)
+                    StopCoroutine(MoveSet);
+
+                if (dragonPhase == PHASE.PHASE01)
+                {
+                    Vector3 movepos = _target.transform.position;
+                    movepos.y = transform.position.y;
+                    MoveSet = StartCoroutine(Move(movepos));
+                }
+                else if (dragonPhase == PHASE.PHASE02)
+                {
+                    MoveSet = StartCoroutine(Move(StartPosition));
+                }
+                
                 break;
             case STATE.DETECT:
                 break;
@@ -128,7 +162,9 @@ public class DragonController : BossController
                 bossAnimator.SetTrigger("T_Skill");
                 break;
             case STATE.DEAD:
-                Destroy(this.gameObject, destroyDelay);
+                bossAnimator.SetTrigger("T_Dead");
+                StopAllCoroutines();
+                _canAction = false;
                 break;
         }
     }
@@ -136,8 +172,10 @@ public class DragonController : BossController
     void StateProcess()
     {
         // phase one
-        switch (dragonState)
+
+        if (dragonPhase == PHASE.PHASE01)
         {
+<<<<<<< Updated upstream
             case STATE.CREATE:
                 break;
             case STATE.POSTCREATE:
@@ -154,96 +192,198 @@ public class DragonController : BossController
                     ChangeState(STATE.WAIT);
                     break;
                 }
+=======
+            switch (dragonState)
+            {
+                case STATE.CREATE:
+                    break;
+                case STATE.POSTCREATE:
+                    break;
+                case STATE.WAIT:
+                    if (canAction)
+                        ChangeState(STATE.DETECT);
+>>>>>>> Stashed changes
 
-                if (_target != null && !_target.GetComponent<Damageable>().IsDead)
-                {
-                    if (!CharUtils.IsInRange(this.transform, _target.transform, detectRange))
-                        _target = null;
-                }
-                else
-                {
-                    _target = null;
-                    if (!CharUtils.FindTarget(this.transform, enemyLayer, detectRange, out _target))
+                    // TEST ChangePhase02
+                    if (statInfo.HP < statInfo.MaxHP * 0.5f)
                     {
-                        ChangeState(STATE.WAIT);
-                    }
-                }
-
-                // use to skill
-                if (_skillController != null)
-                {
-                    if (_skillController.canUseSkill)
-                    {
-                        ChangeState(STATE.READYSKILL);
+                        ChangeState(STATE.CHANGEPHASE);
                         break;
                     }
-                }
-
-                if (_target != null && !_target.GetComponent<Damageable>().IsDead)
-                {
-                    if (!CharUtils.IsInRange(this.transform, _target.transform, statInfo.attackRange))
+                    break;
+                case STATE.DETECT:
+                    if (!canAction)
                     {
-                        // Move
+                        ChangeState(STATE.WAIT);
+                        break;
+                    }
+
+                    // ChangePhase02
+                    if (statInfo.HP < statInfo.MaxHP * 0.5f)
+                    {
+                        ChangeState(STATE.CHANGEPHASE);
+                        break;
+                    }
+
+                    // use to skill
+                    if (_skillController != null)
+                    {
+                        if (_skillController.canUseSkill)
+                        {
+                            ChangeState(STATE.READYSKILL);
+                            break;
+                        }
+                    }
+
+                    // Find AttackTarget
+                    if (_target != null && !_target.GetComponent<Damageable>().IsDead)
+                    {
+                        if (!CharUtils.IsInRange(this.transform, _target.transform, detectRange))
+                            _target = null;
                     }
                     else
                     {
+                        _target = null;
+                        if (!CharUtils.FindTarget(this.transform, enemyLayer, detectRange, out _target))
+                        {
+                            ChangeState(STATE.WAIT);
+                        }
+                    }
+
+                    // Check Target In AttackRange
+                    if (_target != null && !_target.GetComponent<Damageable>().IsDead)
+                    {
+                        if (!CharUtils.IsInRange(this.transform, _target.transform, statInfo.attackRange))
+                            ChangeState(STATE.MOVE);
+                        else
+                            ChangeState(STATE.ATTACK);
+                    }
+                    break;
+                case STATE.MOVE:
+                    if (CharUtils.IsInRange(transform, _target.transform, statInfo.attackRange)
+                        || _target == null
+                        || _target.GetComponent<Damageable>().IsDead)
+                    {
+                        bossAnimator.SetBool("B_Move", false);
+                        StopCoroutine(MoveSet);
+                        ChangeState(STATE.DETECT);
+                    }
+                    break;
+                case STATE.ATTACK:
+                    if (_target != null && !_target.GetComponent<Damageable>().IsDead)
+                        RotateToTarget(_target.transform.position);
+                    break;
+                case STATE.READYSKILL:
+                    if (_skillController.PrepareSkill())
+                        ChangeState(STATE.USESKILL);
+                    break;
+                case STATE.USESKILL:
+                    if (!_skillController.canUseSkill)
+                        ChangeState(STATE.DETECT);
+                    break;
+                case STATE.DEAD:
+                    break;
+            }
+        }
+        else
+        {
+            switch(dragonState)
+            {
+                case STATE.WAIT:
+                    if (canAction)
+                        ChangeState(STATE.DETECT);
+                    break;
+                case STATE.DETECT:
+                    if (!canAction)
+                    {
+                        ChangeState(STATE.WAIT);
+                        break;
+                    }
+
+                    // use to skill
+                    if (_skillController != null)
+                    {
+                        if (_skillController.canUseSkill)
+                        {
+                            ChangeState(STATE.READYSKILL);
+                            break;
+                        }
+                    }
+
+                    // Find AttackTarget
+                    if (_target != null && !_target.GetComponent<Damageable>().IsDead)
+                    {
+                        if (!CharUtils.IsInRange(this.transform, _target.transform, detectRange))
+                            _target = null;
+                    }
+                    else
+                    {
+                        _target = null;
+                        if (!CharUtils.FindTarget(this.transform, enemyLayer, detectRange, out _target))
+                        {
+                            ChangeState(STATE.WAIT);
+                        }
+                    }
+
+                    // Check Target In AttackRange
+                    if (_target != null && !_target.GetComponent<Damageable>().IsDead)
+                    {
                         ChangeState(STATE.ATTACK);
                     }
-                }
-
-                break;
-            case STATE.ATTACK:
-                if (_target == null || _target.GetComponent<Damageable>().IsDead)
-                {
-                    ChangeState(STATE.DETECT);
-                }
-                else
-                {
-                    // Rotate
-                    Vector3 TargetPos = _target.transform.position;
-                    TargetPos.y = transform.position.y;
-                    Vector3 dir = TargetPos - transform.position;
-                    dir.Normalize();
-                    Quaternion targetRot = Quaternion.LookRotation(dir);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 10.0f);
-                }
-                break;
-            case STATE.READYSKILL:
-                if (_skillController.PrepareSkill())
-                    ChangeState(STATE.USESKILL);
                     break;
-            case STATE.USESKILL:
-                if (!_skillController.canUseSkill)
-                    ChangeState(STATE.DETECT);
-                break;
-            case STATE.DEAD:
-                break;
+                case STATE.MOVE:
+                    if (Vector3.Distance(transform.position, StartPosition) < 0.1f)
+                        ChangeState(STATE.DETECT);
+                    break;
+                case STATE.ATTACK:
+                    if (_target != null && !_target.GetComponent<Damageable>().IsDead)
+                        RotateToTarget(_target.transform.position);
+                    break;
+                case STATE.READYSKILL:
+                    if (_skillController.PrepareSkill())
+                        ChangeState(STATE.USESKILL);
+                    break;
+                case STATE.USESKILL:
+                    if (!_skillController.canUseSkill)
+                        ChangeState(STATE.DETECT);
+                    break;
+                case STATE.DEAD:
+                    break;
+            }
+          
         }
     }
 
-    public void StartFly()
+    void RotateToTarget(Vector3 targetPos)
     {
-        if (isInAir)
+        targetPos.y = transform.position.y;
+        Vector3 dir = targetPos - transform.position;
+        dir.Normalize();
+        Quaternion targetRot = Quaternion.LookRotation(dir);
+        if (targetRot == transform.rotation)
             return;
-
-        ChangeState(STATE.FLYSTART);
+        else
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 10.0f);
     }
 
-    IEnumerator Fly()
-    {
-        while (!info.IsName("Dragon Fly Idle(W)") && !isDead)
-        {
-            UpdateAnimInfo();
-            yield return null;
-        }
 
-        isInAir = true;
-        ChangeState(STATE.WAIT);
+    void ResetDragon()
+    {
+        skillController.ResetAll();
+        _attackDelay = 0.0f;
+        _target = null;
+        StopAllCoroutines();
     }
 
     void UpdateAnimInfo()
     {
         info = bossAnimator.GetCurrentAnimatorStateInfo(0);
+    }
+
+
+    void OnDead()
+    {
+        Destroy(gameObject, destroyDelay);
     }
 
 
@@ -271,5 +411,37 @@ public class DragonController : BossController
         }
         _attackDelay = 0.0f;
         ChangeState(STATE.DETECT);
+    }
+
+    IEnumerator ChangePhase()
+    {
+        bossAnimator.SetBool("B_IsInAir", true);
+        while (!info.IsName("Dragon Fly Idle(W)") && !isDead)
+        {
+            UpdateAnimInfo();
+            yield return null;
+        }
+        isInAir = true;
+        ResetDragon();
+        dragonPhase = PHASE.PHASE02;
+        ChangeState(STATE.MOVE);
+    }
+
+    IEnumerator Move(Vector3 position)
+    {
+        Vector3 dir = position - transform.position;
+        dir.Normalize();
+        float deltaSpeed = statInfo.moveSpeed * Time.deltaTime;
+        float distance = Vector3.Distance(position, transform.position);
+        while (distance > Mathf.Epsilon)
+        {
+            RotateToTarget(position);
+            if (distance < deltaSpeed)            
+                deltaSpeed = distance;
+
+            transform.position += deltaSpeed * dir;
+            distance -= deltaSpeed;
+            yield return null;
+        }
     }
 }

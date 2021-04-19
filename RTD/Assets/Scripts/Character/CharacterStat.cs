@@ -15,6 +15,7 @@ public class CharacterStat : MonoBehaviour
     
     // Delegate
     public UnityAction BuffDel = null;
+    public UnityAction OnHPChangeDel = null;
 
     void Awake()
     {
@@ -44,12 +45,31 @@ public class CharacterStat : MonoBehaviour
         tempStat.attackSpeed += bonusStat.attackSpeed * unionLevel;
         tempStat.MaxHP += bonusStat.MaxHP * unionLevel;
         tempStat.HP += bonusStat.HP * unionLevel;
-
+        
         // To Do: 버프나 디버프가 있으면, 해당 델리게이트를 발동시켜서 작동할 수 있도록
         //BuffDel?.Invoke();
 
         currentStat = tempStat;
+        OnHPChangeDel?.Invoke();
     }
+
+    public void ResetHP()
+    {
+        currentStat.HP = currentStat.MaxHP;
+        OnHPChangeDel?.Invoke();
+    }
+
+    public void UpdateHP(float value)
+    {
+        if (value < Mathf.Epsilon)
+            value = 0.0f;
+        else if (value > currentStat.MaxHP)
+            value = MaxHP;
+
+        currentStat.HP = value;
+        OnHPChangeDel?.Invoke();
+    }
+
 
     // Property
     public GRADE grade
@@ -61,6 +81,11 @@ public class CharacterStat : MonoBehaviour
     public UNION union
     {
         get { return _union; }
+    }
+
+    public ID id
+    {
+        get { return _id; }
     }
 
     public float MaxHP 
@@ -104,10 +129,16 @@ public class CharacterStat : MonoBehaviour
         }
     }
 
-    public ID id
+    public float moveSpeed
     {
-        get { return _id; }
+        get { return currentStat.moveSpeed; }
+        set
+        {
+            currentStat.moveSpeed = value;
+        }
     }
+
+
     
     /// <summary>
     /// 캐릭터 고유 id를 Get합니다.

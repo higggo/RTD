@@ -139,6 +139,10 @@ public class SkillController_Dragon : SkillController
                 if (controller != null && controller.canAction)
                     _startCoolDown = true;
                 break;
+            case SKILLSTATE.STARTCOOLDOWN:
+                if (controller != null && !controller.canAction)
+                    _startCoolDown = false;
+                break;
         }
         base.StateProcess();
     }

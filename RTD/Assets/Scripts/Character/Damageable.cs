@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace CharacterKit 
 {
@@ -21,6 +22,7 @@ namespace CharacterKit
         float HP;
         bool isDead = false;
 
+
         public bool IsDead 
         {
             get { return isDead; } 
@@ -29,7 +31,7 @@ namespace CharacterKit
         void Start()
         {
             HP = GetComponent<CharacterStat>().HP;
-            Debug.Log("HP = " + HP);
+            GetComponent<CharacterStat>().OnHPChangeDel += () => { HP = GetComponent<CharacterStat>().HP; };
         }
 
 
@@ -40,7 +42,7 @@ namespace CharacterKit
                 msg.amount = 1;
 
             HP = Mathf.Clamp(HP - msg.amount, 0.0f, GetComponent<CharacterStat>().MaxHP);
-            Debug.Log(HP);
+            GetComponent<CharacterStat>()?.UpdateHP(HP);
 
             if (HP <= Mathf.Epsilon)
             {
