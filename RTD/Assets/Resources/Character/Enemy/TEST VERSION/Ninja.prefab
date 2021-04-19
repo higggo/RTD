@@ -61,8 +61,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4569854371119762495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.06, y: -3.02, z: 4.06}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.0705, y: -3.4148, z: 4.0543}
+  m_LocalScale: {x: 1.4620736, y: 1.4620736, z: 1.4620736}
   m_Children:
   - {fileID: 4098798117553822265}
   m_Father: {fileID: 0}
@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a933caf9d4e82a488b629ea5330777b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _grade: 0
   _union: 0
+  _id: -1
   basicStat:
     MaxHP: 20
     HP: 20
@@ -121,7 +121,6 @@ MonoBehaviour:
     attackRange: 0
     moveSpeed: 0
     rotateSpeed: 0
-  _id: -1
 --- !u!114 &4569854371119762488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44478231f0daf9a4780197c2335123ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  Canvas: {fileID: 0}
   wayPoints: []
   CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &4569854370894101970

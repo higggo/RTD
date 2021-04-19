@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
-public delegate void CreateCharacter(GameObject obj);
+public delegate void VoidDelGameObject(GameObject obj);
 public class Storage : MonoBehaviour
 {
     int SpaceNum;
 
-    public CreateCharacter CreateCharacterDelegate;
+    public VoidDelGameObject CreateCharacterDelegate;
     private void Awake()
     {
         SpaceNum = GetAllSpaceCount();

@@ -175,7 +175,7 @@ public class PickController : MonoBehaviour
                 else if (Input.GetMouseButtonDown(0))
                 {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit[] hits = Physics.RaycastAll(ray, 100.0f, ~(1 << LayerMask.NameToLayer("UI")));
+                    RaycastHit[] hits = Physics.RaycastAll(ray, 500.0f, ~(1 << LayerMask.NameToLayer("UI")));
                     for (int i = 0; i < hits.Length; i++)
                     {
                         if (hits[i].transform.tag == "Player")

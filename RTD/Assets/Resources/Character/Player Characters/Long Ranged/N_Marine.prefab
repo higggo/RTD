@@ -215,7 +215,7 @@ MonoBehaviour:
   SkillParticleStartPos: {fileID: 8275055698534351338}
   SkillReadyParticleStartPos: {fileID: 8275055698534351338}
   coolTime: 5
-  skillDamage: 2
+  skillDamage: 50
   skillRange: 10
   collisionRadius: 0.5
   mask:

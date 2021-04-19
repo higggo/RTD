@@ -187,7 +187,6 @@ MonoBehaviour:
   SkillReadyParticleStartPos: {fileID: 0}
   coolTime: 10
   skillEndCount: 3
-  fireBall: {fileID: 0}
 --- !u!114 &7830163975162423288
 MonoBehaviour:
   m_ObjectHideFlags: 0

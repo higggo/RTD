@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5441393524000198103}
   - component: {fileID: 5441393524000198102}
   - component: {fileID: 5441393524000198101}
-  - component: {fileID: -3655259356894870631}
+  - component: {fileID: -758103806541986376}
   m_Layer: 8
   m_Name: Slime
   m_TagString: Untagged
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 5443730866749322928}
---- !u!114 &-3655259356894870631
+--- !u!114 &-758103806541986376
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

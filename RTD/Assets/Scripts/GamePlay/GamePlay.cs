@@ -31,9 +31,11 @@ public class GamePlay : MonoBehaviour
 
     WaveSpawner WaveSpawner;
     Coroutine MoveCoroutine;
+    Coroutine DirectionCameraFunc;
 
+    bool bViewtoGround = true;
 
-    const int GameStartBreakTime = 15;
+    const int GameStartBreakTime = 30;
     int GameLife = 10;
 
     int CurrentRound = 0;
@@ -65,11 +67,14 @@ public class GamePlay : MonoBehaviour
 
     private void Awake()
     {
-        RoundList.Add(new Round("Character/Enemy/TurtleShell", 11, 25));
-        RoundList.Add(new Round("Character/Enemy/TurtleShell", 5, 25));
-        RoundList.Add(new Round("Character/Enemy/TurtleShell", 5, 25));
-        RoundList.Add(new Round("Character/Enemy/Golem", 5, 25));
-        RoundList.Add(new Round("Character/Enemy/Slime", 5, 25));
+        RoundList.Add(new Round("Character/Enemy/TurtleShell", 15, 25));
+        RoundList.Add(new Round("Character/Enemy/TurtleShell", 15, 25));
+        RoundList.Add(new Round("Character/Enemy/TurtleShell", 15, 25));
+        RoundList.Add(new Round("Character/Enemy/Golem", 15, 25));
+        RoundList.Add(new Round("Character/Enemy/Slime", 15, 25));
+        RoundList.Add(new Round("Character/Enemy/Slime", 15, 25));
+        RoundList.Add(new Round("Character/Enemy/Slime", 15, 25));
+        RoundList.Add(new Round("Character/Enemy/Slime", 15, 25));
     }
 
     public enum MAP
@@ -118,12 +123,20 @@ public class GamePlay : MonoBehaviour
 
                 break;
             case STATE.RoundStart:
+
+                // Camera Control
+                DirectionCameraFunc = StartCoroutine(GetComponent<CameraManager>().LookAroundGroundCharacter());
+
                 // Start Attack
                 GetComponent<CharacterInfoManager>().CharacterAttackFlagOn();
+
+                //  Skill Cool
+                CharacterKit.CharUtils.SetSkillCoolDownTrigger(true);
 
                 // Restrict
                 GetComponent<PickController>().SetDisable();
                 LevelUpActiveButton.GetComponent<BtnLevelUpActive>().SetDeactive();
+                GameObject.Find("Canvas").transform.Find("CharacterPickerUI").gameObject.SetActive(false);
 
                 // Update Round
                 CurrentRound++;
@@ -147,8 +160,19 @@ public class GamePlay : MonoBehaviour
             case STATE.SpawnEnd:
                 break;
             case STATE.BreakTime:
+                //  Skill Cool
+                CharacterKit.CharUtils.SetSkillCoolDownTrigger(false);
+
+                // Camera Control
+                StopCoroutine(DirectionCameraFunc);
+                GetComponent<CameraManager>().StopDirectionCamera();
+
                 // Stop Attack
                 GetComponent<CharacterInfoManager>().CharacterAttackFlagOff();
+
+                //
+                GameObject.Find("Canvas").transform.Find("CharacterPickerUI").gameObject.SetActive(true);
+
 
                 // Set Boss Round
                 GetComponent<BossRoundManager>().State = BossRoundManager.STATE.BreakTime;
@@ -209,6 +233,26 @@ public class GamePlay : MonoBehaviour
             case STATE.GameStart:
                 break;
             case STATE.RoundStart:
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    if(!bViewtoGround)
+                    {
+                        if(DirectionCameraFunc != null)
+                            StopCoroutine(DirectionCameraFunc);
+                        DirectionCameraFunc = StartCoroutine(GetComponent<CameraManager>().LookAroundGroundCharacter());
+                        bViewtoGround = true;
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    if(bViewtoGround)
+                    {
+                        if (DirectionCameraFunc != null)
+                            StopCoroutine(DirectionCameraFunc);
+                        DirectionCameraFunc = StartCoroutine(GetComponent<CameraManager>().LookAroundBossCharacter());
+                        bViewtoGround = false;
+                    }
+                }
                 break;
             case STATE.SpawnEnd:
                 // 맵에 적군이 모두 없어질때까지 대기
@@ -264,6 +308,7 @@ public class GamePlay : MonoBehaviour
         GetComponent<LevelUpManager>().Init();
         GetComponent<BossRoundManager>().Init();
         LevelUpActiveButton.GetComponent<BtnLevelUpActive>().Init();
+        GameObject.Find("Canvas").transform.Find("CharacterPickerUI").gameObject.SetActive(true);
     }
     void SetRoundText(int round)
     {

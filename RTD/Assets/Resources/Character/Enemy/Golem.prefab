@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2865295368791129791}
   - component: {fileID: 2865295368791129788}
   - component: {fileID: 2865295368791129789}
-  - component: {fileID: -8688293969021304231}
+  - component: {fileID: -3802696559968890939}
   m_Layer: 8
   m_Name: Golem
   m_TagString: Untagged
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 2867733520193704035}
---- !u!114 &-8688293969021304231
+--- !u!114 &-3802696559968890939
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

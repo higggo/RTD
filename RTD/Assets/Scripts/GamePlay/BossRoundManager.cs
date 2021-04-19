@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-class BossRound
+public class BossRound
 {
     public string addr;     // Prefab Address
     public int spawnRound;  // Spawn Round
@@ -50,9 +50,12 @@ public class BossRoundManager : MonoBehaviour
     {
         Round = 0;
 
-        BossRoundList.Add(new BossRound(GetComponent<GameDB>().Boss[0], 2, 3));
+        BossRoundList.Add(new BossRound(GetComponent<GameDB>().Boss[0], 3, 5));
 
         ChangeState(STATE.GameStart);
+
+        //GetComponent<CameraManager>().MoveDone += SpawnBoss;
+
     }
 
     public void Init()
@@ -101,14 +104,18 @@ public class BossRoundManager : MonoBehaviour
                     // Boss Spawn
                     if (BossRoundList[i].spawnRound == Round+1)
                     {
-                        Transform spawnSpot = GameObject.Find("BossSpawn").transform;
-                        BossRoundList[i].boss = Instantiate(Resources.Load(GetComponent<GameDB>().Boss[0])) as GameObject;
-                        BossRoundList[i].boss.transform.SetParent(spawnSpot.parent);
-                        BossRoundList[i].boss.transform.position = spawnSpot.position;
-                    }
+                        int num = i;
+                        StartCoroutine(GetComponent<CameraManager>().BossSpawn(()=> {
+                            Transform spawnSpot = GameObject.Find("BossSpawn").transform;
+                            BossRoundList[num].boss = Instantiate(Resources.Load(GetComponent<GameDB>().Boss[0])) as GameObject;
+                            BossRoundList[num].boss.transform.SetParent(spawnSpot.parent);
+                            BossRoundList[num].boss.transform.position = spawnSpot.position;
+                            StartCoroutine(GetComponent<CameraManager>().LookAroundBoss(BossRoundList[num].boss.transform));
+                            }));
+                        }
 
                     // Stop Boss Attack
-                    if (BossRoundList[i].boss != null)
+                        if (BossRoundList[i].boss != null)
                         BossRoundList[i].boss.GetComponent<BossController>().SetCanAction(false);
 
                     //
@@ -164,6 +171,10 @@ public class BossRoundManager : MonoBehaviour
             case STATE.GameOver:
                 break;
         }
+    }
+
+    public void SpawnBoss(int i)
+    {
     }
 
 }
