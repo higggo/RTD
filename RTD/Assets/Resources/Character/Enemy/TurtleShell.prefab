@@ -146,7 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 4994886336310019945}
-<<<<<<< Updated upstream
 --- !u!114 &-7925601599819303631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +162,6 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   wayPoints: []
   CurrentPosition: {x: 0, y: 0, z: 0}
-=======
 --- !u!1001 &2197500825091210383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -299,7 +297,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2197500825091210383}
   m_PrefabAsset: {fileID: 0}
->>>>>>> Stashed changes
 --- !u!1001 &4998718462965569879
 PrefabInstance:
   m_ObjectHideFlags: 0

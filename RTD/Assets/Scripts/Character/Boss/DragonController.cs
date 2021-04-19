@@ -64,13 +64,8 @@ public class DragonController : BossController
     // 타겟을 발견하면 기본공격이 우선
     // 스킬 쿨타임이 다 차면, 스킬 사용. (Ground일때, Sky일때 다름)
 
-<<<<<<< Updated upstream
-    [ContextMenu("_canAction")]
-    public void SetAction()
-=======
     [ContextMenu("_canAction true")]
     void SetAction()
->>>>>>> Stashed changes
     {
         _canAction = true;
     }
@@ -175,24 +170,6 @@ public class DragonController : BossController
 
         if (dragonPhase == PHASE.PHASE01)
         {
-<<<<<<< Updated upstream
-            case STATE.CREATE:
-                break;
-            case STATE.POSTCREATE:
-                break;
-            case STATE.WAIT:
-                if (canAction)
-                    ChangeState(STATE.DETECT);
-                break;
-            case STATE.MOVE:
-                break;
-            case STATE.DETECT:
-                if (!canAction)
-                {
-                    ChangeState(STATE.WAIT);
-                    break;
-                }
-=======
             switch (dragonState)
             {
                 case STATE.CREATE:
@@ -202,7 +179,6 @@ public class DragonController : BossController
                 case STATE.WAIT:
                     if (canAction)
                         ChangeState(STATE.DETECT);
->>>>>>> Stashed changes
 
                     // TEST ChangePhase02
                     if (statInfo.HP < statInfo.MaxHP * 0.5f)
