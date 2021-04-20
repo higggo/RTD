@@ -9,7 +9,9 @@ public class SkillController_Dragon : SkillController
 
     int skillCount = 0;
     [SerializeField] int skillEndCount;
-    
+    [SerializeField] float flameColliderRad;
+    [SerializeField] float flameDamagePerSeconds;
+
     GameObject skillTarget;
     DragonController controller;
     // Start is called before the first frame update
@@ -54,18 +56,24 @@ public class SkillController_Dragon : SkillController
     {
         ProjectileManager manager = GetComponent<ProjectileManager>();
         float fireballDmg = controller.fireBallDamage;
-        manager.FireProjectile(SkillParticleStartPos.position, skillTarget, fireballDmg);
+        manager.FireProjectile(SkillParticleStartPos.position, controller.gameObject, skillTarget, fireballDmg);
         _readyToShot = false;
     }
 
     void SkillOnInAir()
     {
-        
-    }
-
-    void SkillReadyInAir()
-    {
-
+        if (SkillParticle != null)
+        {
+            GameObject obj = Instantiate(SkillParticle,  SkillParticleStartPos);
+            Vector3 scale = obj.transform.localScale;
+            scale.x *= transform.localScale.x;
+            scale.y *= transform.localScale.y;
+            scale.z *= transform.localScale.z;
+            obj.transform.localScale = scale;
+            float radius = flameColliderRad * scale.x;
+            StartCoroutine(FireFlameInAir(flameColliderRad, flameDamagePerSeconds, obj));
+            SkillLogic();
+        }
     }
 
     public sealed override bool PrepareSkill()
@@ -83,6 +91,35 @@ public class SkillController_Dragon : SkillController
         }
 
         return base.PrepareSkill();
+    }
+
+    IEnumerator FireFlameInAir(float flameRad, float dmgPerSeconds, GameObject flameParticle)
+    {
+        Vector3 ColliderStartPos = SkillParticleStartPos.position;
+        Vector3 dir = SkillParticleStartPos.forward;
+        float deltatime = 0.1f;
+        while (_canUseSkill)
+        {
+            if (deltatime >= 0.1f)
+            {
+                ColliderStartPos = SkillParticleStartPos.position;
+                dir = SkillParticleStartPos.forward;
+                RaycastHit[] hitInfo = Physics.SphereCastAll(ColliderStartPos, flameRad, dir, 200.0f, controller.EnemyLayer);
+                CharacterKit.FDamageMessage msg;
+                msg.Causer = this.gameObject;
+                msg.amount = dmgPerSeconds * 0.1f;
+                Debug.DrawLine(ColliderStartPos, ColliderStartPos + dir * 100.0f, Color.black);
+                foreach (RaycastHit hit in hitInfo)
+                {
+                    hit.collider.gameObject.GetComponent<CharacterKit.Damageable>()?.GetDamage(msg);
+                }
+                deltatime = 0.0f;
+            }
+            deltatime += Time.deltaTime;
+            yield return null;
+        }
+        ResetRemainCoolTime();
+        Destroy(flameParticle);
     }
 
     IEnumerator StartRotateToTarget(GameObject target)
@@ -147,4 +184,12 @@ public class SkillController_Dragon : SkillController
         base.StateProcess();
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        RaycastHit hitinfo;
+        if (Physics.Raycast(SkillParticleStartPos.position, SkillParticleStartPos.forward, out hitinfo))
+        {
+            DebugExtension.DrawCircle(hitinfo.point, Vector3.up, Color.black, flameColliderRad * transform.localScale.x);
+        }
+    }
 }

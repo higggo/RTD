@@ -34,6 +34,18 @@ namespace CharacterKit
         UNIQUE = 300, Q_WARRIOR, Q_MARINE, Q_LICH,
     }
     
+    public enum SIMBOL_WEAPON
+    {
+        UNKNOWN, 
+        SHORTED, RANGED, MAGIC
+    }
+
+    public enum SIMBOL_ARMOR
+    {
+        UNKNOWN,
+        LIGHT, HEAVY, MAGICAL
+    }
+
     /// <summary>
     /// For PlayerCharacter STATE MACHINE
     /// </summary>

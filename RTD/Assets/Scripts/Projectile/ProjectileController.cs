@@ -19,6 +19,7 @@ public class ProjectileController : MonoBehaviour
     [SerializeField] protected float _bulletDmg;
     [SerializeField] protected float _bulletSpeed = 0.0f;
 
+    protected GameObject _owner = null;
     protected GameObject _target = null;
     protected Transform _hitPoint = null;
     public UnityAction moveDel = null;
@@ -64,6 +65,11 @@ public class ProjectileController : MonoBehaviour
         }
     }
 
+    public GameObject owner
+    {
+        get { return _owner; }
+    }
+
     public GameObject target
     {
         get { return _target; }
@@ -96,6 +102,12 @@ public class ProjectileController : MonoBehaviour
         this.bulletDmg = bulletDmg;
         this.bulletSpeed = bulletSpeed;
         ChangeState(STATE.READY);
+    }
+
+    public void InitBullet(GameObject owner, GameObject target, float bulletDmg, float bulletSpeed)
+    {
+        _owner = owner;
+        InitBullet(target, bulletDmg, bulletSpeed);
     }
 
     /// <summary>

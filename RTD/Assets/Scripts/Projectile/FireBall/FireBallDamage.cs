@@ -26,7 +26,7 @@ public class FireBallDamage : BulletDamage
             return;
 
         FDamageMessage msg = new FDamageMessage();
-        msg.Causer = controller.gameObject;
+        msg.Causer = (controller.owner != null) ? controller.owner : this.gameObject;
         msg.amount = controller.bulletDmg;
         List<GameObject> hitList = new List<GameObject>();
         if (CharUtils.FindTargetAll(transform, targetLayer, ref hitList, explosionRange))
@@ -37,6 +37,7 @@ public class FireBallDamage : BulletDamage
                     hitObj.GetComponent<Damageable>().GetDamage(msg);
             }
         }
+        PlayHitEffect();
     }
 
     protected override void PlayHitEffect()

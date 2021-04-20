@@ -82,6 +82,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _union: 2
   _id: 1
+  _Weapon: 1
+  _Armor: 0
   basicStat:
     MaxHP: 100
     HP: 100

@@ -39,8 +39,8 @@ public class DragonController : BossController
 
     // Coroutine
     Coroutine MoveSet = null;
-
     Vector3 StartPosition;
+    Transform HealthBar;
 
     // property
     public float fireBallDamage
@@ -96,6 +96,7 @@ public class DragonController : BossController
         base.InitComponents();
         // 추가
         StartPosition = transform.position;
+        HealthBar = GetComponentInChildren<HPBar>()?.transform;
         GetComponent<Damageable>().onDeadDel += () => { ChangeState(STATE.DEAD); };
         AnimEvent_Dragon tmpEvent;
         if (bossAnimEvent is AnimEvent_Dragon)

@@ -17,6 +17,6 @@ public class RangedBasicAttack : BasicAttack
             return;
 
         ProjectileManager manager = GetComponent<ProjectileManager>();
-        manager.FireProjectile(bulletStartPos.position, target, statInfo.attackDamage);
+        manager.FireProjectile(bulletStartPos.position, gameObject, target, statInfo.attackDamage);
     }
 }

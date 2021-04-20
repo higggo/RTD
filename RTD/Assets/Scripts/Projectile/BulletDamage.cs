@@ -17,7 +17,6 @@ public class BulletDamage : MonoBehaviour
     {
         controller = GetComponent<ProjectileController>();
         controller.HitDel += SetDamage;
-        controller.HitDel += PlayHitEffect;
     }
 
     protected virtual void SetDamage()
@@ -29,10 +28,11 @@ public class BulletDamage : MonoBehaviour
             return;
 
         FDamageMessage msg = new FDamageMessage();
-        msg.Causer = controller.gameObject;
+        msg.Causer = (controller.owner != null) ? controller.owner : this.gameObject;
         msg.amount = controller.bulletDmg;
 
         target.GetComponent<Damageable>()?.GetDamage(msg);
+        PlayHitEffect();
     }
 
     protected virtual void PlayHitEffect()

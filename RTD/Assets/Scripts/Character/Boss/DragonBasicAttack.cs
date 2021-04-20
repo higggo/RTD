@@ -33,7 +33,7 @@ public class DragonBasicAttack : MonoBehaviour
             
 
         ProjectileManager manager = GetComponent<ProjectileManager>();
-        manager.FireProjectile(bulletStartPos.position, controller.target, controller.fireBallDamage);
+        manager.FireProjectile(bulletStartPos.position, controller.gameObject, controller.target, controller.fireBallDamage);
     }
 
     void OnAttackByBasicAttack()

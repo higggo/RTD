@@ -9,6 +9,8 @@ public class CharacterStat : MonoBehaviour
     GRADE _grade;
     [SerializeField] UNION _union;
     [SerializeField] ID _id = ID.UNKNOWN;
+    [SerializeField] SIMBOL_WEAPON _Weapon = SIMBOL_WEAPON.UNKNOWN;
+    [SerializeField] SIMBOL_ARMOR _Armor = SIMBOL_ARMOR.UNKNOWN;
     [SerializeField] FCharacterStat basicStat;
     [SerializeField] FCharacterStat bonusStat;
     [SerializeField] FCharacterStat currentStat;
@@ -81,6 +83,16 @@ public class CharacterStat : MonoBehaviour
     public UNION union
     {
         get { return _union; }
+    }
+
+    public SIMBOL_WEAPON weapon
+    {
+        get { return _Weapon; }
+    }
+
+    public SIMBOL_ARMOR armor
+    {
+        get { return _Armor; }
     }
 
     public ID id
