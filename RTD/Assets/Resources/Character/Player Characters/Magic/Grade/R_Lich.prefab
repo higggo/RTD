@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 5647351720985782530}
   - component: {fileID: 5647351720985782528}
   m_Layer: 12
-  m_Name: Lich
+  m_Name: R_Lich
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _union: 1
-  _id: 3
+  _id: 241
   _Weapon: 3
   _Armor: 0
   basicStat:

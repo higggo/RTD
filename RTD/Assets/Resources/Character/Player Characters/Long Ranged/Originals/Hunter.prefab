@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _union: 3
-  _id: -1
+  _id: 23
   _Weapon: 2
   _Armor: 0
   basicStat:

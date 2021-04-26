@@ -29,17 +29,17 @@ namespace CharacterKit
     {
         UNKNOWN = -1,
         NORMAL = 0 , N_HERO, N_CASTLEKNIGHT, N_GLADIATOR, N_BERSERKER, N_SWORDMASTER,
-                     N_MARINE = 20,
-                     N_LICH   = 40,
+                     N_BOWKNIGHT = 21, N_ASSASSIN, N_HUNTER, N_CROSSBOWKNIGHT, N_BOWKING,
+                     N_LICH = 41, N_MAGEKNIGHT, N_WIZARD, N_DARKWIZARD, N_PRIEST,
         MAGIC = 100, M_HERO, M_CASTLEKNIGHT, M_GLADIATOR, M_BERSERKER, M_SWORDMASTER,
-                     M_MARINE = 120,
-                     M_LICH   = 140,
+                     M_BOWKNIGHT = 121, M_ASSASSIN, M_HUNTER, M_CROSSBOWKNIGHT, M_BOWKING,
+                     M_LICH = 141, M_MAGEKNIGHT, M_WIZARD, M_DARKWIZARD, M_PRIEST,
         RARE = 200,  R_HERO, R_CASTLEKNIGHT, R_GLADIATOR, R_BERSERKER, R_SWORDMASTER,
-                     R_MARINE = 220,
-                     R_LICH   = 240,
-        UNIQUE= 300, Q_HERO, Q_CASTLEKNIGHT, Q_GLADIATOR, Q_BERSERKER, Q_SWORDMASTER,
-                     Q_MARINE = 220,
-                     Q_LICH   = 240
+                     R_BOWKNIGHT = 221, R_ASSASSIN, R_HUNTER, R_CROSSBOWKNIGHT, R_BOWKING,
+                     R_LICH = 241, R_MAGEKNIGHT, R_WIZARD, R_DARKWIZARD, R_PRIEST,
+        UNIQUE = 300, Q_HERO, Q_CASTLEKNIGHT, Q_GLADIATOR, Q_BERSERKER, Q_SWORDMASTER,
+                     Q_BOWKNIGHT = 321, Q_ASSASSIN, Q_HUNTER, Q_CROSSBOWKNIGHT, Q_BOWKING,
+                     Q_LICH = 341, Q_MAGEKNIGHT, Q_WIZARD, Q_DARKWIZARD, Q_PRIEST,
     }
     
     public enum SIMBOL_WEAPON

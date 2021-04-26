@@ -107,6 +107,8 @@ public class GameDB : MonoBehaviour
         "Character/Player Characters/Short Ranged/Grade/Q_Berserker",
         "Character/Player Characters/Short Ranged/Grade/Q_SwordMaster"
     };
+
+    // LJH: TO DO - Prefab list Add
     public string[] PreLoadingPrefabAddr = new string[]{
         //"Visual Effect/Skill Effect/Marine Skill",
         //"Visual Effect/Skill Effect/Marine SkillReady",

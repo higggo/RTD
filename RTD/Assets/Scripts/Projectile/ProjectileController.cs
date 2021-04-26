@@ -15,9 +15,10 @@ namespace ProjectileKit
 // 타겟팅형 발사체 스크립트
 public class ProjectileController : MonoBehaviour
 {
-    [SerializeField] protected STATE _bulletState = STATE.CREATE;
-    [SerializeField] protected float _bulletDmg;
-    [SerializeField] protected float _bulletSpeed = 0.0f;
+    protected STATE _bulletState = STATE.CREATE;
+    protected float _bulletDmg;
+    protected float _bulletSpeed = 0.0f;
+    [SerializeField] float DestroyDelay; 
 
     protected GameObject _owner = null;
     protected GameObject _target = null;
@@ -177,7 +178,7 @@ public class ProjectileController : MonoBehaviour
                 break;
             case STATE.HIT:
                 HitDel?.Invoke();
-                Destroy(this.gameObject, Time.deltaTime);
+                Destroy(this.gameObject, DestroyDelay);
                 break;
         }
     }

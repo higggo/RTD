@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5571296872014849388}
   - component: {fileID: 5571296872014849391}
   m_Layer: 12
-  m_Name: Gladiator
+  m_Name: M_Gladiator
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _union: 2
-  _id: 3
+  _id: 103
   _Weapon: 1
   _Armor: 0
   basicStat:

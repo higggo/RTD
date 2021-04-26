@@ -41,6 +41,7 @@ public class MoneyManager : MonoBehaviour
 
     public void Init()
     {
+        // LJH: 돈조절
         SetMoney(10000); 
         foreach(Transform child in gameObject.transform.Find("Account"))
         {

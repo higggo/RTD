@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4607908576708546117}
   - component: {fileID: 4607908576708546118}
   m_Layer: 12
-  m_Name: Berserker
+  m_Name: Q_Berserker
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _union: 2
-  _id: 4
+  _id: 304
   _Weapon: 1
   _Armor: 0
   basicStat:

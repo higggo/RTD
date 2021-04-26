@@ -70,6 +70,7 @@ public class GamePlay : MonoBehaviour
 
     private void Awake()
     {
+        // "애들 경로", 갯수, 브레이크타임
         RoundList.Add(new Round("Character/Enemy/TurtleShell", 15, 25));
         RoundList.Add(new Round("Character/Enemy/TurtleShell", 15, 25));
         RoundList.Add(new Round("Character/Enemy/TurtleShell", 15, 25));

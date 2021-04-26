@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5933860560976491184}
   - component: {fileID: 5933860560976491151}
   m_Layer: 12
-  m_Name: SwordMaster
+  m_Name: Q_SwordMaster
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _union: 2
-  _id: 5
+  _id: 305
   _Weapon: 1
   _Armor: 0
   basicStat:

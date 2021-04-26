@@ -3214,7 +3214,7 @@ GameObject:
   - component: {fileID: 5338701398428325468}
   - component: {fileID: 6798492279082153274}
   m_Layer: 12
-  m_Name: Priest
+  m_Name: M_Priest
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3301,7 +3301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   characterState: 0
   _isInField: 0
   _isInBossRoom: 0
@@ -3320,7 +3320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _union: 1
-  _id: -1
+  _id: 145
   _Weapon: 3
   _Armor: 0
   basicStat:

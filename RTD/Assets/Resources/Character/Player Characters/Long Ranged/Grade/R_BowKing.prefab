@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7793652470033010794}
   - component: {fileID: 7793652470033010795}
   m_Layer: 12
-  m_Name: BowKing
+  m_Name: R_BowKing
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _union: 3
-  _id: -1
+  _id: 225
   _Weapon: 2
   _Armor: 0
   basicStat:

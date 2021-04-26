@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4124375706150853622}
   - component: {fileID: -2756232740199530285}
   m_Layer: 12
-  m_Name: Hero
+  m_Name: M_Hero
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _union: 2
-  _id: 1
+  _id: 101
   _Weapon: 1
   _Armor: 0
   basicStat:

@@ -3068,7 +3068,7 @@ GameObject:
   - component: {fileID: 163336314727606752}
   - component: {fileID: 5297003813841580785}
   m_Layer: 12
-  m_Name: Dark Wizard
+  m_Name: M_Dark Wizard
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3155,7 +3155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   characterState: 0
   _isInField: 0
   _isInBossRoom: 0
@@ -3174,7 +3174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _union: 1
-  _id: -1
+  _id: 144
   _Weapon: 3
   _Armor: 0
   basicStat:

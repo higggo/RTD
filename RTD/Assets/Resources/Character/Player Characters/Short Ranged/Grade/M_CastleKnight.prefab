@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6267343363349305996}
   - component: {fileID: 6267343363349305997}
   m_Layer: 12
-  m_Name: CastleKnight
+  m_Name: M_CastleKnight
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _union: 2
-  _id: 2
+  _id: 102
   _Weapon: 1
   _Armor: 0
   basicStat:
