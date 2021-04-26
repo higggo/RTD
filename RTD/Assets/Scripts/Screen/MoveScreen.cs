@@ -65,7 +65,7 @@ public class MoveScreen : MonoBehaviour
     void Update()
     {
         mousePos = Input.mousePosition;
-        CheckMoveCoord();
+        //CheckMoveCoord();
         ProcessCoord();
         CheckSavePoint();
     }

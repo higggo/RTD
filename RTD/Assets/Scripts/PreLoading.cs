@@ -31,12 +31,12 @@ public class PreLoading : MonoBehaviour
 
     void ExecutePreLoading()
     {
-        GameDB DB = GameObject.Find("GamePlayManager").GetComponent<GameDB>();
-        foreach(string addr in DB.PreLoadingPrefabAddr)
-        {
-            GameObject obj = Instantiate(Resources.Load(addr)) as GameObject;
-            Destroy(obj);
-        }
+        //GameDB DB = GameObject.Find("GamePlayManager").GetComponent<GameDB>();
+        //foreach(string addr in DB.PreLoadingPrefabAddr)
+        //{
+        //    GameObject obj = Instantiate(Resources.Load(addr)) as GameObject;
+        //    Destroy(obj);
+        //}
         StartCoroutine(WaitLoading());
     }
     

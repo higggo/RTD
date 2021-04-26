@@ -35,8 +35,11 @@ public class GamePlay : MonoBehaviour
 
     bool bViewtoGround = true;
 
+    // 처음 시작시간
     const int GameStartBreakTime = 30;
-    int GameLife = 10;
+
+    // 라이프
+    int GameLife = 100;
 
     int CurrentRound = 0;
     public List<Round> RoundList = new List<Round>();
@@ -253,7 +256,13 @@ public class GamePlay : MonoBehaviour
                         bViewtoGround = false;
                     }
                 }
-                break;
+                if (Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    // Camera Control
+                    StopCoroutine(DirectionCameraFunc);
+                    GetComponent<CameraManager>().StopDirectionCamera();
+                }
+                    break;
             case STATE.SpawnEnd:
                 // 맵에 적군이 모두 없어질때까지 대기
                 if(WaveSpawner.GetCountEnemies() <= 0)

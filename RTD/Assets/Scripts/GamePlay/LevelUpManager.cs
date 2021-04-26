@@ -7,34 +7,34 @@ public class LevelUpManager : MonoBehaviour
     CharacterInfoManager CharInfoManager;
     MoneyManager MoneyManager;
 
-    public BtnLevelUpUnion Union = null;
-    public BtnLevelUpDemic Demic = null;
-    public BtnLevelUpExis Exis = null;
+    public BtnLevelUpMage MAGE = null;
+    public BtnLevelUpWarrior WARRIOR = null;
+    public BtnLevelUpArcher ARCHER = null;
 
     ResponseMessage.Trade.CODE response;
     // Start is called before the first frame update
     void Start()
     {
         // Find Reference
-        if (Union == null) Union = GameObject.Find("Union").GetComponent<BtnLevelUpUnion>();
-        if (Demic == null) Demic = GameObject.Find("Union").GetComponent<BtnLevelUpDemic>();
-        if (Exis == null) Exis = GameObject.Find("Union").GetComponent<BtnLevelUpExis>();
+        if (MAGE == null) MAGE = GameObject.Find("Mage").GetComponent<BtnLevelUpMage>();
+        if (WARRIOR == null) WARRIOR = GameObject.Find("Warrior").GetComponent<BtnLevelUpWarrior>();
+        if (ARCHER == null) ARCHER = GameObject.Find("Archer").GetComponent<BtnLevelUpArcher>();
 
         CharInfoManager = GetComponent<CharacterInfoManager>();
         MoneyManager = GetComponent<MoneyManager>();
 
-        Union.OnclickDelegate += LevelUpUnion;
-        Demic.OnclickDelegate += LevelUpDemic;
-        Exis.OnclickDelegate += LevelUpExis;
+        MAGE.OnclickDelegate += LevelUpUnion;
+        WARRIOR.OnclickDelegate += LevelUpDemic;
+        ARCHER.OnclickDelegate += LevelUpExis;
 
         GameObject.Find("Storage").GetComponent<Storage>().CreateCharacterDelegate += UpdateCharacterLevel;
     }
     void LevelUpUnion()
     {
-        if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, Union.Price, response, "Union Level Up"))
+        if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, MAGE.Price, response, "MAGE Level Up"))
         {
-            Union.Level += 1;
-            CharUtils.UpdateSpecificUnion(CharacterKit.UNION.MAGE, Union.Level);
+            MAGE.Level += 1;
+            CharUtils.UpdateSpecificUnion(CharacterKit.UNION.MAGE, MAGE.Level);
         }
         else
         {
@@ -44,10 +44,10 @@ public class LevelUpManager : MonoBehaviour
 
     void LevelUpDemic()
     {
-        if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, Demic.Price, response, "Demic Level Up"))
+        if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, WARRIOR.Price, response, "WARRIOR Level Up"))
         {
-            Demic.Level += 1;
-            CharUtils.UpdateSpecificUnion(CharacterKit.UNION.WARRIOR, Demic.Level);
+            WARRIOR.Level += 1;
+            CharUtils.UpdateSpecificUnion(CharacterKit.UNION.WARRIOR, WARRIOR.Level);
         }
         else
         {
@@ -57,10 +57,10 @@ public class LevelUpManager : MonoBehaviour
 
     void LevelUpExis()
     {
-        if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, Exis.Price, response, "Exis Level Up"))
+        if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, ARCHER.Price, response, "ARCHER Level Up"))
         {
-            Exis.Level += 1;
-            CharUtils.UpdateSpecificUnion(CharacterKit.UNION.ARCHER, Exis.Level);
+            ARCHER.Level += 1;
+            CharUtils.UpdateSpecificUnion(CharacterKit.UNION.ARCHER, ARCHER.Level);
         }
         else
         {
@@ -81,13 +81,13 @@ public class LevelUpManager : MonoBehaviour
         switch(union)
         {
             case CharacterKit.UNION.MAGE:
-                level = Union.Level;
+                level = MAGE.Level;
                 break;
             case CharacterKit.UNION.WARRIOR:
-                level = Demic.Level;
+                level = WARRIOR.Level;
                 break;
             case CharacterKit.UNION.ARCHER:
-                level = Exis.Level;
+                level = ARCHER.Level;
                 break;
         }
         return level;
@@ -95,8 +95,8 @@ public class LevelUpManager : MonoBehaviour
 
     public void Init()
     {
-        Union.Init();
-        Demic.Init();
-        Exis.Init();
+        MAGE.Init();
+        WARRIOR.Init();
+        ARCHER.Init();
     }
 }
