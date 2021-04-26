@@ -3246,6 +3246,7 @@ GameObject:
   - component: {fileID: 6798492279082153274}
   - component: {fileID: -8673856733698310771}
   - component: {fileID: -7591631351775690052}
+  - component: {fileID: -4636525975334720740}
   m_Layer: 12
   m_Name: R_Priest
   m_TagString: Player
@@ -3423,6 +3424,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 165734, guid: 25e8f244edcc3b24c83b31b53ec17ec8, type: 3}
   bulletSpeed: 30
+--- !u!114 &-4636525975334720740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8490035312981022873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786943c3af0006049bfc25a70f618ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5087753048365507766
 PrefabInstance:
   m_ObjectHideFlags: 0

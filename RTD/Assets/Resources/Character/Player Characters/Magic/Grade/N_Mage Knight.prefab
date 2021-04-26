@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 9025622701166614492}
   - component: {fileID: 3619676424128373929}
   - component: {fileID: 6436085697457706029}
+  - component: {fileID: 5134100435005842580}
   m_Layer: 12
-  m_Name: Mage Knight
+  m_Name: N_Mage Knight
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,6 +179,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectStartPos: {fileID: 2485521001973679926}
   AttackEffect: {fileID: 106988, guid: 15dec7b07032b2f4aa6f855bfbe120f7, type: 3}
+--- !u!114 &5134100435005842580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294272442836582793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786943c3af0006049bfc25a70f618ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6544440411098468439
 GameObject:
   m_ObjectHideFlags: 0

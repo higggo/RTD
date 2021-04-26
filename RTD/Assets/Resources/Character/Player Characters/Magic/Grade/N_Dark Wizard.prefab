@@ -3100,8 +3100,9 @@ GameObject:
   - component: {fileID: 5297003813841580785}
   - component: {fileID: -6774927680612200841}
   - component: {fileID: -2478835311123976102}
+  - component: {fileID: 4643211584523397000}
   m_Layer: 12
-  m_Name: Dark Wizard
+  m_Name: N_Dark Wizard
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3277,6 +3278,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 100006, guid: e69e7308f3a35cb42b70ab68d345cec5, type: 3}
   bulletSpeed: 30
+--- !u!114 &4643211584523397000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836592622540438238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786943c3af0006049bfc25a70f618ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8857722332253866734
 PrefabInstance:
   m_ObjectHideFlags: 0
