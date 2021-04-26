@@ -56,7 +56,6 @@ public class CharacterInfoManager : MonoBehaviour
                 }
             }
         }
-
         //if (target != null)
         //{
         //    string[] charList = GetGradeCharacterList(GetNextGrade(grade));
@@ -69,10 +68,27 @@ public class CharacterInfoManager : MonoBehaviour
         //}
         return target;
     }
+
+    public bool IsUpgradeTaret(GameObject own, GameObject target)
+    {
+        CharacterKit.GRADE grade = own.GetComponent<CharController>().statInfo.grade;
+        CharacterKit.ID id = own.GetComponent<CharController>().statInfo.id;
+        if (target != null)
+        {
+            if (target.GetComponent<CharController>().statInfo.grade == grade &&
+                target.GetComponent<CharController>().statInfo.id == id &&
+                own != target)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     GamePlay.MAP GetFieldLocated(GameObject obj)
     {
         GamePlay.MAP map = GamePlay.MAP.Storage;
-        switch(obj.transform.parent.parent.parent.name)
+        switch (obj.transform.parent.parent.parent.name)
         {
             case "Ground":
                 map = GamePlay.MAP.Ground;
@@ -225,5 +241,46 @@ public class CharacterInfoManager : MonoBehaviour
 
         return characters;
     }
+    public int GetAllCharacters(CharacterKit.GRADE grade, CharacterKit.UNION union)
+    {
+        int cnt = 0;
 
+        for (int i = 0; i < GroundSpace.childCount; i++)
+        {
+            if (GroundSpace.GetChild(i).childCount > 0)
+            {
+                if (GroundSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo.grade == grade
+                    && GroundSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo.union == union)
+                {
+                    cnt++;
+                }
+            }
+        }
+
+        for (int i = 0; i < StorageSpace.childCount; i++)
+        {
+            if (StorageSpace.GetChild(i).childCount > 0)
+            {
+                if (StorageSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo.grade == grade
+                    && StorageSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo.union == union)
+                {
+                    cnt++;
+                }
+            }
+        }
+
+        for (int i = 0; i < BossSpace.childCount; i++)
+        {
+            if (BossSpace.GetChild(i).childCount > 0)
+            {
+                if (BossSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo.grade == grade
+                    && BossSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo.union == union)
+                {
+                    cnt++;
+                }
+            }
+        }
+
+        return cnt;
+    }
 }

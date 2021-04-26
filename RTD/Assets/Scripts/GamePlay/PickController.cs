@@ -19,6 +19,7 @@ public class PickController : MonoBehaviour
     Vector3 OriginPos = Vector3.zero;
     TileManager TileManager;
     CharacterInfoManager CharacterInfoManager;
+    public VoidDelGameObject UpgradeDelegate = null;
     //BossZoneWarp BossZoneWarp;
     // Start is called before the first frame update
     void Start()
@@ -44,7 +45,7 @@ public class PickController : MonoBehaviour
         if (state == s) return;
         state = s;
 
-        switch(state)
+        switch (state)
         {
             case STATE.Normal:
                 break;
@@ -61,7 +62,7 @@ public class PickController : MonoBehaviour
                 }
                 break;
             case STATE.MouseButtonUp:
-                if(PickUpObject != null)
+                if (PickUpObject != null)
                 {
                     // BossZone Warp
                     if (TileManager.IsBossTile())
@@ -82,7 +83,7 @@ public class PickController : MonoBehaviour
                     else if (TileManager.IsReturnTile())
                     {
                         Transform parent = TileManager.GetEmptyStorageTile();
-                        if(parent == null)
+                        if (parent == null)
                             parent = TileManager.GetEmptyGroundTile();
                         if (parent != null)
                         {
@@ -95,12 +96,34 @@ public class PickController : MonoBehaviour
                             PickUpObject.transform.position = OriginPos;
                         }
                     }
-                    // Storage <--> Ground
+                    // 합치기 or 이동
                     else if (TileManager.GetPossibleTileCount() > 0)
                     {
-                        Transform parent = TileManager.GetClosestTile(PickUpObject.transform.position);
-                        PickUpObject.transform.parent = parent;
-                        PickUpObject.transform.localPosition = Vector3.zero;
+                        Transform targetTile = TileManager.GetClosestTile(PickUpObject.transform.position);
+                        GameObject target = targetTile.childCount > 0 ? targetTile.GetChild(0).gameObject : null;
+
+                        // 합치기
+                        if (CharacterInfoManager.IsUpgradeTaret(PickUpObject, target))
+                        {
+                            // Success
+                            UpgradeCharacter(PickUpObject.transform.gameObject, target);
+                        }
+                        //이동
+                        else if (target == null)
+                        {
+                            PickUpObject.transform.parent = targetTile;
+                            PickUpObject.transform.localPosition = Vector3.zero;
+                        }
+                        // 서로 자리 바꾸기
+                        else
+                        {
+                            Transform myTile = PickUpObject.transform.parent;
+                            PickUpObject.transform.parent = targetTile;
+                            PickUpObject.transform.localPosition = Vector3.zero;
+
+                            target.transform.parent = myTile;
+                            target.transform.localPosition = Vector3.zero;
+                        }
                     }
                     else
                     {
@@ -128,22 +151,16 @@ public class PickController : MonoBehaviour
                     RaycastHit[] hits = Physics.RaycastAll(ray, 50.0f, ~(1 << LayerMask.NameToLayer("UI")));
                     for (int i = 0; i < hits.Length; i++)
                     {
-                        // 여기부터 작성
                         if (hits[i].transform.tag == "Player")
                         {
-                            PickUpObject = hits[i].transform.gameObject;
-                            GameObject target = CharacterInfoManager.GetUpgradeTarget(PickUpObject);
-                            if (target != null)
+                            if (UpgradeCharacter(hits[i].transform.gameObject, null))
                             {
-                                string[] charList = CharacterInfoManager.GetGradeCharacterList(CharacterInfoManager.GetNextGrade(PickUpObject.GetComponent<CharController>().statInfo.grade));
-                                GameObject upgradeCharacter = Instantiate(Resources.Load(charList[Random.Range(0, charList.Length)])) as GameObject;
-                                upgradeCharacter.transform.parent = PickUpObject.transform.parent;
-                                upgradeCharacter.transform.localPosition = Vector3.zero;
-                                GetComponent<LevelUpManager>().UpdateCharacterLevel(upgradeCharacter);
-                                Destroy(PickUpObject);
-                                Destroy(target);
+                                // Success
                             }
-                            PickUpObject = null;
+                            else
+                            {
+                                // Fail
+                            }
                         }
                     }
                 }
@@ -159,7 +176,7 @@ public class PickController : MonoBehaviour
                         if (hits[i].transform.tag == "Player")
                         {
                             Transform parent = TileManager.GetEmptyOtherFieldTile(hits[i].transform);
-                            if(parent == null)
+                            if (parent == null)
                             {
                                 Debug.Log("이동할 곳이 가득찼습니다.");
                                 break;
@@ -188,7 +205,7 @@ public class PickController : MonoBehaviour
                 }
                 break;
             case STATE.MouseButtonDown:
-                    ChangeState(STATE.MouseButtonDragging);
+                ChangeState(STATE.MouseButtonDragging);
                 break;
             case STATE.MouseButtonDragging:
                 if (PickUpObject != null)
@@ -206,10 +223,10 @@ public class PickController : MonoBehaviour
                     //        );
                     //    }
                     //}
-                    
+
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
-                    if(Physics.Raycast(ray, out hit, 50.0f, (~(1<<LayerMask.NameToLayer("UI")) & (1 << LayerMask.NameToLayer("Map")))))
+                    if (Physics.Raycast(ray, out hit, 50.0f, (~(1 << LayerMask.NameToLayer("UI")) & (1 << LayerMask.NameToLayer("Map")))))
                     {
                         PickUpObject.transform.position = new Vector3(
                             hit.point.x,
@@ -218,7 +235,7 @@ public class PickController : MonoBehaviour
                         );
                     }
                 }
-                
+
                 if (Input.GetMouseButtonUp(0))
                 {
                     ChangeState(STATE.MouseButtonUp);
@@ -259,5 +276,38 @@ public class PickController : MonoBehaviour
     public void SetNormal()
     {
         ChangeState(STATE.Normal);
+    }
+
+    public bool UpgradeCharacter(GameObject obj, GameObject target)
+    {
+        bool rt = false;
+        Transform parent;
+        if (target == null)
+        {
+            target = CharacterInfoManager.GetUpgradeTarget(obj);
+            parent = obj.transform.parent;
+        }
+        else
+        {
+            parent = target.transform.parent;
+        }
+
+        if (target != null)
+        {
+            string[] charList = CharacterInfoManager.GetGradeCharacterList(CharacterInfoManager.GetNextGrade(obj.GetComponent<CharController>().statInfo.grade));
+            GameObject upgradeCharacter = Instantiate(Resources.Load(charList[Random.Range(0, charList.Length)])) as GameObject;
+            upgradeCharacter.transform.parent = parent;
+            upgradeCharacter.transform.localPosition = Vector3.zero;
+            UpgradeDelegate?.Invoke(upgradeCharacter);
+            GetComponent<LevelUpManager>().UpdateCharacterLevel(upgradeCharacter);
+            Destroy(obj);
+            Destroy(target);
+            rt = true;
+        }
+        else
+        {
+            rt = false;
+        }
+        return rt;
     }
 }

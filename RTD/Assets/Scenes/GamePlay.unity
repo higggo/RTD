@@ -1288,6 +1288,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
+      propertyPath: CharacterRareClassAddr.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
       propertyPath: PreLoadingPrefabAddr.Array.data[0]
       value: Visual Effect/Skill Effect/Marine Skill
       objectReference: {fileID: 0}
@@ -1335,6 +1345,16 @@ PrefabInstance:
         type: 3}
       propertyPath: PreLoadingPrefabAddr.Array.data[9]
       value: Character/Player Characters/Long Ranged/R_Marine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.size
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
@@ -1410,6 +1430,306 @@ PrefabInstance:
         type: 3}
       propertyPath: PreLoadingPrefabAddr.Array.data[24]
       value: Projectile/Icebolt
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[0]
+      value: Character/Player Characters/Long Ranged/Grade/R_Assassin
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[1]
+      value: Character/Player Characters/Long Ranged/Grade/R_BowKing
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[2]
+      value: Character/Player Characters/Long Ranged/Grade/R_BowKnight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[3]
+      value: Character/Player Characters/Long Ranged/Grade/R_CrossBow Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[4]
+      value: Character/Player Characters/Long Ranged/Grade/R_Hunter
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[5]
+      value: Character/Player Characters/Magic/Grade/R_Wizard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[6]
+      value: Character/Player Characters/Magic/Grade/R_Dark Wizard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[7]
+      value: Character/Player Characters/Magic/Grade/R_Mage Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[8]
+      value: Character/Player Characters/Magic/Grade/R_Priest
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[9]
+      value: Character/Player Characters/Magic/Grade/R_Lich
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[0]
+      value: Character/Player Characters/Long Ranged/Grade/M_Assassin
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[1]
+      value: Character/Player Characters/Long Ranged/Grade/M_BowKing
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[2]
+      value: Character/Player Characters/Long Ranged/Grade/M_BowKnight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[3]
+      value: Character/Player Characters/Long Ranged/Grade/M_CrossBow Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[4]
+      value: Character/Player Characters/Long Ranged/Grade/M_Hunter
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[5]
+      value: Character/Player Characters/Magic/Grade/M_Wizard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[6]
+      value: Character/Player Characters/Magic/Grade/M_Dark Wizard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[7]
+      value: Character/Player Characters/Magic/Grade/M_Mage Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[8]
+      value: Character/Player Characters/Magic/Grade/M_Priest
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[9]
+      value: Character/Player Characters/Magic/Grade/M_Lich
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[10]
+      value: Character/Player Characters/Short Ranged/Grade/R_CastleKnight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[11]
+      value: Character/Player Characters/Short Ranged/Grade/R_Gladiator
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[12]
+      value: Character/Player Characters/Short Ranged/Grade/R_Hero
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[13]
+      value: Character/Player Characters/Short Ranged/Grade/R_Berserker
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterRareClassAddr.Array.data[14]
+      value: Character/Player Characters/Short Ranged/Grade/R_SwordMaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[10]
+      value: Character/Player Characters/Short Ranged/Grade/M_CastleKnight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[11]
+      value: Character/Player Characters/Short Ranged/Grade/M_Gladiator
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[12]
+      value: Character/Player Characters/Short Ranged/Grade/M_Hero
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[13]
+      value: Character/Player Characters/Short Ranged/Grade/M_Berserker
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterMagicClassAddr.Array.data[14]
+      value: Character/Player Characters/Short Ranged/Grade/M_SwordMaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[0]
+      value: Character/Player Characters/Long Ranged/Grade/N_Assassin
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[1]
+      value: Character/Player Characters/Long Ranged/Grade/N_BowKing
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[2]
+      value: Character/Player Characters/Long Ranged/Grade/N_BowKnight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[3]
+      value: Character/Player Characters/Long Ranged/Grade/N_CrossBow Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[4]
+      value: Character/Player Characters/Long Ranged/Grade/N_Hunter
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[5]
+      value: Character/Player Characters/Magic/Grade/N_Wizard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[6]
+      value: Character/Player Characters/Magic/Grade/N_Dark Wizard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[7]
+      value: Character/Player Characters/Magic/Grade/N_Mage Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[8]
+      value: Character/Player Characters/Magic/Grade/N_Priest
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[9]
+      value: Character/Player Characters/Magic/Grade/N_Lich
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[0]
+      value: Character/Player Characters/Long Ranged/Grade/Q_Assassin
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[1]
+      value: Character/Player Characters/Long Ranged/Grade/Q_BowKing
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[2]
+      value: Character/Player Characters/Long Ranged/Grade/Q_BowKnight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[3]
+      value: Character/Player Characters/Long Ranged/Grade/Q_CrossBow Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[4]
+      value: Character/Player Characters/Long Ranged/Grade/Q_Hunter
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[5]
+      value: Character/Player Characters/Magic/Grade/Q_Wizard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[6]
+      value: Character/Player Characters/Magic/Grade/Q_Dark Wizard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[7]
+      value: Character/Player Characters/Magic/Grade/Q_Mage Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[8]
+      value: Character/Player Characters/Magic/Grade/Q_Priest
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[9]
+      value: Character/Player Characters/Magic/Grade/Q_Lich
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[10]
+      value: Character/Player Characters/Short Ranged/Grade/N_CastleKnight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[11]
+      value: Character/Player Characters/Short Ranged/Grade/N_Gladiator
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[12]
+      value: Character/Player Characters/Short Ranged/Grade/N_Hero
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[13]
+      value: Character/Player Characters/Short Ranged/Grade/N_Berserker
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterNoramlClassAddr.Array.data[14]
+      value: Character/Player Characters/Short Ranged/Grade/N_SwordMaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[10]
+      value: Character/Player Characters/Short Ranged/Grade/Q_CastleKnight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[11]
+      value: Character/Player Characters/Short Ranged/Grade/Q_Gladiator
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[12]
+      value: Character/Player Characters/Short Ranged/Grade/Q_Hero
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[13]
+      value: Character/Player Characters/Short Ranged/Grade/Q_Berserker
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: CharacterUniqueClassAddr.Array.data[14]
+      value: Character/Player Characters/Short Ranged/Grade/Q_SwordMaster
       objectReference: {fileID: 0}
     - target: {fileID: 8102754365201657808, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
@@ -2994,91 +3314,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ebb29c280956f448b23489fcb3cf1f7, type: 3}
---- !u!1 &1118894085
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1118894086}
-  - component: {fileID: 1118894089}
-  - component: {fileID: 1118894088}
-  - component: {fileID: 1118894087}
-  m_Layer: 5
-  m_Name: RawImage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1118894086
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118894085}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1461602157}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 512, y: 512}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1118894087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118894085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 1
---- !u!114 &1118894088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118894085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 8400000, guid: c87754eb281e772408d56a93d3e39fd5, type: 2}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &1118894089
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118894085}
-  m_CullTransparentMesh: 0
 --- !u!1 &1204275278 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1204275278, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
@@ -8228,12 +8463,6 @@ MonoBehaviour:
   MainCamera: {fileID: 191413899}
   DirectionCamera: {fileID: 271044733}
   BossZoneCamera: {fileID: 479455835}
---- !u!224 &1461602157 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6071320098043566918, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 850790674}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1474234491
 PrefabInstance:
   m_ObjectHideFlags: 0

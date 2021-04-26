@@ -41,7 +41,7 @@ public class MoneyManager : MonoBehaviour
 
     public void Init()
     {
-        SetMoney(1000); 
+        SetMoney(10000); 
         foreach(Transform child in gameObject.transform.Find("Account"))
         {
             Destroy(child.gameObject);
