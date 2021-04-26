@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 484662}
   - component: {fileID: 19891704}
   - component: {fileID: 19942270}
+  - component: {fileID: 5467879885211190506}
   m_Layer: 0
   m_Name: Icebolt Hit Effect
   m_TagString: Untagged
@@ -4758,6 +4759,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5467879885211190506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef231a1a3c5df8d439c3900424088ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 1.5
 --- !u!1 &101874
 GameObject:
   m_ObjectHideFlags: 0
