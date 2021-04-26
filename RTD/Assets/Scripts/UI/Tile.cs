@@ -45,10 +45,7 @@ public class Tile : MonoBehaviour
         float RadiusOrigin = GetComponent<SphereCollider>().radius;
         Vector3 localScale = transform.localScale;
         localScale *= CollisionRadiusRate;
-        //localScale.y *= CollisionRadiusRate;
         transform.localScale = localScale;
-
-        //GetComponent<SphereCollider>().radius = RadiusOrigin * transform.localScale.x;
 
         Hide = null;
         Impossible = Resources.Load<Sprite>("UI/tileimpossible");
@@ -92,11 +89,15 @@ public class Tile : MonoBehaviour
             case STATE.Hide:
                 break;
             case STATE.Normal:
-                if (transform.childCount > 0)
-                {
-                    State = STATE.Impossible;
-                }
-                else if(isColliding)
+                //if (transform.childCount > 0)
+                //{
+                //    State = STATE.Impossible;
+                //}
+                //else if(isColliding)
+                //{
+                //    State = STATE.Possible;
+                //}
+                if(isColliding)
                 {
                     State = STATE.Possible;
                 }
@@ -109,11 +110,15 @@ public class Tile : MonoBehaviour
                 }
                 break;
             case STATE.Possible:
-                if (transform.childCount > 0)
-                {
-                    State = STATE.Impossible;
-                }
-                else if (!isColliding)
+                //if (transform.childCount > 0)
+                //{
+                //    State = STATE.Impossible;
+                //}
+                //else if (!isColliding)
+                //{
+                //    State = STATE.Normal;
+                //}
+                if (!isColliding)
                 {
                     State = STATE.Normal;
                 }

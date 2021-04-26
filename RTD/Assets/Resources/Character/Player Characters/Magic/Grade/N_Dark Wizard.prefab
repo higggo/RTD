@@ -3067,6 +3067,7 @@ GameObject:
   - component: {fileID: 6754237326395119609}
   - component: {fileID: 163336314727606752}
   - component: {fileID: 5297003813841580785}
+  - component: {fileID: 1612222037371802446}
   m_Layer: 12
   m_Name: N_Dark Wizard
   m_TagString: Player
@@ -3214,3 +3215,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 0}
+--- !u!114 &1612222037371802446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836592622540438238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786943c3af0006049bfc25a70f618ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

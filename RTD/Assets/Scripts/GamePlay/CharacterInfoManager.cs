@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CharacterKit;
 
 public class CharacterInfoManager : MonoBehaviour
 {
@@ -21,7 +22,8 @@ public class CharacterInfoManager : MonoBehaviour
     public GameObject GetUpgradeTarget(GameObject obj)
     {
         GameObject target = null;
-        CharacterKit.GRADE grade = obj.GetComponent<CharController>().statInfo.grade;
+        
+        CharacterKit.GRADE grade = CharUtils.SetCharacterGrade(obj.GetComponent<CharController>().statInfo.id);
         CharacterKit.ID id = obj.GetComponent<CharController>().statInfo.id;
         if (!HasNextGrade(grade))
             return null;
@@ -71,13 +73,10 @@ public class CharacterInfoManager : MonoBehaviour
 
     public bool IsUpgradeTaret(GameObject own, GameObject target)
     {
-        CharacterKit.GRADE grade = own.GetComponent<CharController>().statInfo.grade;
         CharacterKit.ID id = own.GetComponent<CharController>().statInfo.id;
         if (target != null)
         {
-            if (target.GetComponent<CharController>().statInfo.grade == grade &&
-                target.GetComponent<CharController>().statInfo.id == id &&
-                own != target)
+            if (target.GetComponent<CharController>().statInfo.id == id && own != target)
             {
                 return true;
             }
@@ -240,6 +239,78 @@ public class CharacterInfoManager : MonoBehaviour
         }
 
         return characters;
+    }
+    public string[] GetGradeUnionCharacters(CharacterKit.GRADE grade, CharacterKit.UNION union)
+    {
+        string[] strList = null;
+        switch (grade)
+        {
+            case CharacterKit.GRADE.NORMAL:
+                {
+                    switch (union)
+                    {
+                        case CharacterKit.UNION.MAGE:
+                            strList = GetComponent<GameDB>().CharacterNoramlMageClassAddr;
+                            break;
+                        case CharacterKit.UNION.WARRIOR:
+                            strList = GetComponent<GameDB>().CharacterNoramlWarriorClassAddr;
+                            break;
+                        case CharacterKit.UNION.ARCHER:
+                            strList = GetComponent<GameDB>().CharacterNoramlArcherClassAddr;
+                            break;
+                    }
+                }
+                break;
+            case CharacterKit.GRADE.MAGIC:
+                {
+                    switch (union)
+                    {
+                        case CharacterKit.UNION.MAGE:
+                            strList = GetComponent<GameDB>().CharacterMagicMageClassAddr;
+                            break;
+                        case CharacterKit.UNION.WARRIOR:
+                            strList = GetComponent<GameDB>().CharacterMagicWarriorClassAddr;
+                            break;
+                        case CharacterKit.UNION.ARCHER:
+                            strList = GetComponent<GameDB>().CharacterMagicArcherClassAddr;
+                            break;
+                    }
+                }
+                break;
+            case CharacterKit.GRADE.RARE:
+                {
+                    switch (union)
+                    {
+                        case CharacterKit.UNION.MAGE:
+                            strList = GetComponent<GameDB>().CharacterRareMageClassAddr;
+                            break;
+                        case CharacterKit.UNION.WARRIOR:
+                            strList = GetComponent<GameDB>().CharacterRareWarriorClassAddr;
+                            break;
+                        case CharacterKit.UNION.ARCHER:
+                            strList = GetComponent<GameDB>().CharacterRareArcherClassAddr;
+                            break;
+                    }
+                }
+                break;
+            case CharacterKit.GRADE.UNIQUE:
+                {
+                    switch (union)
+                    {
+                        case CharacterKit.UNION.MAGE:
+                            strList = GetComponent<GameDB>().CharacterUniqueMageClassAddr;
+                            break;
+                        case CharacterKit.UNION.WARRIOR:
+                            strList = GetComponent<GameDB>().CharacterUniqueWarriorClassAddr;
+                            break;
+                        case CharacterKit.UNION.ARCHER:
+                            strList = GetComponent<GameDB>().CharacterUniqueArcherClassAddr;
+                            break;
+                    }
+                }
+                break;
+        }
+        return strList;
     }
     public int GetAllCharacters(CharacterKit.GRADE grade, CharacterKit.UNION union)
     {

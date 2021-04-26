@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using CharacterKit;
 
 public class PickController : MonoBehaviour
 {
@@ -210,20 +211,6 @@ public class PickController : MonoBehaviour
             case STATE.MouseButtonDragging:
                 if (PickUpObject != null)
                 {
-                    //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    //RaycastHit[] hits = Physics.RaycastAll(ray, 50.0f, ~(1<<LayerMask.NameToLayer("UI") & (1 << LayerMask.NameToLayer("Map"))));
-                    //for (int i = 0; i < hits.Length; i++)
-                    //{
-                    //    if (hits[i].transform.gameObject.tag != "Tile" && hits[i].transform.gameObject.tag != "Player")
-                    //    {
-                    //        PickUpObject.transform.position = new Vector3(
-                    //                hits[i].point.x,
-                    //                PickUpObject.transform.position.y,
-                    //                hits[i].point.z
-                    //        );
-                    //    }
-                    //}
-
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit, 50.0f, (~(1 << LayerMask.NameToLayer("UI")) & (1 << LayerMask.NameToLayer("Map")))))
@@ -294,7 +281,7 @@ public class PickController : MonoBehaviour
 
         if (target != null)
         {
-            string[] charList = CharacterInfoManager.GetGradeCharacterList(CharacterInfoManager.GetNextGrade(obj.GetComponent<CharController>().statInfo.grade));
+            string[] charList = CharacterInfoManager.GetGradeUnionCharacters(CharacterInfoManager.GetNextGrade(CharUtils.SetCharacterGrade(obj.GetComponent<CharController>().statInfo.id)), obj.GetComponent<CharController>().statInfo.union);
             GameObject upgradeCharacter = Instantiate(Resources.Load(charList[Random.Range(0, charList.Length)])) as GameObject;
             upgradeCharacter.transform.parent = parent;
             upgradeCharacter.transform.localPosition = Vector3.zero;

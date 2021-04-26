@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 2602670801494913422}
   - component: {fileID: 2602670801494913421}
   - component: {fileID: 2602670801494913420}
+  - component: {fileID: -2671682410654688599}
   m_Layer: 12
   m_Name: M_Hunter
   m_TagString: Player
@@ -207,6 +208,18 @@ MonoBehaviour:
   AttackEffect: {fileID: 0}
   bulletStartPos: {fileID: 2598673943521478587}
   ArrowInMesh: {fileID: 2601765328693800343}
+--- !u!114 &-2671682410654688599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602670801494913419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786943c3af0006049bfc25a70f618ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2602670801733578321
 PrefabInstance:
   m_ObjectHideFlags: 0

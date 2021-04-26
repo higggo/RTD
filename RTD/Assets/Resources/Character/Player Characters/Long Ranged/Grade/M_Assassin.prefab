@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 8164134965137296212}
   - component: {fileID: 8164134965137296215}
   - component: {fileID: 8164134965137296214}
+  - component: {fileID: 5147094990293249475}
   m_Layer: 12
   m_Name: M_Assassin
   m_TagString: Player
@@ -207,6 +208,18 @@ MonoBehaviour:
   AttackEffect: {fileID: 0}
   bulletStartPos: {fileID: 8161509765815388767}
   ArrowInMesh: {fileID: 0}
+--- !u!114 &5147094990293249475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8164134965137296209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786943c3af0006049bfc25a70f618ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4489385327482407354
 PrefabInstance:
   m_ObjectHideFlags: 0

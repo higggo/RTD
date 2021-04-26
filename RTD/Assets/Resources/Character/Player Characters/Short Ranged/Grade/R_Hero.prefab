@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4124375706150853616}
   - component: {fileID: 4124375706150853622}
   - component: {fileID: -2756232740199530285}
+  - component: {fileID: 3202012138851258008}
   m_Layer: 12
   m_Name: R_Hero
   m_TagString: Player
@@ -178,6 +179,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectStartPos: {fileID: 0}
   AttackEffect: {fileID: 0}
+--- !u!114 &3202012138851258008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4124375706150853620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786943c3af0006049bfc25a70f618ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4124375706767702426
 MonoBehaviour:
   m_ObjectHideFlags: 0

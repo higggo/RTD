@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 6925160711739353753}
   - component: {fileID: 6925160711739353758}
   - component: {fileID: 6925160711739353759}
+  - component: {fileID: -3995566052978949951}
   m_Layer: 12
   m_Name: R_BowKnight
   m_TagString: Player
@@ -207,6 +208,18 @@ MonoBehaviour:
   AttackEffect: {fileID: 0}
   bulletStartPos: {fileID: 6923668266626140631}
   ArrowInMesh: {fileID: 6926189313830200315}
+--- !u!114 &-3995566052978949951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6925160711739353735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786943c3af0006049bfc25a70f618ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6925160711556456509
 PrefabInstance:
   m_ObjectHideFlags: 0

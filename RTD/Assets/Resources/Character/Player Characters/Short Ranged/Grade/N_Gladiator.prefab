@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 5571296872014849389}
   - component: {fileID: 5571296872014849388}
   - component: {fileID: 5571296872014849391}
+  - component: {fileID: -4985513863486415008}
   m_Layer: 12
-  m_Name: Gladiator
+  m_Name: N_Gladiator
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,6 +179,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectStartPos: {fileID: 0}
   AttackEffect: {fileID: 0}
+--- !u!114 &-4985513863486415008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5571296872014849390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786943c3af0006049bfc25a70f618ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5571296872647650051
 MonoBehaviour:
   m_ObjectHideFlags: 0

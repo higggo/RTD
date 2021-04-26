@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7793652470033010793}
   - component: {fileID: 7793652470033010794}
   - component: {fileID: 7793652470033010795}
+  - component: {fileID: 4024086746519392841}
   m_Layer: 12
   m_Name: M_BowKing
   m_TagString: Player
@@ -195,6 +196,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 8118527103689947799, guid: a02f8cb91bc2f2148917cabc6a8f7bae, type: 3}
   bulletSpeed: 30
+--- !u!114 &4024086746519392841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793652470033010796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786943c3af0006049bfc25a70f618ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7793652471696998521
 MonoBehaviour:
   m_ObjectHideFlags: 0

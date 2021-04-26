@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2854957933557079631}
   - component: {fileID: 9025622701166614492}
   - component: {fileID: 3619676424128373929}
+  - component: {fileID: -2236726445305411939}
   m_Layer: 12
   m_Name: Q_Mage Knight
   m_TagString: Player
@@ -162,6 +163,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 0}
+--- !u!114 &-2236726445305411939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294272442836582793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786943c3af0006049bfc25a70f618ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6544440411098468439
 GameObject:
   m_ObjectHideFlags: 0
