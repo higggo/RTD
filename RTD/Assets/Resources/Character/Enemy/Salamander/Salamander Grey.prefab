@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 6847066760408838787}
   - component: {fileID: 7691723551052603144}
   - component: {fileID: 4638533400957602479}
+  - component: {fileID: 2451074780337788915}
   m_Layer: 8
   m_Name: Salamander Grey
   m_TagString: Untagged
@@ -177,6 +178,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 7412508225287318471}
+--- !u!114 &2451074780337788915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625826110339738340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44478231f0daf9a4780197c2335123ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  Canvas: {fileID: 0}
+  wayPoints: []
+  CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &1886036135889718323
 PrefabInstance:
   m_ObjectHideFlags: 0

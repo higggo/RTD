@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 733915988757136589}
   - component: {fileID: 5550812245462692412}
   - component: {fileID: 1786488117901074818}
+  - component: {fileID: 5769952161034096167}
   m_Layer: 8
   m_Name: Creature Grey
   m_TagString: Untagged
@@ -94,7 +95,7 @@ MonoBehaviour:
   _union: 0
   _id: -1
   _Weapon: 0
-  _Armor: 3
+  _Armor: 2
   basicStat:
     MaxHP: 200
     HP: 200
@@ -147,6 +148,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 5930045041353553887}
+--- !u!114 &5769952161034096167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323112816114988913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44478231f0daf9a4780197c2335123ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  Canvas: {fileID: 0}
+  wayPoints: []
+  CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &9198976385191875854
 GameObject:
   m_ObjectHideFlags: 0

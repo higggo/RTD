@@ -36,7 +36,7 @@ public class GamePlay : MonoBehaviour
     bool bViewtoGround = true;
 
     // 처음 시작시간
-    const int GameStartBreakTime = 30;
+    const int GameStartBreakTime = 60;
 
     // 라이프
     int GameLife = 100;
@@ -71,14 +71,34 @@ public class GamePlay : MonoBehaviour
     private void Awake()
     {
         // "애들 경로", 갯수, 브레이크타임
+        // 1 ~ 4 Round
         RoundList.Add(new Round("Character/Enemy/TurtleShell", 15, 25));
-        RoundList.Add(new Round("Character/Enemy/TurtleShell", 15, 25));
-        RoundList.Add(new Round("Character/Enemy/TurtleShell", 15, 25));
-        RoundList.Add(new Round("Character/Enemy/Golem", 15, 25));
-        RoundList.Add(new Round("Character/Enemy/Slime", 15, 25));
-        RoundList.Add(new Round("Character/Enemy/Slime", 15, 25));
-        RoundList.Add(new Round("Character/Enemy/Slime", 15, 25));
-        RoundList.Add(new Round("Character/Enemy/Slime", 15, 25));
+        RoundList.Add(new Round("Character/Enemy/RatDragon/RatDragon Blue", 15, 25));
+        RoundList.Add(new Round("Character/Enemy/Creatures/Creature Blue", 15, 25));
+        RoundList.Add(new Round("Character/Enemy/Salamander/Salamander Blue", 15, 25));
+        //
+        // Boss Level1
+        //
+
+        // 6 ~ 9 Round
+        RoundList.Add(new Round("Character/Enemy/Slime", 20, 25));
+        RoundList.Add(new Round("Character/Enemy/RatDragon/RatDragon Green", 20, 25));
+        RoundList.Add(new Round("Character/Enemy/Creatures/Creature Green", 20, 25));
+        RoundList.Add(new Round("Character/Enemy/Salamander/Salamander Green", 20, 25));
+
+        //
+        // Boss Level2
+        //
+
+        // 11 ~ 14 Round
+        RoundList.Add(new Round("Character/Enemy/Golem", 25, 25));
+        RoundList.Add(new Round("Character/Enemy/RatDragon/RatDragon Red", 25, 25));
+        RoundList.Add(new Round("Character/Enemy/Creatures/Creature Grey", 25, 25));
+        RoundList.Add(new Round("Character/Enemy/Salamander/Salamander Red", 25, 25));
+
+        //
+        // Final Boss
+        //
     }
 
     public enum MAP
@@ -194,7 +214,8 @@ public class GamePlay : MonoBehaviour
 
 
                 // GameOver?
-                if (CurrentRound >= RoundList.Count || GetComponent<BossRoundManager>().State == BossRoundManager.STATE.GameOver)
+                //if (CurrentRound >= RoundList.Count || GetComponent<BossRoundManager>().State == BossRoundManager.STATE.GameOver)
+                if (CurrentRound >= RoundList.Count)
                 {
                     ChangeState(STATE.GameEnd); 
                     GetComponent<BossRoundManager>().State = BossRoundManager.STATE.GameOver;

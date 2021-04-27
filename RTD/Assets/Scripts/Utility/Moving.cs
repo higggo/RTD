@@ -37,18 +37,8 @@ public class Moving : MonoBehaviour
         wayPoints.SetValue(new Vector3(-9, 0, -9), 9);
         wayPoints.SetValue(new Vector3(-3, 0, -9), 10);
         wayPoints.SetValue(new Vector3(-3, 0, 9), 11);
-        
 
-        // Create Slider
-        GameObject Canvas = GameObject.Find("Canvas");
-
-        //HpBar = Instantiate(slider);
-        //HpBar.transform.parent = Canvas.transform;
-       // HpBar.transform.SetParent(Canvas.transform);
-
-        //HpBar.GetComponent<AdjustSlider>().Enemy = transform;
-        //
-
+        speed = GetComponent<CharacterStat>().moveSpeed;
     }
 
     // Update is called once per frame
@@ -64,7 +54,8 @@ public class Moving : MonoBehaviour
             Vector3 dir = (wayPoints[wayPointIndex] - CurrentPosition).normalized;
             if (transform.forward != dir)
             {
-                rotSumDelta += Time.deltaTime;
+                rotSumDelta += Time.deltaTime;      // 1초에 dir방향으로 회전
+                // rot speed를 적용하려면? rotSumDelta * (rotspeed / 360.0f)
                 transform.forward = Vector3.Slerp(transform.forward, dir, rotSumDelta / Mathf.Clamp(rotTime, 0.1f, 1.0f));
             }
             else
@@ -79,8 +70,6 @@ public class Moving : MonoBehaviour
                 {
                     DestroySpawnDelegate?.Invoke();
                     Destroy(gameObject);
-                    //Destroy Slider 
-                    //Destroy(HpBar);
                     return;
                 }
             }

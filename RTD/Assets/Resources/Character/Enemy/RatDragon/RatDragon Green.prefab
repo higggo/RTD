@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3846079762351937736}
   - component: {fileID: 2367457338519938626}
   - component: {fileID: 5090022327211883602}
+  - component: {fileID: 1220138318808685485}
   - component: {fileID: 6901556838158975404}
   - component: {fileID: 756058117067396139}
   m_Layer: 8
@@ -54,8 +55,8 @@ MonoBehaviour:
   _Weapon: 0
   _Armor: 1
   basicStat:
-    MaxHP: 200
-    HP: 200
+    MaxHP: 150
+    HP: 150
     attackDamage: 0
     attackSpeed: 0
     attackRange: 0
@@ -105,6 +106,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 8830176470046872223}
+--- !u!114 &1220138318808685485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5079398384408976514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44478231f0daf9a4780197c2335123ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  Canvas: {fileID: 0}
+  wayPoints: []
+  CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &6901556838158975404
 Rigidbody:
   m_ObjectHideFlags: 0

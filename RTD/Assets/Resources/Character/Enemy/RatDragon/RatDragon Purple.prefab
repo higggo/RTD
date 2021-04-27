@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 3243797356316474705}
   - component: {fileID: 4099891964625950490}
   - component: {fileID: 454035495314573773}
+  - component: {fileID: -6679070141408500322}
   - component: {fileID: 622721512474359075}
   - component: {fileID: 9174698775653009259}
   m_Layer: 8
@@ -147,6 +148,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 26430390875844314}
+--- !u!114 &-6679070141408500322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5458182397616249832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44478231f0daf9a4780197c2335123ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  Canvas: {fileID: 0}
+  wayPoints: []
+  CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &622721512474359075
 Rigidbody:
   m_ObjectHideFlags: 0

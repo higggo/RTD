@@ -39,6 +39,8 @@ public class DragonController : BossController
 
     // Coroutine
     Coroutine MoveSet = null;
+
+    // Instantiate될 때 position
     Vector3 StartPosition;
     Transform HealthBar;
 
@@ -106,7 +108,6 @@ public class DragonController : BossController
             tmpEvent.AttackInAirDel += OnAttack;
             tmpEvent.DeadDel += OnDead;
         }
-        ChangeState(STATE.POSTCREATE);
     }
 
     void ChangeState(STATE state)
@@ -119,6 +120,7 @@ public class DragonController : BossController
         {
             case STATE.CREATE:
                 InitComponents();
+                ChangeState(STATE.POSTCREATE);
                 break;
             case STATE.POSTCREATE:
                 statInfo.UpdateStat(Level);
@@ -182,7 +184,8 @@ public class DragonController : BossController
                         ChangeState(STATE.DETECT);
 
                     // TEST ChangePhase02
-                    if (statInfo.HP < statInfo.MaxHP * 0.5f)
+                    if (statInfo.HP < statInfo.MaxHP * 0.5f
+                        && Level >= 3)
                     {
                         ChangeState(STATE.CHANGEPHASE);
                         break;
@@ -195,8 +198,9 @@ public class DragonController : BossController
                         break;
                     }
 
-                    // ChangePhase02
-                    if (statInfo.HP < statInfo.MaxHP * 0.5f)
+                    // ChangePhase02 ( Flag : HP, Level )
+                    if (statInfo.HP < statInfo.MaxHP * 0.5f
+                        && Level >= 3)
                     {
                         ChangeState(STATE.CHANGEPHASE);
                         break;
@@ -398,10 +402,14 @@ public class DragonController : BossController
             UpdateAnimInfo();
             yield return null;
         }
-        isInAir = true;
-        ResetDragon();
-        dragonPhase = PHASE.PHASE02;
-        ChangeState(STATE.MOVE);
+
+        if (!isDead)
+        {
+            isInAir = true;
+            ResetDragon();
+            dragonPhase = PHASE.PHASE02;
+            ChangeState(STATE.MOVE);
+        }
     }
 
     IEnumerator Move(Vector3 position)

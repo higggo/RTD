@@ -42,7 +42,7 @@ public class MoneyManager : MonoBehaviour
     public void Init()
     {
         // LJH: 돈조절
-        SetMoney(10000); 
+        SetMoney(1500); 
         foreach(Transform child in gameObject.transform.Find("Account"))
         {
             Destroy(child.gameObject);

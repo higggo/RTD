@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4184911795968954143}
   - component: {fileID: 4184911795968954142}
   - component: {fileID: 4184911795968954141}
+  - component: {fileID: -8031502227321506570}
   m_Layer: 8
   m_Name: Creature Blue
   m_TagString: Untagged
@@ -82,14 +83,14 @@ MonoBehaviour:
   _union: 0
   _id: -1
   _Weapon: 0
-  _Armor: 3
+  _Armor: 2
   basicStat:
-    MaxHP: 200
-    HP: 200
+    MaxHP: 150
+    HP: 150
     attackDamage: 0
     attackSpeed: 0
     attackRange: 0
-    moveSpeed: 10
+    moveSpeed: 4
     rotateSpeed: 100
   bonusStat:
     MaxHP: 0
@@ -135,6 +136,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 4184911796087027147}
+--- !u!114 &-8031502227321506570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4184911795968954140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44478231f0daf9a4780197c2335123ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  Canvas: {fileID: 0}
+  wayPoints: []
+  CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &4184911796087027146
 GameObject:
   m_ObjectHideFlags: 0

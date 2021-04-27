@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8491794421734376439}
   - component: {fileID: 8688617922286132946}
   - component: {fileID: 8993466006513553787}
+  - component: {fileID: 251674660910894336}
   m_Layer: 8
   m_Name: Creature Yellow
   m_TagString: Untagged
@@ -82,7 +83,7 @@ MonoBehaviour:
   _union: 0
   _id: -1
   _Weapon: 0
-  _Armor: 3
+  _Armor: 2
   basicStat:
     MaxHP: 200
     HP: 200
@@ -135,6 +136,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 628799714008195619}
+--- !u!114 &251674660910894336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373784330442196726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44478231f0daf9a4780197c2335123ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  Canvas: {fileID: 0}
+  wayPoints: []
+  CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &2366877066206207841
 MonoBehaviour:
   m_ObjectHideFlags: 0
