@@ -18,15 +18,13 @@ public class MissionKillMonster : MissionCategory
 {
     public struct Kit
     {
-        public CharacterKit.GRADE grade;
-        public CharacterKit.UNION union;
+        public CharacterKit.SIMBOL_ARMOR armor;
         public int num;
         public string msg;
 
-        public Kit(GRADE grade, UNION union, int num, string msg)
+        public Kit(CharacterKit.SIMBOL_ARMOR armor, int num, string msg)
         {
-            this.grade = grade;
-            this.union = union;
+            this.armor = armor;
             this.num = num;
             this.msg = msg;
         }
@@ -38,7 +36,7 @@ public class MissionKillMonster : MissionCategory
     GamePlay GamePlay = null;
     WaveSpawner WaveSpawner = null;
 
-    GameObject LastObj;
+    CharacterKit.SIMBOL_ARMOR TargetArmor;
 
     public override void Init(GameObject GameManager)
     {
@@ -48,9 +46,9 @@ public class MissionKillMonster : MissionCategory
         WaveSpawner.SpawnDelegate += SpawnCharacter;
     }
 
-    public void PushMonsters(CharacterKit.GRADE grade, CharacterKit.UNION union, int num, string msg)
+    public void PushMonsters(CharacterKit.SIMBOL_ARMOR armor, int num, string msg)
     {
-        KitList.Add(new Kit(grade, union, num, msg));
+        KitList.Add(new Kit(armor, num, msg));
         CheckCnt.Add(0);
     }
 
@@ -81,8 +79,14 @@ public class MissionKillMonster : MissionCategory
     {
         for (int i = 0; i < KitList.Count; i++)
         {
-            if (KitList[i].grade == LastObj.GetComponent<CharController>().statInfo.grade
-                && KitList[i].union == LastObj.GetComponent<CharController>().statInfo.union)
+            Debug.Log(KitList[i].armor + ", " + TargetArmor);
+            // 아무 몬스터 처치시
+            if(KitList[i].armor == CharacterKit.SIMBOL_ARMOR.UNKNOWN)
+            {
+                CheckCnt[i]++;
+            }
+            // 특정 아머타입 몬스터 처치시
+            else if (KitList[i].armor == TargetArmor)
             {
                 CheckCnt[i]++;
             }
@@ -91,7 +95,7 @@ public class MissionKillMonster : MissionCategory
     public void SpawnCharacter(GameObject obj)
     {
         obj.GetComponent<Damageable>().onDeadDel += CountDead;
-        LastObj = obj;
+        TargetArmor = obj.GetComponent<CharacterStat>().armor;
     }
 }
 

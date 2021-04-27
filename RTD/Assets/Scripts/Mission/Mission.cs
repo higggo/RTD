@@ -85,7 +85,7 @@ public class MissionB : Mission
     {
         reward = 500;
 
-        kill.PushMonsters(GRADE.NORMAL, UNION.MAGE, 3, "노멀 마법사 ");
+        kill.PushMonsters(SIMBOL_ARMOR.HEAVY, 3, "해비타입 몬스터 ");
         Categories.Add(kill);
     }
 }
