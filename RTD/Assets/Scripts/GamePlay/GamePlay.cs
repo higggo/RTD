@@ -202,7 +202,7 @@ public class GamePlay : MonoBehaviour
                 GetComponent<BossRoundManager>().State = BossRoundManager.STATE.BreakTime;
 
                 // Receive Money
-                if (GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Receive, 500, response, "Refresh Card"))
+                if (GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Receive, 500, response, "Round Clear"))
                 {
                     // Succeed
                 }
@@ -377,6 +377,11 @@ public class GamePlay : MonoBehaviour
     {
         Debug.Log("get mission !!");
         GetComponent<MissionManager>().PushNewMission();
+    }
+   
+    public int GetRound()
+    {
+        return CurrentRound;
     }
 }
 

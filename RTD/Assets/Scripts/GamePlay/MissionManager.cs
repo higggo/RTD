@@ -46,15 +46,29 @@ public class MissionManager : MonoBehaviour
     {
         if(MissionsVertical == null) MissionsVertical = GameObject.Find("Missions");
         
-        MissionList.Add(new MissionA());
-        MissionList.Add(new MissionB());
+        MissionList.Add(new Mission_GetChar_NM7());
+        MissionList.Add(new Mission_GetChar_MW2MM2MA2());
+        MissionList.Add(new Mission_GetChar_MM3RM3());
+        MissionList.Add(new Mission_GetChar_QM3());
+        MissionList.Add(new Mission_GetChar_MM1RA1());
+        MissionList.Add(new Mission_GetChar_RW4());
+        MissionList.Add(new Mission_GetChar_RM2RA3());
+        MissionList.Add(new Mission_GetChar_MW3MA2());
+        MissionList.Add(new Mission_GetChar_RW2RM2());
+        MissionList.Add(new Mission_GetChar_QW1QM1QA1());
+        MissionList.Add(new Mission_GetChar_NW2NM2NA2());
+        MissionList.Add(new Mission_GetChar_MW1MM2());
+        MissionList.Add(new Mission_GetChar_RW1RM1RA1());
+        MissionList.Add(new Mission_GetChar_RW2RM2QA2());
+        MissionList.Add(new Mission_AllKillNextRound());
+        MissionList.Add(new Mission_Kill_H10());
+        MissionList.Add(new Mission_Kill_Monster15());
+        MissionList.Add(new Mission_Kill_Monster20());
+        MissionList.Add(new Mission_Kill_Monster30());
+        MissionList.Add(new Mission_Kill_L15());
+        MissionList.Add(new Mission_Kill_M15());
+        MissionList.Add(new Mission_Kill_H5L5M5());
 
-        foreach (Mission mission in MissionList)
-        {
-            mission.Init(gameObject);
-        }
-        // shuffle
-        MissionList = Shuffle<Mission>(MissionList);
     }
 
     private void Update()
@@ -65,7 +79,8 @@ public class MissionManager : MonoBehaviour
             {
                 Mission mission = info.GetChild(0).GetComponent<MissionDeleteButton>().LinkedObj;
                 mission.UpdateVerify();
-                if (mission.Succeed && !mission.Finished)
+                
+                if (mission.State == Mission.STATE.Succeed)
                 {
                     MissionReward(mission.Reward());
                     mission.MissionFinished();
@@ -80,27 +95,35 @@ public class MissionManager : MonoBehaviour
         if(MissionsVertical.transform.childCount >= 2)
         {
             Debug.Log("미션이 가득 찼습니다.");
+            return;
         }
-        else
+        bool none = true;
+        MissionList = Shuffle<Mission>(MissionList);
+        foreach (Mission mission in MissionList)
         {
-            foreach(Mission mission in MissionList)
+            if (mission.State == Mission.STATE.Waiting)
             {
-                if(!mission.isPicking && !mission.Finished)
-                {
-                    // 미션정보, 버튼 생성
-                    GameObject MissionInfoUI = Instantiate(Resources.Load("UI/MissionInfo")) as GameObject;
-                    MissionInfoUI.transform.SetParent(MissionsVertical.transform);
+                // 미션정보, 버튼 생성
+                GameObject MissionInfoUI = Instantiate(Resources.Load("UI/MissionInfo")) as GameObject;
+                MissionInfoUI.transform.SetParent(MissionsVertical.transform);
 
-                    mission.isPicking = true;
+                mission.Init(gameObject);
 
-                    MissionInfoUI.transform.Find("Button").GetComponent<MissionDeleteButton>().LinkedObj = mission;
-                    MissionInfoUI.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => {
-                        mission.isPicking = false;
-                        Destroy(MissionInfoUI);
-                    });
-                    break;
-                }
+                MissionInfoUI.transform.Find("Button").GetComponent<MissionDeleteButton>().LinkedObj = mission;
+                MissionInfoUI.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => {
+                    if (mission.State != Mission.STATE.Finished)
+                        mission.State = Mission.STATE.Waiting;
+                    Destroy(MissionInfoUI);
+                });
+
+                GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Pay, 50, response, "Buy Mission");
+                none = true;
+                break;
             }
+        }
+        if (!none)
+        {
+            Debug.Log("추가할 수 있는 미션이 없습니다.");
         }
     }
 
