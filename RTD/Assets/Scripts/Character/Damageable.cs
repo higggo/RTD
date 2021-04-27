@@ -46,11 +46,12 @@ namespace CharacterKit
             HP = Mathf.Clamp(HP - msg.amount, 0.0f, GetComponent<CharacterStat>().MaxHP);
             GetComponent<CharacterStat>()?.UpdateHP(HP);
 
-            if (HP <= Mathf.Epsilon)
+            if (!isDead && HP <= Mathf.Epsilon)
             {
                 Debug.Log("SetDead");
                 isDead = true;
                 onDeadDel?.Invoke();
+                
             }
                 
         }
@@ -81,19 +82,19 @@ namespace CharacterKit
                             if (weapon == SIMBOL_WEAPON.SHORTED)
                                 msg.amount *= 0.75f;
                             else if (weapon == SIMBOL_WEAPON.RANGED)
-                                msg.amount *= 1.5f;
+                                msg.amount *= 1.25f;
                             break;
                         case SIMBOL_ARMOR.HEAVY:
                             if (weapon == SIMBOL_WEAPON.RANGED)
                                 msg.amount *= 0.75f;
                             else if (weapon == SIMBOL_WEAPON.MAGIC)
-                                msg.amount *= 1.5f;
+                                msg.amount *= 1.25f;
                             break;
                         case SIMBOL_ARMOR.MAGICAL:
                             if (weapon == SIMBOL_WEAPON.MAGIC)
                                 msg.amount *= 0.75f;
                             else if (weapon == SIMBOL_WEAPON.SHORTED)
-                                msg.amount *= 1.5f;
+                                msg.amount *= 1.25f;
                             break;
                     }
                 }

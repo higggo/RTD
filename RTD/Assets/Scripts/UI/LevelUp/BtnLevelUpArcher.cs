@@ -14,7 +14,7 @@ public class BtnLevelUpArcher : ButtonUtil
     public UnityAction OnclickDelegate;
 
     public int Level { get; set; }
-    public uint Price { get { return (uint)((Level + 1) * 10); } }
+    public uint Price { get { return (uint)(Level * 100); } }       // LJH: (Level + 1) * 10 => Level * 100
 
     protected override void Awake()
     {

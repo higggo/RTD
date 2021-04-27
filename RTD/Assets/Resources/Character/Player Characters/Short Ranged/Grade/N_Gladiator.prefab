@@ -132,7 +132,7 @@ MonoBehaviour:
     MaxHP: 100
     HP: 100
     attackDamage: 10
-    attackSpeed: 1
+    attackSpeed: 1.5
     attackRange: 5
     moveSpeed: 10
     rotateSpeed: 100
@@ -140,7 +140,7 @@ MonoBehaviour:
     MaxHP: 10
     HP: 10
     attackDamage: 1
-    attackSpeed: 0.1
+    attackSpeed: 0.15
     attackRange: 0
     moveSpeed: 0
     rotateSpeed: 0

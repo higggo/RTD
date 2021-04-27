@@ -87,7 +87,7 @@ MonoBehaviour:
   bonusStat:
     MaxHP: 10
     HP: 10
-    attackDamage: 5
+    attackDamage: 1
     attackSpeed: 0.15
     attackRange: 0
     moveSpeed: 0

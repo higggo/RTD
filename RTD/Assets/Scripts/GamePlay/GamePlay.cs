@@ -202,7 +202,16 @@ public class GamePlay : MonoBehaviour
                 GetComponent<BossRoundManager>().State = BossRoundManager.STATE.BreakTime;
 
                 // Receive Money
-                if (GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Receive, 500, response, "Refresh Card"))
+                // LJH : Add receiveMoney
+                uint receiveMoney;
+                if (CurrentRound < 5)
+                    receiveMoney = 250;
+                else if (CurrentRound < 10)
+                    receiveMoney = 350;
+                else
+                    receiveMoney = 500;
+
+                if (GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Receive, receiveMoney, response, "Refresh Card"))
                 {
                     // Succeed
                 }

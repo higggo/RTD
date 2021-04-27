@@ -73,7 +73,7 @@ Transform:
   m_GameObject: {fileID: 8633101021660080088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.44, y: -3.07, z: 3.72}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 2646732808435818089}
   - {fileID: 27613404327806455}
@@ -97,12 +97,12 @@ MonoBehaviour:
   _Weapon: 0
   _Armor: 1
   basicStat:
-    MaxHP: 200
-    HP: 200
+    MaxHP: 400
+    HP: 400
     attackDamage: 0
     attackSpeed: 0
     attackRange: 0
-    moveSpeed: 10
+    moveSpeed: 15
     rotateSpeed: 100
   bonusStat:
     MaxHP: 0

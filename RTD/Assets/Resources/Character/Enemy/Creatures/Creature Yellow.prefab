@@ -90,7 +90,7 @@ MonoBehaviour:
     attackDamage: 0
     attackSpeed: 0
     attackRange: 0
-    moveSpeed: 10
+    moveSpeed: 12
     rotateSpeed: 100
   bonusStat:
     MaxHP: 0
