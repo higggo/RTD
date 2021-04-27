@@ -6,12 +6,17 @@ using UnityEngine.Events;
 
 public abstract class MissionCategory
 {
-    public bool Succeed = false;
+    public enum STATE
+    { 
+        None,
+        Succeed,
+        Fail
+    }
+    public STATE State = STATE.None;
     public virtual void Init(GameObject GameManager)
     {
-
     }
-    public abstract bool Verify();
+    public abstract void Verify();
     public abstract string Message();
 }
 public class MissionKillMonster : MissionCategory
@@ -32,8 +37,7 @@ public class MissionKillMonster : MissionCategory
 
     public List<Kit> KitList = new List<Kit>();
     List<int> CheckCnt = new List<int>();
-
-    GamePlay GamePlay = null;
+    public int MaxCnt = 0;
     WaveSpawner WaveSpawner = null;
 
     CharacterKit.SIMBOL_ARMOR TargetArmor;
@@ -41,7 +45,12 @@ public class MissionKillMonster : MissionCategory
     public override void Init(GameObject GameManager)
     {
         base.Init(GameManager);
-        GamePlay = GameManager.GetComponent<GamePlay>();
+
+        for (int i = 0; i < CheckCnt.Count; i++)
+        {
+            CheckCnt[i] = 0;
+        }
+
         WaveSpawner = GameManager.GetComponent<WaveSpawner>();
         WaveSpawner.SpawnDelegate += SpawnCharacter;
     }
@@ -50,9 +59,11 @@ public class MissionKillMonster : MissionCategory
     {
         KitList.Add(new Kit(armor, num, msg));
         CheckCnt.Add(0);
+
+        MaxCnt += num;
     }
 
-    public override bool Verify()
+    public override void Verify()
     {
         bool Succeed = true;
         for (int i = 0; i < KitList.Count; i++)
@@ -62,9 +73,8 @@ public class MissionKillMonster : MissionCategory
                 Succeed = false;
             }
         }
-        this.Succeed = Succeed;
+        State = Succeed ? STATE.Succeed : STATE.None;
 
-        return this.Succeed;
     }
     public override string Message()
     {
@@ -98,6 +108,61 @@ public class MissionKillMonster : MissionCategory
         TargetArmor = obj.GetComponent<CharacterStat>().armor;
     }
 }
+public class MissionNextRoundAllKillMonster : MissionCategory
+{
+    int ExcuteRound;
+    int CheckCnt;
+    public int MaxCnt = 0;
+
+    GamePlay GamePlay = null;
+    WaveSpawner WaveSpawner = null;
+
+    CharacterKit.SIMBOL_ARMOR TargetArmor;
+
+    public override void Init(GameObject GameManager)
+    {
+        base.Init(GameManager);
+
+        GamePlay = GameManager.GetComponent<GamePlay>();
+        WaveSpawner = GameManager.GetComponent<WaveSpawner>();
+
+        CheckCnt = 0;
+
+        ExcuteRound = GamePlay.GetRound() + 1;
+        MaxCnt = GamePlay.RoundList[ExcuteRound-1].enemyCount;
+        WaveSpawner.SpawnDelegate += SpawnCharacter;
+    }
+
+    public override void Verify()
+    {
+        if(ExcuteRound < GamePlay.GetRound())
+        {
+            State = STATE.Fail;
+        }
+        else if (CheckCnt > MaxCnt)
+        {
+            State = STATE.Succeed;
+        }
+    }
+    public override string Message()
+    {
+        string str = ExcuteRound + "라운드올킬\n";
+        str += CheckCnt + "/" + MaxCnt + " ";
+        return str;
+    }
+    public void CountDead()
+    {
+        CheckCnt++;
+    }
+    public void SpawnCharacter(GameObject obj)
+    {
+        if(ExcuteRound == GamePlay.GetRound())
+        {
+            obj.GetComponent<Damageable>().onDeadDel += CountDead;
+            TargetArmor = obj.GetComponent<CharacterStat>().armor;
+        }
+    }
+}
 
 public class MissionGetCharacter : MissionCategory
 {
@@ -128,6 +193,11 @@ public class MissionGetCharacter : MissionCategory
         base.Init(GameManager);
         PickController = GameManager.GetComponent<PickController>();
         CharacterInfoManager = GameManager.GetComponent<CharacterInfoManager>();
+
+        for (int i = 0; i < CheckCnt.Count; i++)
+        {
+            CheckCnt[i] = 0;
+        }
     }
 
     public void PushCharacters(CharacterKit.GRADE grade, CharacterKit.UNION union, int num, string msg)
@@ -136,7 +206,7 @@ public class MissionGetCharacter : MissionCategory
         CheckCnt.Add(0);
     }
 
-    public override bool Verify()
+    public override void Verify()
     {
         bool Succeed = true;
         for (int i = 0; i < KitList.Count; i++)
@@ -149,9 +219,7 @@ public class MissionGetCharacter : MissionCategory
                 break;
             }
         }
-        this.Succeed = Succeed;
-
-        return this.Succeed;
+        State = Succeed ? STATE.Succeed : STATE.None;
     }
     public override string Message()
     {

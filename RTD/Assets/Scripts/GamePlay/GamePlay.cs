@@ -211,7 +211,8 @@ public class GamePlay : MonoBehaviour
                 else
                     receiveMoney = 500;
 
-                if (GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Receive, receiveMoney, response, "Refresh Card"))
+                if (GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Receive, receiveMoney, response, "Round Clear"))
+
                 {
                     // Succeed
                 }
@@ -386,6 +387,11 @@ public class GamePlay : MonoBehaviour
     {
         Debug.Log("get mission !!");
         GetComponent<MissionManager>().PushNewMission();
+    }
+   
+    public int GetRound()
+    {
+        return CurrentRound;
     }
 }
 

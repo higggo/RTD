@@ -23,13 +23,13 @@ public class LevelUpManager : MonoBehaviour
         CharInfoManager = GetComponent<CharacterInfoManager>();
         MoneyManager = GetComponent<MoneyManager>();
 
-        MAGE.OnclickDelegate += LevelUpUnion;
-        WARRIOR.OnclickDelegate += LevelUpDemic;
-        ARCHER.OnclickDelegate += LevelUpExis;
+        MAGE.OnclickDelegate += LevelUpMage;
+        WARRIOR.OnclickDelegate += LevelUpWarrior;
+        ARCHER.OnclickDelegate += LevelUpArcher;
 
         GameObject.Find("Storage").GetComponent<Storage>().CreateCharacterDelegate += UpdateCharacterLevel;
     }
-    void LevelUpUnion()
+    void LevelUpMage()
     {
         if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, MAGE.Price, response, "MAGE Level Up"))
         {
@@ -42,7 +42,7 @@ public class LevelUpManager : MonoBehaviour
         }
     }
 
-    void LevelUpDemic()
+    void LevelUpWarrior()
     {
         if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, WARRIOR.Price, response, "WARRIOR Level Up"))
         {
@@ -55,7 +55,7 @@ public class LevelUpManager : MonoBehaviour
         }
     }
 
-    void LevelUpExis()
+    void LevelUpArcher()
     {
         if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, ARCHER.Price, response, "ARCHER Level Up"))
         {
