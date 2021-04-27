@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class WaveSpawner : MonoBehaviour
 {
+    public VoidDelGameObject SpawnDelegate = null;
     public Transform EnemyPrefeb;
     public Transform SpawnPoint = null;
     public float TimeBetweenWaves = 1.0f;
@@ -18,10 +19,10 @@ public class WaveSpawner : MonoBehaviour
     private void Start()
     {
         // Set Reference
-        if(SpawnPoint == null) SpawnPoint = GameObject.Find("SpawnPoint").transform;
-        if(EnemyPoket == null) EnemyPoket = GameObject.Find("Enemies").transform;
+        if (SpawnPoint == null) SpawnPoint = GameObject.Find("SpawnPoint").transform;
+        if (EnemyPoket == null) EnemyPoket = GameObject.Find("Enemies").transform;
     }
-private void Update()
+    private void Update()
     {
         //if(Count <= 0f)
         //{
@@ -51,6 +52,7 @@ private void Update()
         //obj = Instantiate(EnemyPrefeb, SpawnPoint.position, SpawnPoint.rotation);
         obj.GetComponent<Moving>().DestroySpawnDelegate += GetComponent<GamePlay>().MinusLife;
         obj.transform.parent = EnemyPoket;
+        SpawnDelegate?.Invoke(obj);
     }
     public IEnumerator StartSpawnWaves(string path, int endCount, UnityAction done)
     {

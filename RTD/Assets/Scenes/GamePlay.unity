@@ -426,6 +426,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 75.471, y: 0, z: 0}
+--- !u!1 &249446491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8079826433487639159, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 850790674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &268549433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -607,7 +613,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 75.471, y: 0, z: 0}
 --- !u!1001 &313183866
 PrefabInstance:
@@ -883,7 +889,7 @@ PrefabInstance:
     - target: {fileID: 3858000938485765261, guid: 0d26ececeb49ac949b16ede71b108bff,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3858000938485765261, guid: 0d26ececeb49ac949b16ede71b108bff,
         type: 3}
@@ -1116,6 +1122,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1456552549, guid: 37be83a06608ba74d9abb35e21c5ee28, type: 3}
+      propertyPath: MissionsVertical
+      value: 
+      objectReference: {fileID: 249446491}
+    - target: {fileID: 1456552558, guid: 37be83a06608ba74d9abb35e21c5ee28, type: 3}
+      propertyPath: MainCamera
+      value: 
+      objectReference: {fileID: 191413899}
+    - target: {fileID: 1456552558, guid: 37be83a06608ba74d9abb35e21c5ee28, type: 3}
+      propertyPath: BossZoneCamera
+      value: 
+      objectReference: {fileID: 479455835}
+    - target: {fileID: 1456552558, guid: 37be83a06608ba74d9abb35e21c5ee28, type: 3}
+      propertyPath: DirectionCamera
+      value: 
+      objectReference: {fileID: 271044733}
+    - target: {fileID: 5318793227826606467, guid: 37be83a06608ba74d9abb35e21c5ee28,
+        type: 3}
+      propertyPath: BossSpace
+      value: 
+      objectReference: {fileID: 1834848740}
     - target: {fileID: 5318793227826606467, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
       propertyPath: GroundSpace
@@ -1128,22 +1155,7 @@ PrefabInstance:
       objectReference: {fileID: 334014330}
     - target: {fileID: 5318793227826606470, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
-      propertyPath: Exis
-      value: 
-      objectReference: {fileID: 1360249737}
-    - target: {fileID: 5318793227826606470, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
       propertyPath: MAGE
-      value: 
-      objectReference: {fileID: 2140733574}
-    - target: {fileID: 5318793227826606470, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Demic
-      value: 
-      objectReference: {fileID: 1795602943}
-    - target: {fileID: 5318793227826606470, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Union
       value: 
       objectReference: {fileID: 2140733574}
     - target: {fileID: 5318793227826606470, guid: 37be83a06608ba74d9abb35e21c5ee28,
@@ -1196,546 +1208,6 @@ PrefabInstance:
       propertyPath: SpawnPoint
       value: 
       objectReference: {fileID: 432781171}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.size
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[0]
-      value: UI/CardList/EmptyCard
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[1]
-      value: UI/CardList/N_Assassin
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[2]
-      value: UI/CardList/N_Berserker
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[3]
-      value: UI/CardList/N_BowKing
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[4]
-      value: UI/CardList/N_BowKnight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[5]
-      value: UI/CardList/N_CastleKnight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[6]
-      value: UI/CardList/N_CrossBow Knight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[7]
-      value: UI/CardList/N_Dark Wizard
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[8]
-      value: UI/CardList/N_Gladiator
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[9]
-      value: UI/CardList/N_Hero
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[10]
-      value: UI/CardList/N_Hunter
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[11]
-      value: UI/CardList/N_Lich
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[12]
-      value: UI/CardList/N_Mage Knight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[13]
-      value: UI/CardList/N_Priest
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[14]
-      value: UI/CardList/N_SwordMaster
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: Card.Array.data[15]
-      value: UI/CardList/N_Wizard
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[0]
-      value: Visual Effect/Skill Effect/Marine Skill
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[1]
-      value: Visual Effect/Skill Effect/Marine SkillReady
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[2]
-      value: Character/Boss/Dragon
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[3]
-      value: Character/Enemy/Golem
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[4]
-      value: Character/Enemy/Slime
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[5]
-      value: Character/Enemy/TurtleShell
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[6]
-      value: Character/Player Characters/Long Ranged/Marine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[7]
-      value: Character/Player Characters/Long Ranged/N_Marine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[8]
-      value: Character/Player Characters/Long Ranged/M_Marine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[9]
-      value: Character/Player Characters/Long Ranged/R_Marine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[10]
-      value: Character/Player Characters/Long Ranged/Q_Marine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[11]
-      value: Character/Player Characters/Magic/Lich
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[12]
-      value: Character/Player Characters/Magic/N_Lich
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[13]
-      value: Character/Player Characters/Magic/M_Lich
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[14]
-      value: Character/Player Characters/Magic/R_Lich
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[15]
-      value: Character/Player Characters/Magic/Q_Lich
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[16]
-      value: Character/Player Characters/Short Ranged/Warrior
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[17]
-      value: Character/Player Characters/Short Ranged/N_Warrior
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[18]
-      value: Character/Player Characters/Short Ranged/M_Warrior
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[19]
-      value: Character/Player Characters/Short Ranged/R_Warrior
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[20]
-      value: Character/Player Characters/Short Ranged/Q_Warrior
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[21]
-      value: Projectile/FireBall Hit Effect
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[22]
-      value: Projectile/FireBall01
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[23]
-      value: Projectile/Icebolt Hit Effect
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: PreLoadingPrefabAddr.Array.data[24]
-      value: Projectile/Icebolt
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[0]
-      value: Character/Player Characters/Long Ranged/Grade/R_Assassin
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[1]
-      value: Character/Player Characters/Long Ranged/Grade/R_BowKing
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[2]
-      value: Character/Player Characters/Long Ranged/Grade/R_BowKnight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[3]
-      value: Character/Player Characters/Long Ranged/Grade/R_CrossBow Knight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[4]
-      value: Character/Player Characters/Long Ranged/Grade/R_Hunter
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[5]
-      value: Character/Player Characters/Magic/Grade/R_Wizard
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[6]
-      value: Character/Player Characters/Magic/Grade/R_Dark Wizard
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[7]
-      value: Character/Player Characters/Magic/Grade/R_Mage Knight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[8]
-      value: Character/Player Characters/Magic/Grade/R_Priest
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[9]
-      value: Character/Player Characters/Magic/Grade/R_Lich
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[0]
-      value: Character/Player Characters/Long Ranged/Grade/M_Assassin
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[1]
-      value: Character/Player Characters/Long Ranged/Grade/M_BowKing
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[2]
-      value: Character/Player Characters/Long Ranged/Grade/M_BowKnight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[3]
-      value: Character/Player Characters/Long Ranged/Grade/M_CrossBow Knight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[4]
-      value: Character/Player Characters/Long Ranged/Grade/M_Hunter
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[5]
-      value: Character/Player Characters/Magic/Grade/M_Wizard
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[6]
-      value: Character/Player Characters/Magic/Grade/M_Dark Wizard
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[7]
-      value: Character/Player Characters/Magic/Grade/M_Mage Knight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[8]
-      value: Character/Player Characters/Magic/Grade/M_Priest
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[9]
-      value: Character/Player Characters/Magic/Grade/M_Lich
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[10]
-      value: Character/Player Characters/Short Ranged/Grade/R_CastleKnight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[11]
-      value: Character/Player Characters/Short Ranged/Grade/R_Gladiator
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[12]
-      value: Character/Player Characters/Short Ranged/Grade/R_Hero
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[13]
-      value: Character/Player Characters/Short Ranged/Grade/R_Berserker
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterRareClassAddr.Array.data[14]
-      value: Character/Player Characters/Short Ranged/Grade/R_SwordMaster
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[10]
-      value: Character/Player Characters/Short Ranged/Grade/M_CastleKnight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[11]
-      value: Character/Player Characters/Short Ranged/Grade/M_Gladiator
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[12]
-      value: Character/Player Characters/Short Ranged/Grade/M_Hero
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[13]
-      value: Character/Player Characters/Short Ranged/Grade/M_Berserker
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterMagicClassAddr.Array.data[14]
-      value: Character/Player Characters/Short Ranged/Grade/M_SwordMaster
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[0]
-      value: Character/Player Characters/Long Ranged/Grade/N_Assassin
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[1]
-      value: Character/Player Characters/Long Ranged/Grade/N_BowKing
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[2]
-      value: Character/Player Characters/Long Ranged/Grade/N_BowKnight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[3]
-      value: Character/Player Characters/Long Ranged/Grade/N_CrossBow Knight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[4]
-      value: Character/Player Characters/Long Ranged/Grade/N_Hunter
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[5]
-      value: Character/Player Characters/Magic/Grade/N_Wizard
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[6]
-      value: Character/Player Characters/Magic/Grade/N_Dark Wizard
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[7]
-      value: Character/Player Characters/Magic/Grade/N_Mage Knight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[8]
-      value: Character/Player Characters/Magic/Grade/N_Priest
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[9]
-      value: Character/Player Characters/Magic/Grade/N_Lich
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[0]
-      value: Character/Player Characters/Long Ranged/Grade/Q_Assassin
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[1]
-      value: Character/Player Characters/Long Ranged/Grade/Q_BowKing
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[2]
-      value: Character/Player Characters/Long Ranged/Grade/Q_BowKnight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[3]
-      value: Character/Player Characters/Long Ranged/Grade/Q_CrossBow Knight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[4]
-      value: Character/Player Characters/Long Ranged/Grade/Q_Hunter
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[5]
-      value: Character/Player Characters/Magic/Grade/Q_Wizard
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[6]
-      value: Character/Player Characters/Magic/Grade/Q_Dark Wizard
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[7]
-      value: Character/Player Characters/Magic/Grade/Q_Mage Knight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[8]
-      value: Character/Player Characters/Magic/Grade/Q_Priest
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[9]
-      value: Character/Player Characters/Magic/Grade/Q_Lich
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[10]
-      value: Character/Player Characters/Short Ranged/Grade/N_CastleKnight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[11]
-      value: Character/Player Characters/Short Ranged/Grade/N_Gladiator
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[12]
-      value: Character/Player Characters/Short Ranged/Grade/N_Hero
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[13]
-      value: Character/Player Characters/Short Ranged/Grade/N_Berserker
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterNoramlClassAddr.Array.data[14]
-      value: Character/Player Characters/Short Ranged/Grade/N_SwordMaster
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[10]
-      value: Character/Player Characters/Short Ranged/Grade/Q_CastleKnight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[11]
-      value: Character/Player Characters/Short Ranged/Grade/Q_Gladiator
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[12]
-      value: Character/Player Characters/Short Ranged/Grade/Q_Hero
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[13]
-      value: Character/Player Characters/Short Ranged/Grade/Q_Berserker
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318793227826606478, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: CharacterUniqueClassAddr.Array.data[14]
-      value: Character/Player Characters/Short Ranged/Grade/Q_SwordMaster
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102754365201657808, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: BossWarp
-      value: 
-      objectReference: {fileID: 1541768395}
     - target: {fileID: 8102754365201657808, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
       propertyPath: BossSpace
@@ -1764,32 +1236,17 @@ PrefabInstance:
     - target: {fileID: 8102754365201657809, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102754365201657809, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102754365201657809, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102754365201657809, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8102754365201657809, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.076477
+      value: 4.0764747
       objectReference: {fileID: 0}
     - target: {fileID: 8102754365201657809, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25213623
+      value: 3.9
       objectReference: {fileID: 0}
     - target: {fileID: 8102754365201657809, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
@@ -1804,17 +1261,17 @@ PrefabInstance:
     - target: {fileID: 8102754365201657809, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8102754365201657809, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8102754365201657809, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8102754365201657809, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
@@ -1848,16 +1305,23 @@ PrefabInstance:
       objectReference: {fileID: 1317569202}
     - target: {fileID: 8102754365201657821, guid: 37be83a06608ba74d9abb35e21c5ee28,
         type: 3}
-      propertyPath: CharacterPickerUI
-      value: 
-      objectReference: {fileID: 2019278404}
-    - target: {fileID: 8102754365201657821, guid: 37be83a06608ba74d9abb35e21c5ee28,
-        type: 3}
       propertyPath: CharacterSelectArea
       value: 
       objectReference: {fileID: 415207899}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37be83a06608ba74d9abb35e21c5ee28, type: 3}
+--- !u!114 &494567526 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5318793227826606476, guid: 37be83a06608ba74d9abb35e21c5ee28,
+    type: 3}
+  m_PrefabInstance: {fileID: 494567525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fc6ae7cb89fa5c43837318d2b8aac00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &537567097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2390,24 +1854,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc5b980f20cda494e8b510e19e3fb42c, type: 3}
---- !u!1 &774811292 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5514337460614222504, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 850790674}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &774811297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 774811292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38c536dce9287074ab2422ddf4a325c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &845626144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6121106971145226370, guid: cb586041e490d534dbf6a37e282bdf6a,
@@ -2521,187 +1967,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1724575512919669765, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1724575512919669765, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1724575512919669765, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1724575512919669765, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2857941486301688753, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_Name
-      value: Mage
-      objectReference: {fileID: 0}
-    - target: {fileID: 3223539408689707088, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_text
-      value: Archer
-      objectReference: {fileID: 0}
-    - target: {fileID: 3286572231051439637, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3875151061384095460, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_text
-      value: GAMEOVER
-      objectReference: {fileID: 0}
-    - target: {fileID: 4213179718755278717, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_text
-      value: Mage
-      objectReference: {fileID: 0}
-    - target: {fileID: 4383970912589602113, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_Name
-      value: Warrior
-      objectReference: {fileID: 0}
-    - target: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4977873947905863916, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4977873947905863916, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5137932157193038550, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514337460614222502, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514337460614222502, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
+    - target: {fileID: 5063823655832130079, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 774811297}
-    - target: {fileID: 5514337460614222502, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514337460838632065, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514337460838632065, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 2edd090c24fd4b6459c5e4f150797062,
-        type: 3}
-    - target: {fileID: 5514337460838632065, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514337460838632065, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514337460838632065, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514337460838632067, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 494567526}
     - target: {fileID: 5746844949545105827, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2816,36 +2086,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7018588975997719054, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7018588975997719054, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7018588975997719054, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7018588975997719054, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7732206377729692841, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8542767447597983474, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-        type: 3}
-      propertyPath: m_Name
-      value: Archer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05a856b4dbfe52140bd4bf269b27a9bf, type: 3}
@@ -3015,139 +2255,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ebb29c280956f448b23489fcb3cf1f7, type: 3}
---- !u!1 &891727864
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 891727865}
-  - component: {fileID: 891727867}
-  - component: {fileID: 891727866}
-  m_Layer: 5
-  m_Name: Text (TMP)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &891727865
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 891727864}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1072838921}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -56, y: -340.9}
-  m_SizeDelta: {x: 800, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &891727866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 891727864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: Loading....
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 1
-  m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 1
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &891727867
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 891727864}
-  m_CullTransparentMesh: 0
 --- !u!114 &1004522678 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5966622608673201686, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
@@ -3234,12 +2341,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ebb29c280956f448b23489fcb3cf1f7, type: 3}
---- !u!224 &1072838921 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4757909168457489535, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 850790674}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1080195126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8429,40 +7530,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 850790674}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1456552547 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8102754365201657814, guid: 37be83a06608ba74d9abb35e21c5ee28,
-    type: 3}
-  m_PrefabInstance: {fileID: 494567525}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1456552548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1456552547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab283f677a753a64c80402f1f0eeefc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 0
---- !u!114 &1456552558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1456552547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79abc17a5e95fc748ad18e1e7ac68ea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MainCamera: {fileID: 191413899}
-  DirectionCamera: {fileID: 271044733}
-  BossZoneCamera: {fileID: 479455835}
 --- !u!1001 &1474234491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10182,12 +9249,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5188807747620963044}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2019278404 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5457421351343258775, guid: 05a856b4dbfe52140bd4bf269b27a9bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 850790674}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2021666471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10286,7 +9347,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 494567525}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1456552547}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa320dda9fae7bd4d94ea2798b7ada64, type: 3}

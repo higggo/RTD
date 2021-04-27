@@ -373,5 +373,10 @@ public class GamePlay : MonoBehaviour
 
     }
 
+    public void GetMission()
+    {
+        Debug.Log("get mission !!");
+        GetComponent<MissionManager>().PushNewMission();
+    }
 }
 

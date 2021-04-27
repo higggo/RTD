@@ -227,6 +227,7 @@ public class PickController : MonoBehaviour
                 {
                     ChangeState(STATE.MouseButtonUp);
                 }
+                
                 break;
             case STATE.MouseButtonUp:
                 ChangeState(STATE.Normal);
@@ -235,18 +236,6 @@ public class PickController : MonoBehaviour
             case STATE.Disable:
                 break;
         }
-    }
-    public bool IsPicking(string tag)
-    {
-        if (state == STATE.MouseButtonDragging && PickUpObject != null)
-        {
-            if (PickUpObject.tag == tag)
-                return true;
-            else
-                return false;
-        }
-        else
-            return false;
     }
 
     public void SetDisable()

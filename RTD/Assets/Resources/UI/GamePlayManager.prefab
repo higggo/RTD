@@ -48,6 +48,9 @@ GameObject:
   - component: {fileID: 5318793227826606476}
   - component: {fileID: 5318793227826606477}
   - component: {fileID: 5318793227826606478}
+  - component: {fileID: 1456552548}
+  - component: {fileID: 1456552558}
+  - component: {fileID: 1456552549}
   m_Layer: 0
   m_Name: GamePlayManager
   m_TagString: Untagged
@@ -99,6 +102,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GroundSpace: {fileID: 0}
   StorageSpace: {fileID: 0}
+  BossSpace: {fileID: 0}
+  BossWarpTile: {fileID: 0}
+  ReturnWarpTile: {fileID: 0}
 --- !u!114 &8102754365201657810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa320dda9fae7bd4d94ea2798b7ada64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterPickerUI: {fileID: 0}
+  CharacterSelectArea: {fileID: 0}
   Storage: {fileID: 0}
 --- !u!114 &5318793227826606470
 MonoBehaviour:
@@ -139,9 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c253c0f230f0c4d9150472bec30000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Union: {fileID: 0}
-  Demic: {fileID: 0}
-  Exis: {fileID: 0}
+  MAGE: {fileID: 0}
+  WARRIOR: {fileID: 0}
+  ARCHER: {fileID: 0}
 --- !u!114 &5318793227826606467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GroundSpace: {fileID: 0}
   StorageSpace: {fileID: 0}
+  BossSpace: {fileID: 0}
 --- !u!114 &5318793227826606476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,10 +211,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Card:
-  - UI/EmptyCard
-  - UI/N_Lich
-  - UI/N_Warrior
-  - UI/N_Marine
+  - UI/CardList/EmptyCard
+  - UI/CardList/N_Assassin
+  - UI/CardList/N_Berserker
+  - UI/CardList/N_BowKing
+  - UI/CardList/N_BowKnight
+  - UI/CardList/N_CastleKnight
+  - UI/CardList/N_CrossBow Knight
+  - UI/CardList/N_Dark Wizard
+  - UI/CardList/N_Gladiator
+  - UI/CardList/N_Hero
+  - UI/CardList/N_Hunter
+  - UI/CardList/N_Lich
+  - UI/CardList/N_Mage Knight
+  - UI/CardList/N_Priest
+  - UI/CardList/N_SwordMaster
+  - UI/CardList/N_Wizard
   CharacterAllClassAddr:
   - Character/Player Characters/Long Ranged/N_Marine
   - Character/Player Characters/Long Ranged/M_Marine
@@ -222,29 +241,185 @@ MonoBehaviour:
   - Character/Player Characters/Short Ranged/R_Warrior
   - Character/Player Characters/Short Ranged/Q_Warrior
   CharacterNoramlClassAddr:
-  - Character/Player Characters/Long Ranged/N_Marine
-  - Character/Player Characters/Magic/N_Lich
-  - Character/Player Characters/Short Ranged/N_Warrior
+  - Character/Player Characters/Long Ranged/Grade/N_Assassin
+  - Character/Player Characters/Long Ranged/Grade/N_BowKing
+  - Character/Player Characters/Long Ranged/Grade/N_BowKnight
+  - Character/Player Characters/Long Ranged/Grade/N_CrossBow Knight
+  - Character/Player Characters/Long Ranged/Grade/N_Hunter
+  - Character/Player Characters/Magic/Grade/N_Wizard
+  - Character/Player Characters/Magic/Grade/N_Dark Wizard
+  - Character/Player Characters/Magic/Grade/N_Mage Knight
+  - Character/Player Characters/Magic/Grade/N_Priest
+  - Character/Player Characters/Magic/Grade/N_Lich
+  - Character/Player Characters/Short Ranged/Grade/N_CastleKnight
+  - Character/Player Characters/Short Ranged/Grade/N_Gladiator
+  - Character/Player Characters/Short Ranged/Grade/N_Hero
+  - Character/Player Characters/Short Ranged/Grade/N_Berserker
+  - Character/Player Characters/Short Ranged/Grade/N_SwordMaster
   CharacterMagicClassAddr:
-  - Character/Player Characters/Long Ranged/M_Marine
-  - Character/Player Characters/Magic/M_Lich
-  - Character/Player Characters/Short Ranged/M_Warrior
+  - Character/Player Characters/Long Ranged/Grade/M_Assassin
+  - Character/Player Characters/Long Ranged/Grade/M_BowKing
+  - Character/Player Characters/Long Ranged/Grade/M_BowKnight
+  - Character/Player Characters/Long Ranged/Grade/M_CrossBow Knight
+  - Character/Player Characters/Long Ranged/Grade/M_Hunter
+  - Character/Player Characters/Magic/Grade/M_Wizard
+  - Character/Player Characters/Magic/Grade/M_Dark Wizard
+  - Character/Player Characters/Magic/Grade/M_Mage Knight
+  - Character/Player Characters/Magic/Grade/M_Priest
+  - Character/Player Characters/Magic/Grade/M_Lich
+  - Character/Player Characters/Short Ranged/Grade/M_CastleKnight
+  - Character/Player Characters/Short Ranged/Grade/M_Gladiator
+  - Character/Player Characters/Short Ranged/Grade/M_Hero
+  - Character/Player Characters/Short Ranged/Grade/M_Berserker
+  - Character/Player Characters/Short Ranged/Grade/M_SwordMaster
   CharacterRareClassAddr:
-  - Character/Player Characters/Long Ranged/R_Marine
-  - Character/Player Characters/Magic/R_Lich
-  - Character/Player Characters/Short Ranged/R_Warrior
+  - Character/Player Characters/Long Ranged/Grade/R_Assassin
+  - Character/Player Characters/Long Ranged/Grade/R_BowKing
+  - Character/Player Characters/Long Ranged/Grade/R_BowKnight
+  - Character/Player Characters/Long Ranged/Grade/R_CrossBow Knight
+  - Character/Player Characters/Long Ranged/Grade/R_Hunter
+  - Character/Player Characters/Magic/Grade/R_Wizard
+  - Character/Player Characters/Magic/Grade/R_Dark Wizard
+  - Character/Player Characters/Magic/Grade/R_Mage Knight
+  - Character/Player Characters/Magic/Grade/R_Priest
+  - Character/Player Characters/Magic/Grade/R_Lich
+  - Character/Player Characters/Short Ranged/Grade/R_CastleKnight
+  - Character/Player Characters/Short Ranged/Grade/R_Gladiator
+  - Character/Player Characters/Short Ranged/Grade/R_Hero
+  - Character/Player Characters/Short Ranged/Grade/R_Berserker
+  - Character/Player Characters/Short Ranged/Grade/R_SwordMaster
   CharacterUniqueClassAddr:
-  - Character/Player Characters/Long Ranged/Q_Marine
-  - Character/Player Characters/Magic/Q_Lich
-  - Character/Player Characters/Short Ranged/Q_Warrior
-  CharacterClass:
-  - Union
-  - Demic
-  - Exis
-  CharacterGrade:
-  - Magic
-  - Rare
-  - Unique
+  - Character/Player Characters/Long Ranged/Grade/Q_Assassin
+  - Character/Player Characters/Long Ranged/Grade/Q_BowKing
+  - Character/Player Characters/Long Ranged/Grade/Q_BowKnight
+  - Character/Player Characters/Long Ranged/Grade/Q_CrossBow Knight
+  - Character/Player Characters/Long Ranged/Grade/Q_Hunter
+  - Character/Player Characters/Magic/Grade/Q_Wizard
+  - Character/Player Characters/Magic/Grade/Q_Dark Wizard
+  - Character/Player Characters/Magic/Grade/Q_Mage Knight
+  - Character/Player Characters/Magic/Grade/Q_Priest
+  - Character/Player Characters/Magic/Grade/Q_Lich
+  - Character/Player Characters/Short Ranged/Grade/Q_CastleKnight
+  - Character/Player Characters/Short Ranged/Grade/Q_Gladiator
+  - Character/Player Characters/Short Ranged/Grade/Q_Hero
+  - Character/Player Characters/Short Ranged/Grade/Q_Berserker
+  - Character/Player Characters/Short Ranged/Grade/Q_SwordMaster
+  CharacterNoramlMageClassAddr:
+  - Character/Player Characters/Magic/Grade/N_Wizard
+  - Character/Player Characters/Magic/Grade/N_Dark Wizard
+  - Character/Player Characters/Magic/Grade/N_Mage Knight
+  - Character/Player Characters/Magic/Grade/N_Priest
+  - Character/Player Characters/Magic/Grade/N_Lich
+  CharacterNoramlWarriorClassAddr:
+  - Character/Player Characters/Short Ranged/Grade/N_CastleKnight
+  - Character/Player Characters/Short Ranged/Grade/N_Gladiator
+  - Character/Player Characters/Short Ranged/Grade/N_Hero
+  - Character/Player Characters/Short Ranged/Grade/N_Berserker
+  - Character/Player Characters/Short Ranged/Grade/N_SwordMaster
+  CharacterNoramlArcherClassAddr:
+  - Character/Player Characters/Long Ranged/Grade/N_Assassin
+  - Character/Player Characters/Long Ranged/Grade/N_BowKing
+  - Character/Player Characters/Long Ranged/Grade/N_BowKnight
+  - Character/Player Characters/Long Ranged/Grade/N_CrossBow Knight
+  - Character/Player Characters/Long Ranged/Grade/N_Hunter
+  CharacterMagicMageClassAddr:
+  - Character/Player Characters/Magic/Grade/M_Wizard
+  - Character/Player Characters/Magic/Grade/M_Dark Wizard
+  - Character/Player Characters/Magic/Grade/M_Mage Knight
+  - Character/Player Characters/Magic/Grade/M_Priest
+  - Character/Player Characters/Magic/Grade/M_Lich
+  CharacterMagicWarriorClassAddr:
+  - Character/Player Characters/Short Ranged/Grade/M_CastleKnight
+  - Character/Player Characters/Short Ranged/Grade/M_Gladiator
+  - Character/Player Characters/Short Ranged/Grade/M_Hero
+  - Character/Player Characters/Short Ranged/Grade/M_Berserker
+  - Character/Player Characters/Short Ranged/Grade/M_SwordMaster
+  CharacterMagicArcherClassAddr:
+  - Character/Player Characters/Long Ranged/Grade/M_Assassin
+  - Character/Player Characters/Long Ranged/Grade/M_BowKing
+  - Character/Player Characters/Long Ranged/Grade/M_BowKnight
+  - Character/Player Characters/Long Ranged/Grade/M_CrossBow Knight
+  - Character/Player Characters/Long Ranged/Grade/M_Hunter
+  CharacterRareMageClassAddr:
+  - Character/Player Characters/Magic/Grade/R_Wizard
+  - Character/Player Characters/Magic/Grade/R_Dark Wizard
+  - Character/Player Characters/Magic/Grade/R_Mage Knight
+  - Character/Player Characters/Magic/Grade/R_Priest
+  - Character/Player Characters/Magic/Grade/R_Lich
+  CharacterRareWarriorClassAddr:
+  - Character/Player Characters/Short Ranged/Grade/R_CastleKnight
+  - Character/Player Characters/Short Ranged/Grade/R_Gladiator
+  - Character/Player Characters/Short Ranged/Grade/R_Hero
+  - Character/Player Characters/Short Ranged/Grade/R_Berserker
+  - Character/Player Characters/Short Ranged/Grade/R_SwordMaster
+  CharacterRareArcherClassAddr:
+  - Character/Player Characters/Long Ranged/Grade/R_Assassin
+  - Character/Player Characters/Long Ranged/Grade/R_BowKing
+  - Character/Player Characters/Long Ranged/Grade/R_BowKnight
+  - Character/Player Characters/Long Ranged/Grade/R_CrossBow Knight
+  - Character/Player Characters/Long Ranged/Grade/R_Hunter
+  CharacterUniqueMageClassAddr:
+  - Character/Player Characters/Magic/Grade/Q_Wizard
+  - Character/Player Characters/Magic/Grade/Q_Dark Wizard
+  - Character/Player Characters/Magic/Grade/Q_Mage Knight
+  - Character/Player Characters/Magic/Grade/Q_Priest
+  - Character/Player Characters/Magic/Grade/Q_Lich
+  CharacterUniqueWarriorClassAddr:
+  - Character/Player Characters/Short Ranged/Grade/Q_CastleKnight
+  - Character/Player Characters/Short Ranged/Grade/Q_Gladiator
+  - Character/Player Characters/Short Ranged/Grade/Q_Hero
+  - Character/Player Characters/Short Ranged/Grade/Q_Berserker
+  - Character/Player Characters/Short Ranged/Grade/Q_SwordMaster
+  CharacterUniqueArcherClassAddr:
+  - Character/Player Characters/Long Ranged/Grade/Q_Assassin
+  - Character/Player Characters/Long Ranged/Grade/Q_BowKing
+  - Character/Player Characters/Long Ranged/Grade/Q_BowKnight
+  - Character/Player Characters/Long Ranged/Grade/Q_CrossBow Knight
+  - Character/Player Characters/Long Ranged/Grade/Q_Hunter
+  PreLoadingPrefabAddr: []
+  Boss:
+  - Character/Boss/Dragon
+--- !u!114 &1456552548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8102754365201657814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab283f677a753a64c80402f1f0eeefc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+--- !u!114 &1456552558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8102754365201657814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79abc17a5e95fc748ad18e1e7ac68ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCamera: {fileID: 0}
+  DirectionCamera: {fileID: 0}
+  BossZoneCamera: {fileID: 0}
+--- !u!114 &1456552549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8102754365201657814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d3c938386249a4bb84f6999a97e7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MissionsVertical: {fileID: 0}
 --- !u!1 &8102754365294805016
 GameObject:
   m_ObjectHideFlags: 0
