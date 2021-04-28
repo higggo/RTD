@@ -98,32 +98,41 @@ public class MissionManager : MonoBehaviour
             Debug.Log("미션이 가득 찼습니다.");
             return;
         }
-        bool none = true;
-        MissionList = Shuffle<Mission>(MissionList);
-        foreach (Mission mission in MissionList)
+
+        if (GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Pay, 50, response, "Buy Mission"))
         {
-            if (mission.State == Mission.STATE.Waiting)
+            bool none = true;
+            MissionList = Shuffle<Mission>(MissionList);
+            foreach (Mission mission in MissionList)
             {
-                // 미션정보, 버튼 생성
-                GameObject MissionInfoUI = Instantiate(Resources.Load("UI/MissionInfo"), MissionsVertical.transform) as GameObject;               
+                if (mission.State == Mission.STATE.Waiting)
+                {
+                    // 미션정보, 버튼 생성
+                    GameObject MissionInfoUI = Instantiate(Resources.Load("UI/MissionInfo"), MissionsVertical.transform) as GameObject;
 
-                mission.Init(gameObject);
+                    mission.Init(gameObject);
 
-                MissionInfoUI.transform.Find("Button").GetComponent<MissionDeleteButton>().LinkedObj = mission;
-                MissionInfoUI.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => {
-                    if (mission.State != Mission.STATE.Finished)
-                        mission.State = Mission.STATE.Waiting;
-                    Destroy(MissionInfoUI);
-                });
+                    MissionInfoUI.transform.Find("Button").GetComponent<MissionDeleteButton>().LinkedObj = mission;
+                    MissionInfoUI.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => {
+                        if (mission.State != Mission.STATE.Finished)
+                            mission.State = Mission.STATE.Waiting;
+                        Destroy(MissionInfoUI);
+                    });
 
-                GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Pay, 50, response, "Buy Mission");
-                none = true;
-                break;
+                    GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Pay, 50, response, "Buy Mission");
+                    none = true;
+                    break;
+                }
+            }
+            if (!none)
+            {
+                Debug.Log("추가할 수 있는 미션이 없습니다.");
+                GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Receive, 50, response, "Mission Pay Refund");
             }
         }
-        if (!none)
+        else
         {
-            Debug.Log("추가할 수 있는 미션이 없습니다.");
+            Debug.Log("골드가 부족합니다.[미션]");
         }
     }
 
