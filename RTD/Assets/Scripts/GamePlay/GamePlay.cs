@@ -233,7 +233,10 @@ public class GamePlay : MonoBehaviour
                 // Next Round
                 else
                 {
+                    // LJH : Free RefreshCard 추가
+                    //       SelectCharacterCard.cs 수정 => private void RefreshCardFree() ==> public void RefreshCardFree()
                     GetComponent<PickController>().SetNormal();
+                    GetComponent<SelectCharacterCard>().RefreshCardsFree();
                     LevelUpActiveButton.GetComponent<BtnLevelUpActive>().SetActive();
                     BreakTimeText.SetActive(true);
                     StartCoroutine(CountDownTime(RoundList[CurrentRound - 1].breakTime, () => { ChangeState(STATE.RoundStart); }));

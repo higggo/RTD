@@ -51,7 +51,7 @@ public class SelectCharacterCard : MonoBehaviour
             Debug.Log(ResponseMessage.Trade.Receive(response));
         }
     }
-    void RefreshCardsFree()
+    public void RefreshCardsFree()
     {
         for (int i = 0; i < MaxSalesNum; i++)
         {
