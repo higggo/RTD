@@ -50,7 +50,7 @@ public class BossRoundManager : MonoBehaviour
     {
         Round = 0;
 
-        BossRoundList.Add(new BossRound(GetComponent<GameDB>().Boss[0], 3, 5));
+        //BossRoundList.Add(new BossRound(GetComponent<GameDB>().Boss[0], 3, 5));
 
         ChangeState(STATE.GameStart);
 
