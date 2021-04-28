@@ -312,16 +312,16 @@ public class CharacterInfoManager : MonoBehaviour
         }
         return strList;
     }
-    public int GetAllCharacters(CharacterKit.GRADE grade, CharacterKit.UNION union)
+    public int GetAllCharactersCount(CharacterKit.GRADE grade, CharacterKit.UNION union)
     {
         int cnt = 0;
-
+        CharacterStat characterStat;
         for (int i = 0; i < GroundSpace.childCount; i++)
         {
             if (GroundSpace.GetChild(i).childCount > 0)
             {
-                if (GroundSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo.grade == grade
-                    && GroundSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo.union == union)
+                characterStat = GroundSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo;
+                if (CharUtils.SetCharacterGrade(characterStat.id) == grade && characterStat.union == union)
                 {
                     cnt++;
                 }
@@ -332,8 +332,8 @@ public class CharacterInfoManager : MonoBehaviour
         {
             if (StorageSpace.GetChild(i).childCount > 0)
             {
-                if (StorageSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo.grade == grade
-                    && StorageSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo.union == union)
+                characterStat = StorageSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo;
+                if (CharUtils.SetCharacterGrade(characterStat.id) == grade && characterStat.union == union)
                 {
                     cnt++;
                 }
@@ -344,8 +344,8 @@ public class CharacterInfoManager : MonoBehaviour
         {
             if (BossSpace.GetChild(i).childCount > 0)
             {
-                if (BossSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo.grade == grade
-                    && BossSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo.union == union)
+                characterStat = BossSpace.GetChild(i).GetChild(0).gameObject.GetComponent<CharController>().statInfo;
+                if (CharUtils.SetCharacterGrade(characterStat.id) == grade && characterStat.union == union)
                 {
                     cnt++;
                 }

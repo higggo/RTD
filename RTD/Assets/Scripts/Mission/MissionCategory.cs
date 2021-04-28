@@ -211,12 +211,11 @@ public class MissionGetCharacter : MissionCategory
         bool Succeed = true;
         for (int i = 0; i < KitList.Count; i++)
         {
-            int cnt = CharacterInfoManager.GetAllCharacters(KitList[i].grade, KitList[i].union);
+            int cnt = CharacterInfoManager.GetAllCharactersCount(KitList[i].grade, KitList[i].union);
             CheckCnt[i] = cnt;
             if (cnt < KitList[i].num)
             {
                 Succeed = false;
-                break;
             }
         }
         State = Succeed ? STATE.Succeed : STATE.None;
