@@ -85,7 +85,8 @@ public class MissionManager : MonoBehaviour
                     MissionReward(mission.Reward());
                     mission.MissionFinished();
                 }
-                info.GetComponent<TMPro.TextMeshProUGUI>().text = mission.UpdateMessage();
+                info.Find("Message").GetComponent<TMPro.TextMeshProUGUI>().text = mission.UpdateMessage() + "\n" + "보상 " + mission.Reward().ToString() + "골드";
+                //info.GetComponent<AutoSizing>().SetText(mission.UpdateMessage() + "\n" + "보상 " + mission.Reward().ToString() + "골드");
             }
         }
     }
@@ -104,8 +105,7 @@ public class MissionManager : MonoBehaviour
             if (mission.State == Mission.STATE.Waiting)
             {
                 // 미션정보, 버튼 생성
-                GameObject MissionInfoUI = Instantiate(Resources.Load("UI/MissionInfo")) as GameObject;
-                MissionInfoUI.transform.SetParent(MissionsVertical.transform);
+                GameObject MissionInfoUI = Instantiate(Resources.Load("UI/MissionInfo"), MissionsVertical.transform) as GameObject;               
 
                 mission.Init(gameObject);
 
