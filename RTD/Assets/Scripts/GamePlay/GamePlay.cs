@@ -205,11 +205,11 @@ public class GamePlay : MonoBehaviour
                 // LJH : Add receiveMoney
                 uint receiveMoney;
                 if (CurrentRound < 5)
-                    receiveMoney = 250;
-                else if (CurrentRound < 10)
                     receiveMoney = 350;
-                else
+                else if (CurrentRound < 10)
                     receiveMoney = 500;
+                else
+                    receiveMoney = 750;
 
                 if (GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Receive, receiveMoney, response, "Round Clear"))
 

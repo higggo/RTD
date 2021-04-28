@@ -3359,18 +3359,18 @@ MonoBehaviour:
   _Weapon: 3
   _Armor: 0
   basicStat:
-    MaxHP: 100
-    HP: 100
-    attackDamage: 10
-    attackSpeed: 1
-    attackRange: 10
+    MaxHP: 150
+    HP: 150
+    attackDamage: 20
+    attackSpeed: 1.75
+    attackRange: 13
     moveSpeed: 10
     rotateSpeed: 100
   bonusStat:
-    MaxHP: 10
-    HP: 10
-    attackDamage: 1
-    attackSpeed: 0.1
+    MaxHP: 20
+    HP: 20
+    attackDamage: 3
+    attackSpeed: 0.15
     attackRange: 0
     moveSpeed: 0
     rotateSpeed: 0
@@ -3457,6 +3457,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HPBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881088855988649280, guid: 738ac6ca9970a8b43bb339c183be39da,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8155069195027863290, guid: 738ac6ca9970a8b43bb339c183be39da,
         type: 3}

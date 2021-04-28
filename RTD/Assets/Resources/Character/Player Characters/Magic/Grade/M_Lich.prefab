@@ -152,19 +152,19 @@ MonoBehaviour:
   _Weapon: 3
   _Armor: 0
   basicStat:
-    MaxHP: 100
-    HP: 100
-    attackDamage: 10
-    attackSpeed: 1
-    attackRange: 10
+    MaxHP: 150
+    HP: 150
+    attackDamage: 20
+    attackSpeed: 1.75
+    attackRange: 13
     moveSpeed: 10
     rotateSpeed: 100
   bonusStat:
-    MaxHP: 10
-    HP: 10
-    attackDamage: 12
-    attackSpeed: 0.08
-    attackRange: 0.125
+    MaxHP: 20
+    HP: 20
+    attackDamage: 3
+    attackSpeed: 0.15
+    attackRange: 0
     moveSpeed: 0
     rotateSpeed: 0
   currentStat:
