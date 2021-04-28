@@ -31,6 +31,15 @@ public class CameraManager : MonoBehaviour
 
     bool bBreakTime = false;
 
+    // LJH : mainCamera 변경시 사용할 델리게이트
+    public event UnityAction<Camera> CameraChangeDel = null;
+
+    // LJH : bBreakTime변수 get할 propery 추가
+    public bool breakTime
+    {
+        get { return bBreakTime; }
+    }
+
     //public UnityAction MoveDone;
     // Start is called before the first frame update
     void Start()
@@ -100,6 +109,8 @@ public class CameraManager : MonoBehaviour
 
     public IEnumerator LookAroundGroundCharacter()
     {
+        // LJH : HPBar가 DirectionCamera를 바라보도록 수정
+        CameraChangeDel?.Invoke(DirectionCamera);
         DirectionCamera.depth = 0;
         bBreakTime = true;
         float time = 2f;
@@ -144,6 +155,7 @@ public class CameraManager : MonoBehaviour
             yield return null;
         }
         DirectionCamera.depth = -2;
+        CameraChangeDel?.Invoke(MainCamera);
     }
 
     public IEnumerator LookAroundBossCharacter()
@@ -195,5 +207,6 @@ public class CameraManager : MonoBehaviour
     {
         bBreakTime = false; 
         DirectionCamera.depth = -2;
+        CameraChangeDel?.Invoke(MainCamera);
     }
 }
