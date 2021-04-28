@@ -22,12 +22,23 @@ public class PickController : MonoBehaviour
     CharacterInfoManager CharacterInfoManager;
     public VoidDelGameObject UpgradeDelegate = null;
     //BossZoneWarp BossZoneWarp;
+
+    // LJH : 드래그 시 파는 영역 계산을 위한 화면 높이 비율값
+    float ratio;
+
     // Start is called before the first frame update
     void Start()
     {
         TileManager = GetComponent<TileManager>();
         CharacterInfoManager = GetComponent<CharacterInfoManager>();
         //BossZoneWarp = GameObject.Find("BossWarp").GetComponent<BossZoneWarp>();
+        // LJH : 팔기 로직을 위한 rect 비율 계산
+        Rect bound;
+        GameObject UICharacterPicker = GameObject.Find("Canvas").transform.Find("CharacterPickerUI").gameObject;
+        bound = UICharacterPicker.GetComponent<RectTransform>().rect;
+        bound.width *= GameObject.Find("Canvas").transform.lossyScale.x * UICharacterPicker.transform.localScale.x;
+        bound.height *= GameObject.Find("Canvas").transform.lossyScale.y * UICharacterPicker.transform.localScale.y;
+        ratio = bound.height / Screen.height;
     }
 
     // Update is called once per frame
@@ -126,6 +137,16 @@ public class PickController : MonoBehaviour
                             target.transform.localPosition = Vector3.zero;
                         }
                     }
+                    // LJH : 팔기
+                    else if (Input.mousePosition.y <= Screen.height * ratio)
+                    {
+                        int grade = (int)PickUpObject.GetComponent<CharController>().statInfo.grade;
+                        float refund = (float)Mathf.Pow(2.0f, grade) * 100.0f;
+                        refund *= 0.75f;
+                        ResponseMessage.Trade.CODE response = new ResponseMessage.Trade.CODE();
+                        GetComponent<MoneyManager>()?.CalculateMoney(MoneyManager.ACTION.Receive, (uint)refund, response, "Character Refund");
+                        Destroy(PickUpObject.gameObject);
+                    }
                     else
                     {
                         PickUpObject.transform.position = OriginPos;
@@ -203,6 +224,26 @@ public class PickController : MonoBehaviour
                         }
                     }
                     ChangeState(STATE.MouseButtonDown);
+                }
+
+                // D버튼 클릭 (간편 팔기)
+                else if (Input.GetKeyDown(KeyCode.D))
+                {
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit[] hits = Physics.RaycastAll(ray, 50.0f, ~(1 << LayerMask.NameToLayer("UI")));
+                    foreach (RaycastHit hit in hits)
+                    {
+                        if (hit.transform.tag == "Player")
+                        {
+                            Debug.Log("캐릭터 팔기");
+                            int grade = (int)hit.transform.gameObject.GetComponent<CharController>().statInfo.grade;
+                            float refund = (float)Mathf.Pow(2.0f, grade) * 100.0f;
+                            refund *= 0.75f;
+                            ResponseMessage.Trade.CODE response = new ResponseMessage.Trade.CODE();
+                            GetComponent<MoneyManager>()?.CalculateMoney(MoneyManager.ACTION.Receive, (uint)refund, response, "Character Refund");
+                            Destroy(hit.transform.gameObject);
+                        }
+                    }
                 }
                 break;
             case STATE.MouseButtonDown:
