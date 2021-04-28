@@ -1620,6 +1620,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mage
       objectReference: {fileID: 0}
+    - target: {fileID: 3223539407267005289, guid: 3fec08b5c91b1c349850a8ff5faeb3c4,
+        type: 3}
+      propertyPath: m_text
+      value: Archer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213179719450518596, guid: 3fec08b5c91b1c349850a8ff5faeb3c4,
+        type: 3}
+      propertyPath: m_text
+      value: Mage
+      objectReference: {fileID: 0}
     - target: {fileID: 4383970911162721912, guid: 3fec08b5c91b1c349850a8ff5faeb3c4,
         type: 3}
       propertyPath: m_Name
