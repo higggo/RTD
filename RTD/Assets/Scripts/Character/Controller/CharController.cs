@@ -42,6 +42,17 @@ public class CharController : MonoBehaviour
     public Vector3 movePosition;
 
     // Property
+    public AnimEvent animEvent
+    {
+        get
+        {
+            if (CharacterAnimEvent == null)
+                CharacterAnimEvent = GetComponentInChildren<AnimEvent>();
+
+            return CharacterAnimEvent;
+        }
+    }
+
     public CharacterStat statInfo
     {
         get 
@@ -384,7 +395,7 @@ public class CharController : MonoBehaviour
         navAgent.angularSpeed = 200.0f;
         navAgent.acceleration = 60.0f;
         navAgent.speed = statInfo.moveSpeed;
-        navAgent.radius = 1.25f * transform.localScale.x;
+        navAgent.radius = 1.25f;
         navAgent.enabled = true;
     }
 

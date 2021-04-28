@@ -8,7 +8,7 @@ namespace ProjectileKit
 {
     public enum STATE
     {
-        CREATE, READY, WAIT, SHOOT, HIT
+        CREATE, READY, WAIT, SHOOT, ENDMOVE
     }
 }
 
@@ -25,6 +25,9 @@ public class ProjectileController : MonoBehaviour
     protected Transform _hitPoint = null;
     public UnityAction moveDel = null;
     public UnityAction HitDel = null;
+
+    // Targeting?
+    protected bool isTargeting = true;
 
     // Trigger
     public bool fireTrigger = false;
@@ -111,8 +114,15 @@ public class ProjectileController : MonoBehaviour
         InitBullet(target, bulletDmg, bulletSpeed);
     }
 
+    public void InitBullet(GameObject owner, GameObject target, float bulletDmg, float bulletSpeed, bool isTargeting = true)
+    {
+        _owner = owner;
+        this.isTargeting = isTargeting;
+        InitBullet(target, bulletDmg, bulletSpeed);
+    }
+
     /// <summary>
-    /// bullet의 state를 HIT로 바꿉니다.
+    /// bullet의 state를 강제로 HIT로 바꿉니다.
     /// </summary>
     public void SetHit()
     {
@@ -120,7 +130,7 @@ public class ProjectileController : MonoBehaviour
             return;
 
         Debug.Log("SetHIT");
-        ChangeState(STATE.HIT);
+        ChangeState(STATE.ENDMOVE);
     }
 
 
@@ -146,8 +156,23 @@ public class ProjectileController : MonoBehaviour
     {
         Debug.Log("충돌");
 
-        if (other.gameObject == target)
-            ChangeState(STATE.HIT);
+        if (isTargeting)
+        {
+            if (other.gameObject == target)
+            {
+                HitDel?.Invoke();
+                ChangeState(STATE.ENDMOVE);
+            }
+                
+        }
+        else
+        {
+            if (other.gameObject.layer == target.layer)
+            {
+
+            }
+        }
+        
     }
 
 
@@ -176,8 +201,7 @@ public class ProjectileController : MonoBehaviour
                 }
                 moveDel?.Invoke();
                 break;
-            case STATE.HIT:
-                HitDel?.Invoke();
+            case STATE.ENDMOVE:
                 Destroy(this.gameObject, DestroyDelay);
                 break;
         }
@@ -195,7 +219,7 @@ public class ProjectileController : MonoBehaviour
                 break;
             case STATE.SHOOT:
                 break;
-            case STATE.HIT:
+            case STATE.ENDMOVE:
                 break;
         }
     }

@@ -24,7 +24,7 @@ public class SkillController : MonoBehaviour
     public SKILLSTATE skillState = SKILLSTATE.CREATE;
 
     // Components
-    protected AnimEvent animEvent;
+    [SerializeField] protected AnimEvent animEvent;
     [SerializeField] protected GameObject SkillParticle;
     [SerializeField] protected GameObject SkillReadyParticle;
     
