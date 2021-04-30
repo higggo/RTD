@@ -5,6 +5,39 @@ using UnityEngine;
 using UnityEngine.Events;
 using ResponseMessage;
 
+public class Round
+{
+    public enum Type
+    {
+        Mob,
+        Boss
+    }
+
+    public string addr;
+    public int enemyCount;
+    public int breakTime;
+    public uint reward;
+
+    public Type battle;
+    public bool clear;
+
+    public Round(string addr, int enemyCount, int breakTime, uint reward)
+    {
+        this.addr = addr;
+        this.enemyCount = enemyCount;
+        this.breakTime = breakTime;
+        this.reward = reward;
+    }
+}
+
+public class MobRound : Round 
+{
+    MobRound(string addr, int enemyCount, int breakTime, uint reward)
+        : base(addr, enemyCount, breakTime, reward)
+    {
+        battle = Type.Mob;
+    }
+}
 
 public class GamePlay : MonoBehaviour
 {
@@ -16,11 +49,16 @@ public class GamePlay : MonoBehaviour
         GameStart,
         RoundStart,
         SpawnEnd,
+        BossApearance,
+        BossRoundStart,
+        BossRoundEnd,
         BreakTime,
         GameEnd
 
     }
     STATE state = STATE.StandBy;
+
+    Coroutine MoveCoroutine;
 
     public GameObject IntroPanel = null;
     public GameObject RoundText = null;
@@ -30,13 +68,12 @@ public class GamePlay : MonoBehaviour
     public GameObject LevelUpActiveButton = null;
 
     WaveSpawner WaveSpawner;
-    Coroutine MoveCoroutine;
     Coroutine DirectionCameraFunc;
 
     bool bViewtoGround = true;
 
     // 처음 시작시간
-    const int GameStartBreakTime = 60;
+    const int GameStartBreakTime = 10;
 
     // 라이프
     int GameLife = 100;
@@ -54,50 +91,39 @@ public class GamePlay : MonoBehaviour
             return state;
         }
     }
-    public struct Round
-    {
-        public string addr;
-        public int enemyCount;
-        public int breakTime;
-
-        public Round(string addr, int enemyCount, int breakTime)
-        {
-            this.addr = addr;
-            this.enemyCount = enemyCount;
-            this.breakTime = breakTime;
-        }
-    }
-
     private void Awake()
     {
-        // "애들 경로", 갯수, 브레이크타임
+        // "애들 경로", 갯수, 브레이크타임, 보상금액
         // 1 ~ 4 Round
-        RoundList.Add(new Round("Character/Enemy/TurtleShell", 15, 25));
-        RoundList.Add(new Round("Character/Enemy/RatDragon/RatDragon Blue", 15, 25));
-        RoundList.Add(new Round("Character/Enemy/Creatures/Creature Blue", 15, 25));
-        RoundList.Add(new Round("Character/Enemy/Salamander/Salamander Blue", 15, 25));
+        RoundList.Add(new Round("Character/Enemy/TurtleShell", 15, 25, 350));
+        RoundList.Add(new Round("Character/Enemy/RatDragon/RatDragon Blue", 15, 25, 350));
+        RoundList.Add(new Round("Character/Enemy/Creatures/Creature Blue", 15, 25, 350));
+        RoundList.Add(new Round("Character/Enemy/Salamander/Salamander Blue", 15, 25, 350));
         //
         // Boss Level1
+        RoundList.Add(new BossRound("Character/Boss/Dragon Level1", 1, 25, 1000));
         //
 
         // 6 ~ 9 Round
-        RoundList.Add(new Round("Character/Enemy/Slime", 20, 25));
-        RoundList.Add(new Round("Character/Enemy/RatDragon/RatDragon Green", 20, 25));
-        RoundList.Add(new Round("Character/Enemy/Creatures/Creature Green", 20, 25));
-        RoundList.Add(new Round("Character/Enemy/Salamander/Salamander Green", 20, 25));
+        RoundList.Add(new Round("Character/Enemy/Slime", 20, 25, 500));
+        RoundList.Add(new Round("Character/Enemy/RatDragon/RatDragon Green", 20, 25, 500));
+        RoundList.Add(new Round("Character/Enemy/Creatures/Creature Green", 20, 25, 500));
+        RoundList.Add(new Round("Character/Enemy/Salamander/Salamander Green", 20, 25, 500));
 
         //
         // Boss Level2
+        RoundList.Add(new BossRound("Character/Boss/Dragon Level2", 1, 25, 1500));
         //
 
         // 11 ~ 14 Round
-        RoundList.Add(new Round("Character/Enemy/Golem", 25, 25));
-        RoundList.Add(new Round("Character/Enemy/RatDragon/RatDragon Red", 25, 25));
-        RoundList.Add(new Round("Character/Enemy/Creatures/Creature Grey", 25, 25));
-        RoundList.Add(new Round("Character/Enemy/Salamander/Salamander Red", 25, 25));
+        RoundList.Add(new Round("Character/Enemy/Golem", 25, 25, 750));
+        RoundList.Add(new Round("Character/Enemy/RatDragon/RatDragon Red", 25, 25, 750));
+        RoundList.Add(new Round("Character/Enemy/Creatures/Creature Grey", 25, 25, 750));
+        RoundList.Add(new Round("Character/Enemy/Salamander/Salamander Red", 25, 25, 750));
 
         //
         // Final Boss
+        RoundList.Add(new BossRound("Character/Boss/Dragon Level3", 1, 25, 2000));
         //
     }
 
@@ -143,7 +169,6 @@ public class GamePlay : MonoBehaviour
                 Init();
                 SetRoundText(CurrentRound);
                 StartCoroutine(CountDownTime(GameStartBreakTime, ()=> {ChangeState(STATE.RoundStart); RoundText.SetActive(true); }));
-                GetComponent<BossRoundManager>().State = BossRoundManager.STATE.BreakTime;
 
                 break;
             case STATE.RoundStart:
@@ -164,24 +189,66 @@ public class GamePlay : MonoBehaviour
 
                 // Update Round
                 CurrentRound++;
-                GetComponent<BossRoundManager>().Round = CurrentRound;
-                GetComponent<BossRoundManager>().State = BossRoundManager.STATE.RoundStart;
 
                 // Update Info
-                BreakTimeText.SetActive(false);
                 SetRoundText(CurrentRound);
 
                 // Enemy Spawn
                 MoveCoroutine = StartCoroutine(
                     WaveSpawner.StartSpawnWaves(
                         RoundList[CurrentRound - 1].addr,
-                        RoundList[CurrentRound - 1].enemyCount,   // Enemy Count
-                        ()=> {ChangeState(STATE.SpawnEnd); }    // If Spawn Done
-                        )
-                    );
-
+                        RoundList[CurrentRound - 1].enemyCount,
+                        RoundList[CurrentRound - 1].battle == Round.Type.Boss? true : false,
+                        () => { 
+                            if(RoundList[CurrentRound - 1].battle == Round.Type.Boss)
+                                ChangeState(STATE.BossApearance);
+                            else
+                                ChangeState(STATE.SpawnEnd); 
+                        }
+                    )
+                );
                 break;
             case STATE.SpawnEnd:
+                break;
+            case STATE.BossApearance:
+                {
+                    // Update Round
+                    List<GameObject> characters = GetComponent<TileManager>().GetGroundCharacters();
+                    for(int i=0; i< characters.Count; i++)
+                    {
+                        characters[i].transform.SetParent(GetComponent<TileManager>().GetEmptyBossTile());
+                        characters[i].transform.localPosition = Vector3.zero;
+                        characters[i].GetComponent<CharController>().isInField = false;
+                    }
+                    StartCoroutine(CountDownTime(5, () => { ChangeState(STATE.BossRoundStart); }));
+                }
+                break;
+            case STATE.BossRoundStart:
+                {
+                    GameObject boss = GetComponent<WaveSpawner>().EnemyPoket.GetChild(0).gameObject;
+                    boss.GetComponent<BossController>().canAction = true;
+                    boss.GetComponent<CharacterKit.Damageable>().onDeadDel += () => { RoundList[CurrentRound - 1].clear = true; Destroy(boss); };
+
+
+                    List<GameObject> characters = GetComponent<TileManager>().GetBossCharacters();
+                    foreach (GameObject character in characters)
+                    {
+                        character.GetComponent<CharController>().InBossRoom(true);
+                    }
+                }
+                break;
+            case STATE.BossRoundEnd:
+                {
+                    List<GameObject> characters = GetComponent<TileManager>().GetBossCharacters();
+                    for (int i = 0; i < characters.Count; i++)
+                    {
+                        characters[i].GetComponent<CharController>().InBossRoom(false);
+                        //characters[i].GetComponent<CharController>().isInBossRoom = false;
+                        characters[i].transform.SetParent(GetComponent<TileManager>().GetEmptyGroundTile());
+                        characters[i].transform.localPosition = Vector3.zero;
+                    }
+                    StartCoroutine(CountDownTime(3, () => { ChangeState(STATE.BreakTime); }));
+                }
                 break;
             case STATE.BreakTime:
                 //  Skill Cool
@@ -197,38 +264,22 @@ public class GamePlay : MonoBehaviour
                 //
                 GameObject.Find("Canvas").transform.Find("CharacterPickerUI").gameObject.SetActive(true);
 
-
-                // Set Boss Round
-                GetComponent<BossRoundManager>().State = BossRoundManager.STATE.BreakTime;
-
                 // Receive Money
                 // LJH : Add receiveMoney
-                uint receiveMoney;
-                if (CurrentRound < 5)
-                    receiveMoney = 350;
-                else if (CurrentRound < 10)
-                    receiveMoney = 500;
-                else
-                    receiveMoney = 750;
+                //uint receiveMoney;
+                //if (CurrentRound < 5)
+                //    receiveMoney = 350;
+                //else if (CurrentRound < 10)
+                //    receiveMoney = 500;
+                //else
+                //    receiveMoney = 750;
 
-                if (GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Receive, receiveMoney, response, "Round Clear"))
-
-                {
-                    // Succeed
-                }
-                else
-                {
-                    // Fail
-                    Debug.Log(ResponseMessage.Trade.Receive(response));
-                }
-
+                GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Receive, RoundList[CurrentRound - 1].reward, response, CurrentRound + "Round Clear");
 
                 // GameOver?
-                //if (CurrentRound >= RoundList.Count || GetComponent<BossRoundManager>().State == BossRoundManager.STATE.GameOver)
                 if (CurrentRound >= RoundList.Count)
                 {
                     ChangeState(STATE.GameEnd); 
-                    GetComponent<BossRoundManager>().State = BossRoundManager.STATE.GameOver;
                 }
                 // Next Round
                 else
@@ -238,8 +289,9 @@ public class GamePlay : MonoBehaviour
                     GetComponent<PickController>().SetNormal();
                     GetComponent<SelectCharacterCard>().RefreshCardsFree();
                     LevelUpActiveButton.GetComponent<BtnLevelUpActive>().SetActive();
-                    BreakTimeText.SetActive(true);
-                    StartCoroutine(CountDownTime(RoundList[CurrentRound - 1].breakTime, () => { ChangeState(STATE.RoundStart); }));
+                    StartCoroutine(CountDownTime(RoundList[CurrentRound - 1].breakTime, () => {
+                            ChangeState(STATE.RoundStart);
+                    }));
                 }
 
                 break;
@@ -248,14 +300,11 @@ public class GamePlay : MonoBehaviour
                 {
                     GameEndText.GetComponent<TMPro.TextMeshProUGUI>().text = "GAMEOVER";
                 }
-                else if(GetComponent<BossRoundManager>().State == BossRoundManager.STATE.GameOver)
-                {
-                    GameEndText.GetComponent<TMPro.TextMeshProUGUI>().text = "Boss is alive";
-                }
                 else
                 {
                     GameEndText.GetComponent<TMPro.TextMeshProUGUI>().text = "CLEAR";
                 }
+                BreakTimeText.SetActive(false);
                 GameEndText.SetActive(true);
                 break;
         }    
@@ -305,6 +354,38 @@ public class GamePlay : MonoBehaviour
                     ChangeState(STATE.BreakTime);
                 }
                 break;
+            case STATE.BossApearance:
+                break;
+            case STATE.BossRoundStart:
+                {
+                    if(RoundList[CurrentRound - 1].clear)
+                    {
+                        // Boss Clear
+                        GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Receive, RoundList[CurrentRound - 1].reward, response, CurrentRound + "Round Boss Clear");
+                        ChangeState(STATE.BossRoundEnd);
+                    }
+                    else
+                    {
+                        bool alldie = true;
+                        List<GameObject> characters = GetComponent<TileManager>().GetBossCharacters();
+                        foreach (GameObject character in characters)
+                        {
+                            if (!character.GetComponent<CharacterKit.Damageable>().IsDead)
+                            {
+                                alldie = false;
+                                break;
+                            }
+                        }
+                        if(alldie)
+                        {
+                            // Characters all die
+                            ChangeState(STATE.BossRoundEnd);
+                        }
+                    }
+                }
+                break;
+            case STATE.BossRoundEnd:
+                break;
             case STATE.BreakTime:
                 break;
             case STATE.GameEnd:
@@ -318,6 +399,7 @@ public class GamePlay : MonoBehaviour
     }
     IEnumerator CountDownTime(int startTime, UnityAction Done)
     {
+        BreakTimeText.SetActive(true);
         float curTime = startTime;
         int recordTime = startTime;
         SetBreakTimeText((int)recordTime);
@@ -332,6 +414,7 @@ public class GamePlay : MonoBehaviour
             }
             yield return null;
         }
+        BreakTimeText.SetActive(false);
         Done?.Invoke();
     }
     void Init()
