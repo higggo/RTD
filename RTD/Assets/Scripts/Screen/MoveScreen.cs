@@ -59,7 +59,7 @@ public class MoveScreen : MonoBehaviour
         }
         
         camSavePoint[0].savePoint = mainCam.transform.position;
-        camSavePoint[0].rot = new Vector3(75.471f, 0f, 0f);
+        camSavePoint[0].rot = mainCam.transform.rotation.eulerAngles;
         camSavePoint[1].savePoint = new Vector3(94.66f, -48.88f, -40.85f);
         camSavePoint[1].rot = new Vector3(40.874f, -110.73f, 0f);
     }

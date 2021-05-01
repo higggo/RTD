@@ -86,6 +86,7 @@ public class CameraManager : MonoBehaviour
 
     public IEnumerator BossSpawn(UnityAction done)
     {
+        CameraChangeDel?.Invoke(DirectionCamera);
         DirectionCamera.depth = 0;
         foreach (CameraMovePos info in MovePos)
         {
@@ -100,9 +101,11 @@ public class CameraManager : MonoBehaviour
             }
         }
         done?.Invoke();
+        CameraChangeDel?.Invoke(MainCamera);
     }
     public IEnumerator LookAroundBoss(Transform obj)
     {
+        CameraChangeDel?.Invoke(DirectionCamera);
         DirectionCamera.depth = 0;
         float time = 4f;
         float delta = 0.0f;
@@ -154,7 +157,7 @@ public class CameraManager : MonoBehaviour
 
                 delta += Time.deltaTime;
                 Vector3 pos = obj.position + (-obj.forward * 6.0f);
-                pos.y += 2.0f;
+                pos.y += 3.5f;
                 DirectionCamera.transform.position = pos;
                 DirectionCamera.transform.forward = obj.forward;
 
