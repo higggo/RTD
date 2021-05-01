@@ -225,4 +225,11 @@ public class MoveScreen : MonoBehaviour
 
     }
 
+    public void TranslatePoint(int i)
+    {
+        float depthDist = CurZoomDepth - camSavePoint[i].zoomDepth;
+        Vector3 ScreenZoomDelta = mainCam.transform.forward * depthDist;
+        mainCam.transform.position = camSavePoint[i].savePoint;
+        mainCam.transform.Translate(ScreenZoomDelta, Space.World);
+    }
 }

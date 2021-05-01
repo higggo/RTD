@@ -24,12 +24,21 @@ public struct CameraMovePos
 
 public class CameraManager : MonoBehaviour
 {
+
+    public enum STATE
+    {
+
+    }
+
     List<CameraMovePos> MovePos = new List<CameraMovePos>();
     public Camera MainCamera = null;
     public Camera DirectionCamera = null;
     public Camera BossZoneCamera = null;
+    public MoveScreen MainCameraMovement = null;
 
     bool bBreakTime = false;
+
+    Coroutine DirectionCameraFunc;
 
     // LJH : mainCamera 변경시 사용할 델리게이트
     public event UnityAction<Camera> CameraChangeDel = null;
@@ -48,6 +57,8 @@ public class CameraManager : MonoBehaviour
             MainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         if (BossZoneCamera == null)
             BossZoneCamera = GameObject.Find("BossZoneCamera").GetComponent<Camera>();
+        if (MainCameraMovement == null)
+            MainCameraMovement = GameObject.Find("CameraMovement").GetComponent<MoveScreen>();
 
         // 1
         MovePos.Add(new CameraMovePos(
@@ -92,7 +103,7 @@ public class CameraManager : MonoBehaviour
     }
     public IEnumerator LookAroundBoss(Transform obj)
     {
-        //DirectionCamera.depth = 0;
+        DirectionCamera.depth = 0;
         float time = 4f;
         float delta = 0.0f;
         while(delta <= time)
@@ -105,9 +116,10 @@ public class CameraManager : MonoBehaviour
             yield return null;
         }
         DirectionCamera.depth = -2;
+        CameraChangeDel?.Invoke(MainCamera);
     }
 
-    public IEnumerator LookAroundGroundCharacter()
+    public IEnumerator LookAroundCharacter()
     {
         // LJH : HPBar가 DirectionCamera를 바라보도록 수정
         CameraChangeDel?.Invoke(DirectionCamera);
@@ -115,7 +127,7 @@ public class CameraManager : MonoBehaviour
         bBreakTime = true;
         float time = 2f;
         List<GameObject> characters = new List<GameObject>();
-        characters = GetComponent<TileManager>().GetGroundCharacters();
+        characters = GetComponent<TileManager>().GetBossGroundCharacters();
 
         while (bBreakTime)
         {
@@ -140,10 +152,6 @@ public class CameraManager : MonoBehaviour
                 if (characters[ran].GetComponent<CharController>().characterState == CharacterKit.BASICSTATE.DEAD)
                     break;
 
-                //characters[ran].GetComponent<CharacterKit.Damageable>().IsDead;
-
-
-
                 delta += Time.deltaTime;
                 Vector3 pos = obj.position + (-obj.forward * 6.0f);
                 pos.y += 2.0f;
@@ -156,57 +164,38 @@ public class CameraManager : MonoBehaviour
         }
         DirectionCamera.depth = -2;
         CameraChangeDel?.Invoke(MainCamera);
-    }
-
-    public IEnumerator LookAroundBossCharacter()
-    {
-        DirectionCamera.depth = 0;
-        bBreakTime = true;
-        float time = 2f;
-        List<GameObject> characters = new List<GameObject>();
-        characters = GetComponent<TileManager>().GetBossCharacters();
-
-        while (bBreakTime)
-        {
-            if (characters.Count == 0)
-            {
-                bBreakTime = false;
-                break;
-            }
-            int ran = Random.Range(0, characters.Count);
-            if (characters[ran] == null)
-            {
-                characters.RemoveAt(ran);
-                continue;
-            }
-            Transform obj = characters[ran].transform;
-            float delta = 0.0f;
-            while (delta <= time) 
-            {
-                if (!bBreakTime || characters[ran] == null)
-                    break;
-                if (characters[ran].GetComponent<CharController>().characterState == CharacterKit.BASICSTATE.DEAD)
-                    break;
-
-                //characters[ran].GetComponent<CharacterKit.Damageable>().IsDead;
-
-                delta += Time.deltaTime;
-                Vector3 pos = obj.position + (-obj.forward * 6.0f);
-                pos.y += 2.0f;
-                DirectionCamera.transform.position = pos;
-                DirectionCamera.transform.forward = obj.forward;
-
-                yield return null;
-            }
-            yield return null;
-        }
-        DirectionCamera.depth = -2;
     }
 
     public void StopDirectionCamera()
     {
+        if (DirectionCameraFunc != null)
+            StopCoroutine(DirectionCameraFunc);
+
         bBreakTime = false; 
         DirectionCamera.depth = -2;
         CameraChangeDel?.Invoke(MainCamera);
+    }
+
+    public void GroundMainCamera()
+    {
+        MainCameraMovement.TranslatePoint(0);
+    }
+    public void BossMainCamera()
+    {
+        MainCameraMovement.TranslatePoint(1);
+    }
+
+    public void ChangeCamera()
+    {
+        if (DirectionCamera.depth < MainCamera.depth)
+        {
+            DirectionCameraFunc = StartCoroutine(LookAroundCharacter());
+        }
+        else
+        {
+            if (DirectionCameraFunc != null)
+                StopCoroutine(DirectionCameraFunc);
+            StopDirectionCamera();
+        }
     }
 }

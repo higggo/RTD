@@ -67,6 +67,8 @@ public class GamePlay : MonoBehaviour
     public GameObject GameEndText = null;
     public GameObject LevelUpActiveButton = null;
 
+    public GameObject CurrentBoss;
+
     WaveSpawner WaveSpawner;
     Coroutine DirectionCameraFunc;
 
@@ -172,10 +174,6 @@ public class GamePlay : MonoBehaviour
 
                 break;
             case STATE.RoundStart:
-
-                // Camera Control
-                DirectionCameraFunc = StartCoroutine(GetComponent<CameraManager>().LookAroundGroundCharacter());
-
                 // Start Attack
                 GetComponent<CharacterInfoManager>().CharacterAttackFlagOn();
 
@@ -212,6 +210,11 @@ public class GamePlay : MonoBehaviour
                 break;
             case STATE.BossApearance:
                 {
+                    CurrentBoss = GetComponent<WaveSpawner>().EnemyPoket.GetChild(0).gameObject;
+                    if (DirectionCameraFunc != null)
+                        StopCoroutine(DirectionCameraFunc);
+                    StartCoroutine(GetComponent<CameraManager>().LookAroundBoss(CurrentBoss.transform));
+                    GetComponent<CameraManager>().BossMainCamera();
                     // Update Round
                     List<GameObject> characters = GetComponent<TileManager>().GetGroundCharacters();
                     for(int i=0; i< characters.Count; i++)
@@ -225,9 +228,9 @@ public class GamePlay : MonoBehaviour
                 break;
             case STATE.BossRoundStart:
                 {
-                    GameObject boss = GetComponent<WaveSpawner>().EnemyPoket.GetChild(0).gameObject;
-                    boss.GetComponent<BossController>().canAction = true;
-                    boss.GetComponent<CharacterKit.Damageable>().onDeadDel += () => { RoundList[CurrentRound - 1].clear = true; Destroy(boss); };
+                    GetComponent<CameraManager>().BossMainCamera();
+                    CurrentBoss.GetComponent<BossController>().canAction = true;
+                    CurrentBoss.GetComponent<CharacterKit.Damageable>().onDeadDel += () => { RoundList[CurrentRound - 1].clear = true; Destroy(CurrentBoss); };
 
 
                     List<GameObject> characters = GetComponent<TileManager>().GetBossCharacters();
@@ -239,15 +242,19 @@ public class GamePlay : MonoBehaviour
                 break;
             case STATE.BossRoundEnd:
                 {
-                    List<GameObject> characters = GetComponent<TileManager>().GetBossCharacters();
-                    for (int i = 0; i < characters.Count; i++)
-                    {
-                        characters[i].GetComponent<CharController>().InBossRoom(false);
-                        //characters[i].GetComponent<CharController>().isInBossRoom = false;
-                        characters[i].transform.SetParent(GetComponent<TileManager>().GetEmptyGroundTile());
-                        characters[i].transform.localPosition = Vector3.zero;
-                    }
-                    StartCoroutine(CountDownTime(3, () => { ChangeState(STATE.BreakTime); }));
+                    StartCoroutine(CountDownTime(3, () => { ChangeState(STATE.BreakTime);
+                        List<GameObject> characters = GetComponent<TileManager>().GetBossCharacters();
+                        for (int i = 0; i < characters.Count; i++)
+                        {
+                            characters[i].GetComponent<CharController>().InBossRoom(false);
+                            //characters[i].GetComponent<CharController>().isInBossRoom = false;
+                            characters[i].transform.SetParent(GetComponent<TileManager>().GetEmptyGroundTile());
+                            characters[i].transform.localPosition = Vector3.zero;
+
+                        }
+                        if (CurrentBoss != null)
+                            Destroy(CurrentBoss);
+                    }));
                 }
                 break;
             case STATE.BreakTime:
@@ -255,8 +262,8 @@ public class GamePlay : MonoBehaviour
                 CharacterKit.CharUtils.SetSkillCoolDownTrigger(false);
 
                 // Camera Control
-                StopCoroutine(DirectionCameraFunc);
                 GetComponent<CameraManager>().StopDirectionCamera();
+                GetComponent<CameraManager>().GroundMainCamera();
 
                 // Stop Attack
                 GetComponent<CharacterInfoManager>().CharacterAttackFlagOff();
@@ -320,32 +327,6 @@ public class GamePlay : MonoBehaviour
             case STATE.GameStart:
                 break;
             case STATE.RoundStart:
-                if (Input.GetKeyDown(KeyCode.Alpha1))
-                {
-                    if(!bViewtoGround)
-                    {
-                        if(DirectionCameraFunc != null)
-                            StopCoroutine(DirectionCameraFunc);
-                        DirectionCameraFunc = StartCoroutine(GetComponent<CameraManager>().LookAroundGroundCharacter());
-                        bViewtoGround = true;
-                    }
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha2))
-                {
-                    if(bViewtoGround)
-                    {
-                        if (DirectionCameraFunc != null)
-                            StopCoroutine(DirectionCameraFunc);
-                        DirectionCameraFunc = StartCoroutine(GetComponent<CameraManager>().LookAroundBossCharacter());
-                        bViewtoGround = false;
-                    }
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha3))
-                {
-                    // Camera Control
-                    StopCoroutine(DirectionCameraFunc);
-                    GetComponent<CameraManager>().StopDirectionCamera();
-                }
                     break;
             case STATE.SpawnEnd:
                 // 맵에 적군이 모두 없어질때까지 대기

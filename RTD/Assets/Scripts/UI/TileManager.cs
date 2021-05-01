@@ -294,4 +294,25 @@ public class TileManager : MonoBehaviour
         }
         return characters;
     }
+    public List<GameObject> GetBossGroundCharacters()
+    {
+        List<GameObject> characters = new List<GameObject>();
+
+        foreach (Transform child in GroundSpace)
+        {
+            if (child.childCount > 0)
+            {
+                characters.Add(child.GetChild(0).gameObject);
+            }
+        }
+
+        foreach (Transform child in BossSpace)
+        {
+            if (child.childCount > 0)
+            {
+                characters.Add(child.GetChild(0).gameObject);
+            }
+        }
+        return characters;
+    }
 }
