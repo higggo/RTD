@@ -167,6 +167,7 @@ public class ProjectileController : MonoBehaviour
         {
             if (other.gameObject.layer == layerMask)
             {
+                _target = other.gameObject;
                 HitDel?.Invoke();
             }
         }

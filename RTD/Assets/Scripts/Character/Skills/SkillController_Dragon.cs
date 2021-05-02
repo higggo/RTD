@@ -41,12 +41,15 @@ public class SkillController_Dragon : SkillController
 
     public override void EndUseSkill()
     {
-        base.EndUseSkill();
         if (skillCount < skillEndCount - 1)
+        {
             skillCount++;
+            controller.ChangeDetectState();
+        }
         else
         {
             skillCount = 0;
+            _canUseSkill = false;
             ResetRemainCoolTime();
         }
     }

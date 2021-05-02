@@ -321,6 +321,13 @@ public class CharController : MonoBehaviour
                 }
                 break;
             case BASICSTATE.READYSKILL:
+                // break Point =====> 스킬 쿨다운이 멈췄거나, 필드에서 나갔을 때
+                if (!_skillController.startCoolDown || !isInField)
+                {
+                    ChangeState(BASICSTATE.DETECT);
+                    break;
+                }
+                
                 if (_skillController.PrepareSkill())
                     ChangeState(BASICSTATE.USESKILL);
                 else

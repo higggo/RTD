@@ -78,6 +78,10 @@ public class DragonController : BossController
         _canAction = false;
     }
 
+    public void ChangeDetectState()
+    {
+        ChangeState(STATE.DETECT);
+    }
 
 
     // Start is called before the first frame update
