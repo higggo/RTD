@@ -33,8 +33,8 @@ public class LevelUpManager : MonoBehaviour
     {
         if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, MAGE.Price, response, "MAGE Level Up"))
         {
-            MAGE.Level += 1;
-            CharUtils.UpdateSpecificUnion(CharacterKit.UNION.MAGE, MAGE.Level);
+            BtnLevelUpMage.Level += 1;
+            CharUtils.UpdateSpecificUnion(CharacterKit.UNION.MAGE, BtnLevelUpMage.Level);
         }
         else
         {
@@ -46,8 +46,8 @@ public class LevelUpManager : MonoBehaviour
     {
         if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, WARRIOR.Price, response, "WARRIOR Level Up"))
         {
-            WARRIOR.Level += 1;
-            CharUtils.UpdateSpecificUnion(CharacterKit.UNION.WARRIOR, WARRIOR.Level);
+            BtnLevelUpWarrior.Level += 1;
+            CharUtils.UpdateSpecificUnion(CharacterKit.UNION.WARRIOR, BtnLevelUpWarrior.Level);
         }
         else
         {
@@ -59,8 +59,8 @@ public class LevelUpManager : MonoBehaviour
     {
         if (MoneyManager.CalculateMoney(MoneyManager.ACTION.Pay, ARCHER.Price, response, "ARCHER Level Up"))
         {
-            ARCHER.Level += 1;
-            CharUtils.UpdateSpecificUnion(CharacterKit.UNION.ARCHER, ARCHER.Level);
+            BtnLevelUpArcher.Level += 1;
+            CharUtils.UpdateSpecificUnion(CharacterKit.UNION.ARCHER, BtnLevelUpArcher.Level);
         }
         else
         {
@@ -81,13 +81,13 @@ public class LevelUpManager : MonoBehaviour
         switch(union)
         {
             case CharacterKit.UNION.MAGE:
-                level = MAGE.Level;
+                level = BtnLevelUpMage.Level;
                 break;
             case CharacterKit.UNION.WARRIOR:
-                level = WARRIOR.Level;
+                level = BtnLevelUpWarrior.Level;
                 break;
             case CharacterKit.UNION.ARCHER:
-                level = ARCHER.Level;
+                level = BtnLevelUpArcher.Level;
                 break;
         }
         return level;

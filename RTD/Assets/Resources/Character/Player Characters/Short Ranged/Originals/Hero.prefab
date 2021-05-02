@@ -36,6 +36,7 @@ Transform:
   m_Children:
   - {fileID: 6168309057565912987}
   - {fileID: 7879727110899936849}
+  - {fileID: 3952681010978859889}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -190,6 +191,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601af601b1105d84a8a4ba9e8ea0e91b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7846927693031329847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3952681010978859889}
+  - component: {fileID: 39874699739189438}
+  m_Layer: 12
+  m_Name: Skill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3952681010978859889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846927693031329847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4124375706150853618}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &39874699739189438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846927693031329847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f1fae9e3323ebf45ab952906db12912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillClass: -1
+  skillState: 0
+  animEvent: {fileID: 0}
+  SkillParticle: {fileID: 0}
+  SkillReadyParticle: {fileID: 7806026263086614917, guid: 579b5ba8947c3f241a412df822cb3e75,
+    type: 3}
+  _attachToParent: 1
+  SkillParticleStartPos: {fileID: 6162355397056081205}
+  SkillReadyParticleStartPos: {fileID: 6162355397056081205}
+  coolTime: 10
+  buffDuration: 5
+  buffAtkDamageRatio: 0.5
+  buffAtkSpeedRatio: 0.25
 --- !u!1001 &2051049016617695403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -738,6 +795,12 @@ GameObject:
 --- !u!4 &6168309057565912987 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7829092002470248444, guid: 266435f9d386f4a40bc687f1331ee89d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4124375704854679655}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6162355397056081205 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7834482484457798994, guid: 266435f9d386f4a40bc687f1331ee89d,
     type: 3}
   m_PrefabInstance: {fileID: 4124375704854679655}
   m_PrefabAsset: {fileID: 0}

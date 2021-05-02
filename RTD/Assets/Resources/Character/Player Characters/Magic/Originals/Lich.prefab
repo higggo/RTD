@@ -79,6 +79,7 @@ Transform:
   m_Children:
   - {fileID: 2455364943493890833}
   - {fileID: 8488615229211554837}
+  - {fileID: 3476216859836035066}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -236,6 +237,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 2177709007377066727, guid: 620042f068aca3242acfd273736449f4, type: 3}
   bulletSpeed: 30
+--- !u!1 &7215518653721526153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3476216859836035066}
+  - component: {fileID: 417717480089344530}
+  - component: {fileID: 129190850839231064}
+  m_Layer: 12
+  m_Name: Skill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3476216859836035066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215518653721526153}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5647351720985782542}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &417717480089344530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215518653721526153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4892694d4d4d9d040b800ea25a1450e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillClass: -1
+  skillState: 0
+  animEvent: {fileID: 0}
+  SkillParticle: {fileID: 0}
+  SkillReadyParticle: {fileID: 0}
+  _attachToParent: 1
+  SkillParticleStartPos: {fileID: 5647351720520488544}
+  SkillReadyParticleStartPos: {fileID: 5647351720520488544}
+  coolTime: 10
+  Damage: 50
+--- !u!114 &129190850839231064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215518653721526153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99e464128cb4b243bf2a7372edf9dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 100006, guid: c6f392d789f304e4eae5c5901ca67f48, type: 3}
+  bulletSpeed: 25
 --- !u!1001 &351631146657637103
 PrefabInstance:
   m_ObjectHideFlags: 0

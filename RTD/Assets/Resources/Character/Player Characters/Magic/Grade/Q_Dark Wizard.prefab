@@ -30,6 +30,61 @@ Transform:
   m_Father: {fileID: 2395796825542504273}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1368733888179467120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8220418165717145748}
+  - component: {fileID: 5144601452997792300}
+  m_Layer: 12
+  m_Name: Skill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8220418165717145748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368733888179467120}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5770245218879204562}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5144601452997792300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368733888179467120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7fb7d5433c693419c9d853077a7b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillClass: -1
+  skillState: 0
+  animEvent: {fileID: 0}
+  SkillParticle: {fileID: 0}
+  SkillReadyParticle: {fileID: 0}
+  _attachToParent: 1
+  SkillParticleStartPos: {fileID: 0}
+  SkillReadyParticleStartPos: {fileID: 0}
+  coolTime: 10
+  PoisonEffect: {fileID: 100006, guid: 4d2b27844b3892d40b9a774b69737ef6, type: 3}
+  PoisonLifeTime: 3
+  Damage: 400
 --- !u!1 &2389378516438894853
 GameObject:
   m_ObjectHideFlags: 0
@@ -3121,6 +3176,7 @@ Transform:
   m_Children:
   - {fileID: 2395804564154082685}
   - {fileID: 846768806886153236}
+  - {fileID: 8220418165717145748}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -323,6 +323,24 @@ public class CharController : MonoBehaviour
             case BASICSTATE.READYSKILL:
                 if (_skillController.PrepareSkill())
                     ChangeState(BASICSTATE.USESKILL);
+                else
+                {
+                    if (_isInBossRoom)
+                    {
+                        GameObject obj = null;
+                        if (CharUtils.FindTarget(transform, enemyLayer, DetectRange, out obj))
+                        {
+                            if (obj != null)
+                            {
+                                Debug.Log(obj.name);
+                                Vector3 pos = obj.transform.position;
+                                pos.y = transform.position.y;
+                                CharacterMove(pos);
+                                break;
+                            }
+                        }
+                    }
+                }
                 break;
             case BASICSTATE.USESKILL:
                 if (!_skillController.canUseSkill)
@@ -363,7 +381,7 @@ public class CharController : MonoBehaviour
     {
         // GetStat Script
         _statInfo = GetComponent<CharacterStat>();
-        _skillController = GetComponent<SkillController>();
+        _skillController = GetComponentInChildren<SkillController>();
 
         // Get Animator
         CharacterAnimator = GetComponentInChildren<Animator>();

@@ -7,6 +7,7 @@ public class BulletDamage : MonoBehaviour
 {
     public GameObject hitEffect;
     protected ProjectileController controller;
+    [SerializeField] protected Transform HitEffectPos;
 
     void Start()
     {
@@ -40,6 +41,13 @@ public class BulletDamage : MonoBehaviour
         if (hitEffect == null)
             return;
 
-        Instantiate(hitEffect, transform.position, transform.rotation);
+        GameObject effectObj;
+        if (HitEffectPos == null)
+            effectObj = Instantiate(hitEffect, transform.position, transform.rotation);
+        else
+            effectObj = Instantiate(hitEffect, HitEffectPos.position, HitEffectPos.rotation);
+
+        if (effectObj.GetComponent<EffectDamage>() != null)
+            effectObj.GetComponent<EffectDamage>().Init(controller.target.layer, controller.bulletDmg);
     }
 }

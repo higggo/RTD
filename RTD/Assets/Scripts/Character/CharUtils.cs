@@ -6,6 +6,40 @@ namespace CharacterKit
 {
     public class CharUtils : MonoBehaviour
     {
+        // @Summary: Owner의 rotation을 한 번에 Target을 향하도록 변경합니다. (높낮이의 차이는 무시됩니다.)
+        public static void RotateToTarget(Transform Owner, Transform Target)
+        {
+            if (Owner == null || Target == null)
+                return;
+
+            RotateToTarget(Owner, Target.position);
+        }
+
+        public static void RotateToTarget(Transform Owner, Vector3 Target)
+        {
+            if (Owner == null || Target == null)
+                return;
+
+            Vector3 modifiedTargetPos = Target;
+            modifiedTargetPos.y = Owner.position.y;
+            Owner.LookAt(modifiedTargetPos);
+        }
+
+        public static Quaternion GetRotationToTarget(Transform Owner, Transform Target)
+        {
+            return GetRotationToTarget(Owner, Target.position);
+        }
+
+        public static Quaternion GetRotationToTarget(Transform Owner, Vector3 Target)
+        {
+            Vector3 dir = Target;
+            dir.y = Owner.position.y;
+            dir = dir - Owner.position;
+            dir.Normalize();
+
+            return Quaternion.LookRotation(dir);
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// Calculate
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,9 +53,6 @@ namespace CharacterKit
             }
             return false;
         }
-
-
-
 
         public static bool IsInRange(Transform Instance, Transform Target, float Range, LayerMask Mask)
         {
@@ -37,7 +68,6 @@ namespace CharacterKit
 
             return false;
         }
-
 
         // @Summary: Target이 Instance로부터 Range안에 있는지 검사합니다. (높낮이의 차이는 무시됩니다.)
         public static bool IsInRange(Transform Instance, Transform Target, float Range)
@@ -183,6 +213,24 @@ namespace CharacterKit
             return TargetObj;
         }
 
+        public static List<GameObject> GetInFieldAllCharacters(GameObject obj)
+        {
+            List<GameObject> inField = new List<GameObject>();
+            int mask = 1 << obj.layer;
+            RaycastHit[] hitInfo = Physics.SphereCastAll(obj.transform.position, 1000, obj.transform.forward, 0.0f, mask);
+
+            foreach (RaycastHit hit in hitInfo)
+            {
+                if (hit.collider.gameObject.GetComponent<CharController>() == null)
+                    continue;
+
+                if (hit.collider.gameObject.GetComponent<CharController>().isInField)
+                    inField.Add(hit.collider.gameObject);
+
+            }
+            return inField;
+        }
+
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -314,8 +362,30 @@ namespace CharacterKit
                         controller.skillController.ResetAll();
                 }
             }
-
         }
+
+        public static int GetLevel(UNION characterUnion)
+        {
+            int level = 1;
+            switch (characterUnion)
+            {
+                case UNION.ENEMY:
+                    level = 1;
+                    break;
+                case UNION.WARRIOR:
+                    level = BtnLevelUpWarrior.Level;
+                    break;
+                case UNION.ARCHER:
+                    level = BtnLevelUpArcher.Level;
+                    break;
+                case UNION.MAGE:
+                    level = BtnLevelUpMage.Level;
+                    break;
+            }
+
+            return (level <= 0) ? 1 : level;
+        }
+
     }
 }
 

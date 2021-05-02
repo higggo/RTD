@@ -45,6 +45,7 @@ public class Moving : MonoBehaviour
     void Update()
     {
         CurrentPosition = transform.position;
+        speed = GetComponent<CharacterStat>().moveSpeed;
         if (wayPointIndex < wayPoints.Length &&
             GetComponent<EnemyController>().GetState() != ENEMYSTATE.DEAD)
         {

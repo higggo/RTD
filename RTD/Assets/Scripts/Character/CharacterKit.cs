@@ -82,6 +82,17 @@ namespace CharacterKit
         public float attackRange;
         public float moveSpeed;
         public float rotateSpeed;
+
+        public void Init(float MaxHP, float HP, float attackDamage, float attackSpeed, float attackRange, float moveSpeed, float rotateSpeed)
+        {
+            this.MaxHP = MaxHP;
+            this.HP = HP;
+            this.attackDamage = attackDamage;
+            this.attackSpeed = attackSpeed;
+            this.attackRange = attackRange;
+            this.moveSpeed = moveSpeed;
+            this.rotateSpeed = rotateSpeed;
+        }
     }
 
 

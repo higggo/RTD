@@ -4,6 +4,37 @@ using UnityEngine;
 using UnityEngine.Events;
 using CharacterKit;
 
+namespace CharacterKit
+{
+    public enum BUFFCATEGORY
+    {
+        RATIO, RAW
+    }
+
+    public class BuffSkill
+    {
+        public BUFFCATEGORY category;
+        public int id;
+        public float attackDamage;
+        public float attackSpeed;
+        public float attackRange;
+        public float moveSpeed;
+        public float durationTime;
+
+        public BuffSkill(BUFFCATEGORY category, int id, float attackDamage, float attackSpeed, float moveSpeed, float durationTime = 1f)
+        {
+            this.category = category;
+            this.id = id;
+            this.attackDamage = attackDamage;
+            this.attackSpeed = attackSpeed;
+            this.moveSpeed = moveSpeed;
+            this.durationTime = durationTime;
+        }
+
+    }
+}
+
+
 public class CharacterStat : MonoBehaviour
 {
     GRADE _grade;
@@ -18,6 +49,83 @@ public class CharacterStat : MonoBehaviour
     // Delegate
     public UnityAction BuffDel = null;
     public UnityAction OnHPChangeDel = null;
+
+    // Buff
+    List<BuffSkill> buffList = new List<BuffSkill>();
+
+    public void AddBuff(BuffSkill skill)
+    {
+        // Checking has same buff
+        foreach (BuffSkill inskill in buffList)
+        {
+            if (inskill.id == skill.id)
+            {
+                inskill.durationTime = skill.durationTime;
+                return;
+            }
+        }
+
+        buffList.Add(skill);
+        StartCoroutine(StartBuffTimer(skill));
+        UpdateStat(CharUtils.GetLevel(_union));
+    }
+
+    void DeleteBuff(BuffSkill skill)
+    {
+        int level = CharUtils.GetLevel(_union);
+        buffList.Remove(skill);
+        UpdateStat(level);
+    }
+
+    IEnumerator StartBuffTimer(BuffSkill skill)
+    {
+        while (skill.durationTime > Mathf.Epsilon)
+        {
+            skill.durationTime -= Time.deltaTime;
+            yield return null;
+        }
+        DeleteBuff(skill);
+    }
+
+    FCharacterStat GetCurrentRatioBuff()
+    {
+        FCharacterStat ratio = new FCharacterStat();
+        ratio.Init(1, 1, 1, 1, 1, 1, 1);
+        if (buffList.Count == 0)
+            return ratio;
+
+        foreach (BuffSkill inskill in buffList)
+        {
+            if (inskill.category == BUFFCATEGORY.RATIO)
+            {
+                ratio.attackDamage = Mathf.Clamp(ratio.attackDamage + inskill.attackDamage, 0.1f, float.MaxValue);
+                ratio.attackSpeed = Mathf.Clamp(ratio.attackSpeed + inskill.attackSpeed, 0.1f, float.MaxValue);
+                ratio.moveSpeed = Mathf.Clamp(ratio.moveSpeed + inskill.moveSpeed, 0.1f, float.MaxValue);
+            }
+        }
+
+        return ratio;
+    }
+
+    FCharacterStat GetCurrentRawBuff()
+    {
+        FCharacterStat raw = new FCharacterStat();
+        raw.Init(0, 0, 0, 0, 0, 0, 0);
+        if (buffList.Count == 0)
+            return raw;
+
+        foreach (BuffSkill inskill in buffList)
+        {
+            if (inskill.category == BUFFCATEGORY.RAW)
+            {
+                raw.attackDamage += inskill.attackDamage;
+                raw.attackSpeed += inskill.attackSpeed;
+                raw.moveSpeed += inskill.moveSpeed;
+            }
+        }
+
+        return raw;
+    }
 
     void Awake()
     {
@@ -39,17 +147,30 @@ public class CharacterStat : MonoBehaviour
         }
         // level이 1인 경우 bonusStat이 더해지면 안되므로 -1 계산
         unionLevel -= 1;
-
+        FCharacterStat buffRatio = GetCurrentRatioBuff();
+        FCharacterStat buffRaw = GetCurrentRawBuff();
 
         FCharacterStat tempStat = basicStat;
         tempStat.attackDamage += bonusStat.attackDamage * unionLevel;
         tempStat.attackRange += bonusStat.attackRange * unionLevel;
         tempStat.attackSpeed += bonusStat.attackSpeed * unionLevel;
         tempStat.MaxHP += bonusStat.MaxHP * unionLevel;
-        tempStat.HP += bonusStat.HP * unionLevel;
-        
-        // To Do: 버프나 디버프가 있으면, 해당 델리게이트를 발동시켜서 작동할 수 있도록
-        //BuffDel?.Invoke();
+        tempStat.HP = currentStat.HP + bonusStat.HP * unionLevel;
+
+        // Calculate Ratio Buff
+        tempStat.attackDamage *= buffRatio.attackDamage;
+        tempStat.attackSpeed *= buffRatio.attackSpeed;
+        tempStat.moveSpeed *= buffRatio.moveSpeed;
+
+        // Calculate Raw Buff
+        tempStat.attackDamage += buffRaw.attackDamage;
+        tempStat.attackSpeed += buffRaw.attackSpeed;
+        tempStat.moveSpeed += buffRaw.moveSpeed;
+
+        // Clamp
+        tempStat.attackDamage = Mathf.Clamp(tempStat.attackDamage, 1, float.MaxValue);
+        tempStat.attackSpeed = Mathf.Clamp(tempStat.attackSpeed, 0.1f, float.MaxValue);
+        tempStat.moveSpeed = Mathf.Clamp(tempStat.moveSpeed, 0.1f, float.MaxValue);
 
         currentStat = tempStat;
         OnHPChangeDel?.Invoke();

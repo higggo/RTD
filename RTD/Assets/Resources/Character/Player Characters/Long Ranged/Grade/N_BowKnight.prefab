@@ -1,5 +1,104 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3651291961130906602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3146669183684686347}
+  - component: {fileID: 757332796154202547}
+  - component: {fileID: 1254524756265512530}
+  m_Layer: 12
+  m_Name: Skill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3146669183684686347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651291961130906602}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6925160711739353734}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &757332796154202547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651291961130906602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99e464128cb4b243bf2a7372edf9dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 7984186952486085367, guid: 7b421590d0d3fc2458aa6a99074ae38e, type: 3}
+  bulletSpeed: 60
+--- !u!114 &1254524756265512530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651291961130906602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9094cf5e9637547b7b49334bf960af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillClass: -1
+  skillState: 0
+  animEvent: {fileID: 0}
+  SkillParticle: {fileID: 0}
+  SkillReadyParticle: {fileID: 8052622655137639502, guid: 3eef2ee1dc3e1ee4b81ca6782da09de2,
+    type: 3}
+  _attachToParent: 1
+  SkillParticleStartPos: {fileID: 6923668266626140631}
+  SkillReadyParticleStartPos: {fileID: 8242505082557513449}
+  coolTime: 10
+  Damage: 100
+--- !u!1 &6387715899890397964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8242505082557513449}
+  m_Layer: 12
+  m_Name: Skill Ready Effect Start Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8242505082557513449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387715899890397964}
+  m_LocalRotation: {x: -0, y: -0.000000029802319, z: 0.000000014901159, w: 1}
+  m_LocalPosition: {x: 1.2820005, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6923668266626140631}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6925160710231730188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,6 +149,7 @@ Transform:
   m_Children:
   - {fileID: 6923163198309812349}
   - {fileID: 2234606074352516149}
+  - {fileID: 3146669183684686347}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

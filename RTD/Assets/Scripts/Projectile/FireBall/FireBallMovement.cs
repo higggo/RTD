@@ -11,12 +11,6 @@ public class FireBallMovement : ProjectileMovement
         InitController();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     protected override void SetMovement()
     {
         base.SetMovement();
@@ -37,7 +31,7 @@ public class FireBallMovement : ProjectileMovement
         float distance = Vector3.Distance(ClonePos, transform.position);
         float delta = Time.deltaTime * bulletSpeed;
 
-        while (distance > Mathf.Epsilon)
+        while (distance > 0.1f)
         {
             SetRotate(ClonePos);
             dir = transform.forward;

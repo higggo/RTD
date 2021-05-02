@@ -12,6 +12,14 @@ namespace CharacterKit
         public float amount;
     }
 
+    public struct FTickDamageMessage
+    {
+        public GameObject causer;
+        public float amount;
+        public float amountTime;
+        public float tickTime;
+    }
+
     /*
      * @Summary: 해당 클래스는 CharacterStat컴포넌트와 같은 하이어아키에 존재해야 합니다.
      */
@@ -21,7 +29,6 @@ namespace CharacterKit
         public Transform HitPoint = null;
         float HP;
         bool isDead = false;
-
 
         public bool IsDead 
         {
@@ -55,16 +62,11 @@ namespace CharacterKit
             }
                 
         }
-
-        // @Summary: 아직 사용 x
-        public static FDamageMessage GetDamageMessage(CharController Causer, CharController Victim)
-        {
-            FDamageMessage msg = new FDamageMessage();
-            float dmgAmount = 0.0f;
-            //dmgAmount = CharController.
-            return msg;
-        }
-
+        
+        /// <summary>
+        /// 들어오는 데미지를 상성에 맞는 데미지로 다시 계산합니다.
+        /// </summary>
+        /// <param name="msg">메시지가 저장될 레퍼런스 데이터</param>
         public void GetModifiedMessage(ref FDamageMessage msg)
         {
             if (msg.Causer.GetComponent<CharacterStat>() == null)
@@ -101,6 +103,31 @@ namespace CharacterKit
             }
         }
 
+        // TickEffectDamage에서 OnTriggerExit를 이용해 조금 더 데미지를 줄때 사용, 또는 추가 피해를 TickDamage로 입힐 때 사용.
+        public void GetTickDamage(FTickDamageMessage msg)
+        {
+            StartCoroutine(StartTickDamage(msg));
+        }
+
+        IEnumerator StartTickDamage(FTickDamageMessage msg)
+        {
+            float tickDamage = msg.amount;
+            float ratio = msg.tickTime / msg.amountTime;
+            tickDamage *= ratio;
+
+            // 실제 GetDamage에 들어갈 함수
+            FDamageMessage damageMsg;
+            damageMsg.Causer = msg.causer;
+            damageMsg.amount = tickDamage;
+
+            while (msg.amountTime > Mathf.Epsilon)
+            {
+                GetDamage(damageMsg);
+                msg.amountTime -= msg.tickTime;
+                yield return new WaitForSeconds(msg.tickTime);
+            }
+            
+        }
     }
 }
 

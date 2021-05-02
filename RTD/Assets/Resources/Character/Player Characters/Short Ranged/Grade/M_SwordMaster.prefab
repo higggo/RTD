@@ -1,5 +1,91 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &202940678565318049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8731033460580160348}
+  - component: {fileID: 7408449305668215258}
+  m_Layer: 12
+  m_Name: Skill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8731033460580160348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202940678565318049}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5933860560976491190}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7408449305668215258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202940678565318049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5efb6de799d0e5f408f32d5098508aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillClass: -1
+  skillState: 0
+  animEvent: {fileID: 0}
+  SkillParticle: {fileID: 100008, guid: a8b8bf30d53ab464ab8dc2c54c585e8c, type: 3}
+  SkillReadyParticle: {fileID: 0}
+  _attachToParent: 1
+  SkillParticleStartPos: {fileID: 1195578204917318296}
+  SkillReadyParticleStartPos: {fileID: 1195578204917318296}
+  coolTime: 10
+  skillDamage: 150
+  buffDuration: 5
+  buffAtkDamageRatio: 0.75
+  buffAtkSpeedRatio: 0.2
+--- !u!1 &4704841687284318008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1195578204917318296}
+  m_Layer: 12
+  m_Name: Effect Start Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1195578204917318296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4704841687284318008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5929100835415742978}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5933860560976491150
 GameObject:
   m_ObjectHideFlags: 0
@@ -37,6 +123,7 @@ Transform:
   m_Children:
   - {fileID: 5929071581984685506}
   - {fileID: 2555210615371200843}
+  - {fileID: 8731033460580160348}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2424,6 +2511,12 @@ Transform:
 --- !u!4 &5929096059566651628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4837637192133558, guid: 4f5581387e527a0479be01e91af3f265,
+    type: 3}
+  m_PrefabInstance: {fileID: 5933860561916842842}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5929100835415742978 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4832861344336216, guid: 4f5581387e527a0479be01e91af3f265,
     type: 3}
   m_PrefabInstance: {fileID: 5933860561916842842}
   m_PrefabAsset: {fileID: 0}

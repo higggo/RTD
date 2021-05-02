@@ -13,7 +13,7 @@ public class BtnLevelUpWarrior : ButtonUtil
 
     public UnityAction OnclickDelegate;
 
-    public int Level { get; set; }
+    public static int Level { get; set; }
     public uint Price {get {return (uint)(Level * 100); } }      // LJH: (Level + 1) * 10 => Level * 100
 
     protected override void Awake()

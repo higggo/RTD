@@ -140,11 +140,6 @@ public class ProjectileController : MonoBehaviour
     {
         _bulletState = STATE.CREATE;
     }
-  
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -169,14 +164,11 @@ public class ProjectileController : MonoBehaviour
         {
             if (other.gameObject.layer == target.layer)
             {
-
+                HitDel?.Invoke();
             }
         }
         
     }
-
-
-
 
     // STATE MACHINE
     void ChangeState(STATE state)
@@ -196,7 +188,7 @@ public class ProjectileController : MonoBehaviour
                 _hitPoint = target.transform;
                 if (target.GetComponent<CharacterKit.Damageable>().HitPoint != null)
                 {
-                    Debug.Log("HitPoint = " + target.GetComponent<CharacterKit.Damageable>().HitPoint.name);
+                    Debug.Log("HitPoint = " + target.name + " : " + target.GetComponent<CharacterKit.Damageable>().HitPoint.name);
                     _hitPoint = target.GetComponent<CharacterKit.Damageable>().HitPoint;
                 }
                 moveDel?.Invoke();

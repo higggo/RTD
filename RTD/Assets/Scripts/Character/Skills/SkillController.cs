@@ -46,6 +46,8 @@ public class SkillController : MonoBehaviour
     protected bool _canUseSkill = false;
     protected bool _readyToShot = false;
 
+    // Id
+    protected int id;
 
     // property
     public float remainCoolTime
@@ -129,7 +131,6 @@ public class SkillController : MonoBehaviour
                 Instantiate(SkillParticle, SkillParticleStartPos.position, SkillParticleStartPos.rotation);
         }
         SkillLogic();
-        ResetRemainCoolTime();
         _readyToShot = false;
     }
 
@@ -201,6 +202,8 @@ public class SkillController : MonoBehaviour
                 break;
         }
     }
+
+
 
 }
 

@@ -3169,6 +3169,7 @@ Transform:
   m_Children:
   - {fileID: 2599020687479555601}
   - {fileID: 6096352392145738876}
+  - {fileID: 5424150944564444993}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3327,6 +3328,61 @@ MonoBehaviour:
   AttackEffect: {fileID: 0}
   bulletStartPos: {fileID: 2598673943521478587}
   ArrowInMesh: {fileID: 2601765328693800343}
+--- !u!1 &8293187691528468761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5424150944564444993}
+  - component: {fileID: 8867620841749351078}
+  m_Layer: 12
+  m_Name: Skill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5424150944564444993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8293187691528468761}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 13.866667, y: 0, z: 5.0133333}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2602670801494913428}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8867620841749351078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8293187691528468761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31274b07258e80e42a0b0675c5e140e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillClass: -1
+  skillState: 0
+  animEvent: {fileID: 0}
+  SkillParticle: {fileID: 100010, guid: fef55202409955641b60c9a196a9d6af, type: 3}
+  SkillReadyParticle: {fileID: 0}
+  _attachToParent: 1
+  SkillParticleStartPos: {fileID: 0}
+  SkillReadyParticleStartPos: {fileID: 0}
+  coolTime: 5
+  buffCount: 1
+  buffDuration: 5
+  buffAtkSpeedRatio: 0.5
 --- !u!1001 &2717421044509887110
 PrefabInstance:
   m_ObjectHideFlags: 0
