@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99e464128cb4b243bf2a7372edf9dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullets: []
   bullet: {fileID: 100012, guid: 9478860045a5525419cb8fa23a371a3f, type: 3}
   bulletSpeed: 30
 --- !u!114 &8941965470909594606
@@ -67,8 +66,8 @@ MonoBehaviour:
   _attachToParent: 1
   SkillParticleStartPos: {fileID: 8161509765815388767}
   SkillReadyParticleStartPos: {fileID: 0}
-  coolTime: 0
-  Damage: 0
+  coolTime: 10
+  Damage: 50
 --- !u!114 &8164134965367321983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,9 +259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99e464128cb4b243bf2a7372edf9dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullets:
-  - {fileID: 3409181727250811407, guid: 1294fd506deb5264e964f34b046752b3, type: 3}
-  - {fileID: 100012, guid: 9478860045a5525419cb8fa23a371a3f, type: 3}
   bullet: {fileID: 3409181727250811407, guid: 1294fd506deb5264e964f34b046752b3, type: 3}
   bulletSpeed: 30
 --- !u!114 &8164134965137296214
