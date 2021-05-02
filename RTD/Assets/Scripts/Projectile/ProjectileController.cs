@@ -26,6 +26,8 @@ public class ProjectileController : MonoBehaviour
     public UnityAction moveDel = null;
     public UnityAction HitDel = null;
 
+    int layerMask;
+
     // Targeting?
     protected bool isTargeting = true;
 
@@ -105,6 +107,7 @@ public class ProjectileController : MonoBehaviour
         _target = target;
         this.bulletDmg = bulletDmg;
         this.bulletSpeed = bulletSpeed;
+        this.layerMask = target.layer;
         ChangeState(STATE.READY);
     }
 
@@ -162,7 +165,7 @@ public class ProjectileController : MonoBehaviour
         }
         else
         {
-            if (other.gameObject.layer == target.layer)
+            if (other.gameObject.layer == layerMask)
             {
                 HitDel?.Invoke();
             }
