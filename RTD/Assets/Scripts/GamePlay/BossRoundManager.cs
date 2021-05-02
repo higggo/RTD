@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BossRound
+public class BossRound : Round
 {
-    public string addr;     // Prefab Address
-    public int spawnRound;  // Spawn Round
-    public int endRound;    // Boss is Alive at EndRound, GameOver
-    public GameObject boss; // Instantiate obj
-    public bool bossClear;  // flag Boss is Dead
-    public BossRound(string addr, int spawnRound, int endRound)
+    public GameObject boss;     // Instantiate obj
+    public bool bossClear;         // flag Boss is Dead
+
+
+    public BossRound(string addr, int enemyCount, int breakTime, uint reward)
+        : base(addr, enemyCount, breakTime, reward)
     {
-        this.addr = addr;
-        this.spawnRound = spawnRound;
-        this.endRound = endRound;
-        boss = null;
-        bossClear = false;
+        battle = Type.Boss;
     }
 }
 
@@ -92,39 +88,39 @@ public class BossRoundManager : MonoBehaviour
             case STATE.BossSpawn:
                 break;
             case STATE.RoundStart:
-                for (int i = 0; i < BossRoundList.Count; i++)
-                {
-                    if(BossRoundList[i].boss != null)
-                        BossRoundList[i].boss.GetComponent<BossController>().SetCanAction(true);
-                }
+                //for (int i = 0; i < BossRoundList.Count; i++)
+                //{
+                //    if(BossRoundList[i].boss != null)
+                //        BossRoundList[i].boss.GetComponent<BossController>().SetCanAction(true);
+                //}
                 break;
             case STATE.BreakTime:
-                for (int i = 0; i < BossRoundList.Count; i++)
-                {
-                    // Boss Spawn
-                    if (BossRoundList[i].spawnRound == Round+1)
-                    {
-                        int num = i;
-                        StartCoroutine(GetComponent<CameraManager>().BossSpawn(()=> {
-                            Transform spawnSpot = GameObject.Find("BossSpawn").transform;
-                            BossRoundList[num].boss = Instantiate(Resources.Load(GetComponent<GameDB>().Boss[0])) as GameObject;
-                            BossRoundList[num].boss.transform.SetParent(spawnSpot.parent);
-                            BossRoundList[num].boss.transform.position = spawnSpot.position;
-                            StartCoroutine(GetComponent<CameraManager>().LookAroundBoss(BossRoundList[num].boss.transform));
-                            }));
-                        }
+                //for (int i = 0; i < BossRoundList.Count; i++)
+                //{
+                //    // Boss Spawn
+                //    if (BossRoundList[i].spawnRound == Round+1)
+                //    {
+                //        int num = i;
+                //        StartCoroutine(GetComponent<CameraManager>().BossSpawn(()=> {
+                //            Transform spawnSpot = GameObject.Find("BossSpawn").transform;
+                //            BossRoundList[num].boss = Instantiate(Resources.Load(GetComponent<GameDB>().Boss[0])) as GameObject;
+                //            BossRoundList[num].boss.transform.SetParent(spawnSpot.parent);
+                //            BossRoundList[num].boss.transform.position = spawnSpot.position;
+                //            StartCoroutine(GetComponent<CameraManager>().LookAroundBoss(BossRoundList[num].boss.transform));
+                //            }));
+                //        }
 
-                    // Stop Boss Attack
-                        if (BossRoundList[i].boss != null)
-                        BossRoundList[i].boss.GetComponent<BossController>().SetCanAction(false);
+                //    // Stop Boss Attack
+                //        if (BossRoundList[i].boss != null)
+                //        BossRoundList[i].boss.GetComponent<BossController>().SetCanAction(false);
 
-                    //
-                    if (BossRoundList[i].endRound == Round)
-                    {
-                        // GameOver
-                        ChangeState(STATE.GameOver);
-                    }
-                }
+                //    //
+                //    if (BossRoundList[i].endRound == Round)
+                //    {
+                //        // GameOver
+                //        ChangeState(STATE.GameOver);
+                //    }
+                //}
                 break;
             case STATE.BossClear:
                 break;
@@ -146,22 +142,22 @@ public class BossRoundManager : MonoBehaviour
             case STATE.RoundStart:
                 {
                     // Boss Dead
-                    for (int i = 0; i < BossRoundList.Count; i++)
-                    {
-                        if(BossRoundList[i].boss != null)
-                        {
-                            if (BossRoundList[i].boss.GetComponent<BossController>().isDead &&
-                                !BossRoundList[i].bossClear)
-                            {
-                                // [i] Boss Clear
-                                BossRoundList[i].bossClear = true;
-                            }
-                        }
-                        if (!BossRoundList[i].bossClear)
-                            AllClear = false;
-                    }
-                    if(AllClear)
-                        ChangeState(STATE.BossClear);
+                    //for (int i = 0; i < BossRoundList.Count; i++)
+                    //{
+                    //    if(BossRoundList[i].boss != null)
+                    //    {
+                    //        if (BossRoundList[i].boss.GetComponent<BossController>().isDead &&
+                    //            !BossRoundList[i].bossClear)
+                    //        {
+                    //            // [i] Boss Clear
+                    //            BossRoundList[i].bossClear = true;
+                    //        }
+                    //    }
+                    //    if (!BossRoundList[i].bossClear)
+                    //        AllClear = false;
+                    //}
+                    //if(AllClear)
+                    //    ChangeState(STATE.BossClear);
                 }
                 break;
             case STATE.BreakTime:

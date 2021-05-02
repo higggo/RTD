@@ -7,6 +7,8 @@ public class WaveSpawner : MonoBehaviour
 {
     public VoidDelGameObject SpawnDelegate = null;
     public Transform EnemyPrefeb;
+    public Transform MopSpawnPoint = null;
+    public Transform BossSpawnPoint = null;
     public Transform SpawnPoint = null;
     public float TimeBetweenWaves = 1.0f;
     public Transform EnemyPoket = null;
@@ -19,7 +21,8 @@ public class WaveSpawner : MonoBehaviour
     private void Start()
     {
         // Set Reference
-        if (SpawnPoint == null) SpawnPoint = GameObject.Find("SpawnPoint").transform;
+        if (MopSpawnPoint == null) MopSpawnPoint = GameObject.Find("SpawnPoint").transform;
+        if (BossSpawnPoint == null) SpawnPoint = GameObject.Find("BossSpawn").transform;
         if (EnemyPoket == null) EnemyPoket = GameObject.Find("Enemies").transform;
     }
     private void Update()
@@ -50,12 +53,15 @@ public class WaveSpawner : MonoBehaviour
     {
         GameObject obj = Instantiate(Resources.Load(SpawnPath), SpawnPoint.position, SpawnPoint.rotation) as GameObject;
         //obj = Instantiate(EnemyPrefeb, SpawnPoint.position, SpawnPoint.rotation);
-        obj.GetComponent<Moving>().DestroySpawnDelegate += GetComponent<GamePlay>().MinusLife;
+        if(SpawnPoint == MopSpawnPoint)
+            obj.GetComponent<Moving>().DestroySpawnDelegate += GetComponent<GamePlay>().MinusLife;
         obj.transform.parent = EnemyPoket;
         SpawnDelegate?.Invoke(obj);
     }
-    public IEnumerator StartSpawnWaves(string path, int endCount, UnityAction done)
+    public IEnumerator StartSpawnWaves(string path, int endCount, bool bossRound, UnityAction done)
     {
+        SpawnPoint = bossRound ? BossSpawnPoint : MopSpawnPoint;
+
         Count = 0f;
         WaveNumber = 0;
         SpawnPath = path;

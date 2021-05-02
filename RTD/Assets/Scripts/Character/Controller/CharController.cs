@@ -414,7 +414,7 @@ public class CharController : MonoBehaviour
         navAgent.acceleration = 60.0f;
         navAgent.speed = statInfo.moveSpeed;
         navAgent.radius = 1.25f;
-        navAgent.enabled = true;
+        navAgent.enabled = false;
     }
 
     void ResetComp()
@@ -424,6 +424,13 @@ public class CharController : MonoBehaviour
         Target = null;
         Targets.Clear();
         _skillController?.ResetAll();
+    }
+
+    public void InBossRoom(bool isInBoss)
+    {
+        navAgent.enabled = isInBoss;
+        isInField = isInBoss;
+        isInBossRoom = isInBoss;
     }
 }
 

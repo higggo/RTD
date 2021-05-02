@@ -241,11 +241,36 @@ public class TileManager : MonoBehaviour
         }
         return result;
     }
+    public Transform GetEmptyBossTile()
+    {
+        Transform result = null;
+        foreach (Transform child in BossSpace)
+        {
+            if (child.childCount == 0)
+            {
+                result = child;
+                break;
+            }
+        }
+        return result;
+    }
 
+    public List<GameObject> GetStorageCharacters()
+    {
+        List<GameObject> characters = new List<GameObject>();
+
+        foreach (Transform child in StorageSpace)
+        {
+            if (child.childCount > 0)
+            {
+                characters.Add(child.GetChild(0).gameObject);
+            }
+        }
+        return characters;
+    }
     public List<GameObject> GetGroundCharacters()
     {
         List<GameObject> characters = new List<GameObject>();
-        Transform result = null;
 
         foreach (Transform child in GroundSpace)
         {
@@ -259,7 +284,27 @@ public class TileManager : MonoBehaviour
     public List<GameObject> GetBossCharacters()
     {
         List<GameObject> characters = new List<GameObject>();
-        Transform result = null;
+
+        foreach (Transform child in BossSpace)
+        {
+            if (child.childCount > 0)
+            {
+                characters.Add(child.GetChild(0).gameObject);
+            }
+        }
+        return characters;
+    }
+    public List<GameObject> GetBossGroundCharacters()
+    {
+        List<GameObject> characters = new List<GameObject>();
+
+        foreach (Transform child in GroundSpace)
+        {
+            if (child.childCount > 0)
+            {
+                characters.Add(child.GetChild(0).gameObject);
+            }
+        }
 
         foreach (Transform child in BossSpace)
         {

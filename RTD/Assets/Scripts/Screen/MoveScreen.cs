@@ -19,6 +19,7 @@ public class MoveScreen : MonoBehaviour
     {
         public Vector3 savePoint;
         public float zoomDepth;
+        public Vector3 rot;
     }
 
     FCamPosInfo[] camSavePoint = new FCamPosInfo[10];
@@ -58,7 +59,9 @@ public class MoveScreen : MonoBehaviour
         }
         
         camSavePoint[0].savePoint = mainCam.transform.position;
-        camSavePoint[1].savePoint = new Vector3(72f, -30f, -61f);
+        camSavePoint[0].rot = mainCam.transform.rotation.eulerAngles;
+        camSavePoint[1].savePoint = new Vector3(94.66f, -48.88f, -40.85f);
+        camSavePoint[1].rot = new Vector3(40.874f, -110.73f, 0f);
     }
 
     // Update is called once per frame
@@ -216,6 +219,7 @@ public class MoveScreen : MonoBehaviour
                         float depthDist = CurZoomDepth - camSavePoint[idx].zoomDepth;
                         Vector3 ScreenZoomDelta = mainCam.transform.forward * depthDist;
                         mainCam.transform.position = camSavePoint[idx].savePoint;
+                        mainCam.transform.rotation = Quaternion.Euler(camSavePoint[idx].rot);
                         mainCam.transform.Translate(ScreenZoomDelta, Space.World);
                     }
                         
@@ -225,4 +229,13 @@ public class MoveScreen : MonoBehaviour
 
     }
 
+    public void TranslatePoint(int i)
+    {
+        float depthDist = CurZoomDepth - camSavePoint[i].zoomDepth;
+        Vector3 ScreenZoomDelta = mainCam.transform.forward * depthDist;
+        mainCam.transform.position = camSavePoint[i].savePoint;
+        mainCam.transform.rotation = Quaternion.Euler(camSavePoint[i].rot);
+        mainCam.transform.Translate(ScreenZoomDelta, Space.World);
+
+    }
 }
