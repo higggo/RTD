@@ -9485,7 +9485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef231a1a3c5df8d439c3900424088ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 1.5
+  destroyTime: 0.7
 --- !u!114 &3082776471727473981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9502,6 +9502,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   damage: 0
+  EffectTime: 0
 --- !u!135 &8432791072113841200
 SphereCollider:
   m_ObjectHideFlags: 0

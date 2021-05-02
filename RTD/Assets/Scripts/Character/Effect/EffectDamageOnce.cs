@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class EffectDamageOnce : EffectDamage
 {
+    //[SerializeField] float[] DamageableTime = new float[2];
+    //float deltaTime;
+
+    //private void FixedUpdate()
+    //{
+    //    deltaTime += Time.fixedDeltaTime;
+    //}
+
     private void OnTriggerEnter(Collider other)
     {
         if (enemyLayer == other.gameObject.layer)
