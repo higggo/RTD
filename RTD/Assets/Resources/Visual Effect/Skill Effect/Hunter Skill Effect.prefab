@@ -5986,7 +5986,7 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 0.46666667, g: 0.99215686, b: 0.70980394, a: 0}
         key1: {r: 0.105882354, g: 0.972549, b: 0.18431373, a: 0.2}
-        key2: {r: 0.9647059, g: 0.48235294, b: 0.34117648, a: 1}
+        key2: {r: 0.9647059, g: 0.48235294, b: 0.34117648, a: 0.5294118}
         key3: {r: 0.69803923, g: 0.41960785, b: 0, a: 0.09803922}
         key4: {r: 1, g: 1, b: 1, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -18894,7 +18894,7 @@ Transform:
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.000000053214308, z: 0.44639403}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 400008}
   - {fileID: 400002}
