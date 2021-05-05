@@ -147,8 +147,8 @@ MonoBehaviour:
   _Weapon: 0
   _Armor: 0
   basicStat:
-    MaxHP: 1000
-    HP: 1000
+    MaxHP: 2500
+    HP: 2500
     attackDamage: 15
     attackSpeed: 1
     attackRange: 14
@@ -224,12 +224,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillClass: 0
   skillState: 0
+  animEvent: {fileID: 0}
   SkillParticle: {fileID: 100002, guid: df7f3b40608fae748bccba341c0bbecb, type: 3}
   SkillReadyParticle: {fileID: 0}
   _attachToParent: 0
   SkillParticleStartPos: {fileID: 1155683183452274593}
   SkillReadyParticleStartPos: {fileID: 0}
-  coolTime: 10
+  _coolTime: 10
   skillEndCount: 3
   flameColliderRad: 5
   flameDamagePerSeconds: 150

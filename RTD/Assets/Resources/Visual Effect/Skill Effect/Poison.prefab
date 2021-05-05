@@ -14239,7 +14239,7 @@ MonoBehaviour:
     m_Bits: 0
   damage: 0
   EffectTime: 0
-  TickTime: 0.25
+  TickTime: 0.5
 --- !u!135 &3620126844769623758
 SphereCollider:
   m_ObjectHideFlags: 0
