@@ -255,6 +255,28 @@ public class TileManager : MonoBehaviour
         return result;
     }
 
+    // LJH: 모든 캐릭터 가져오기
+    public List<GameObject> GetAllCharacters()
+    {
+        List<GameObject> characters = new List<GameObject>();
+        foreach (Transform child in StorageSpace)
+        {
+            if (child.childCount > 0)
+            {
+                characters.Add(child.GetChild(0).gameObject);
+            }
+        }
+
+        foreach (Transform child in GroundSpace)
+        {
+            if (child.childCount > 0)
+            {
+                characters.Add(child.GetChild(0).gameObject);
+            }
+        }
+        return characters;
+    }
+
     public List<GameObject> GetStorageCharacters()
     {
         List<GameObject> characters = new List<GameObject>();

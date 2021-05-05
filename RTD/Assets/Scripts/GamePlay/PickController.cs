@@ -25,6 +25,9 @@ public class PickController : MonoBehaviour
 
     // LJH : 드래그 시 파는 영역 계산을 위한 화면 높이 비율값
     float ratio;
+    // LJH : 합칠 수 있는 캐릭터 List
+    List<GameObject> possibleSumList = new List<GameObject>();
+
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +68,23 @@ public class PickController : MonoBehaviour
                 if (PickUpObject != null)
                 {
                     OriginPos = PickUpObject.transform.position;
+
+                    // LJH: sum effect 파티클 disable -> enable
+                    possibleSumList = TileManager.GetAllCharacters();
+                    if (possibleSumList.Contains(PickUpObject))
+                        possibleSumList.Remove(PickUpObject);
+
+                    if (possibleSumList.Count != 0)
+                    {
+                        foreach (GameObject obj in possibleSumList)
+                        {
+                            if (CharUtils.CompareID(PickUpObject, obj))
+                            {
+                                GameObject effect = obj.transform.Find("SumEffect").gameObject;
+                                effect?.SetActive(true);
+                            }
+                        }
+                    }
                 }
                 break;
             case STATE.MouseButtonDragging:
@@ -117,6 +137,10 @@ public class PickController : MonoBehaviour
                         // 합치기
                         if (CharacterInfoManager.IsUpgradeTaret(PickUpObject, target))
                         {
+                            // LJH : possibleSumList에서 target 제거해주기
+                            if (possibleSumList.Contains(target))
+                                possibleSumList.Remove(target);
+
                             // Success
                             UpgradeCharacter(PickUpObject.transform.gameObject, target);
                         }
@@ -152,8 +176,18 @@ public class PickController : MonoBehaviour
                         PickUpObject.transform.position = OriginPos;
                     }
                     TileManager.AllHide();
-
                     PickUpObject = null;
+
+                    // LJH: sum effect 파티클 enable->disable
+                    if (possibleSumList.Count != 0)
+                    {
+                        foreach (GameObject obj in possibleSumList)
+                        {
+                            GameObject effect = obj.transform.Find("SumEffect").gameObject;
+                            effect?.SetActive(false);
+                        }
+                    }
+                    possibleSumList.Clear();
                 }
                 break;
             case STATE.Disable:

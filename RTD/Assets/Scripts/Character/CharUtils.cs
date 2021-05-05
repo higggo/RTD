@@ -386,6 +386,24 @@ namespace CharacterKit
             return (level <= 0) ? 1 : level;
         }
 
+        /// <summary>
+        /// 두 대상이 같은 캐릭터인지 검사합니다.
+        /// </summary>
+        /// <param name="owner">검사할 오브젝트 1번</param>
+        /// <param name="target">검사할 오브젝트 2번</param>
+        /// <returns></returns>
+        public static bool CompareID(GameObject owner, GameObject target)
+        {
+            if (owner.GetComponent<CharacterStat>() != null
+                && target.GetComponent<CharacterStat>() != null)
+            {
+                if (owner.GetComponent<CharacterStat>().id == target.GetComponent<CharacterStat>().id)
+                    return true;
+            }
+
+            return false;
+        }
+
     }
 }
 
