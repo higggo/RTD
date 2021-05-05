@@ -6,48 +6,10 @@ using Firebase.Database;
 
 public class DatabaseInstance : MonoBehaviour
 {
-    void Start()
+    DatabaseReference reference;
+    private void Start()
     {
         // Get the root reference location of the database.
-        DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
-
-        FirebaseDatabase.DefaultInstance
-      .GetReference("CharHP")
-      .GetValueAsync().ContinueWith(task => {
-          if (task.IsFaulted)
-          {
-              // Handle the error...
-              Debug.Log(task);
-
-          }
-          else if (task.IsCompleted)
-          {
-              DataSnapshot snapshot = task.Result;
-              Debug.Log(snapshot.Value);
-              GameObject.Find("ServerMsg").GetComponent<TMPro.TextMeshProUGUI>().text = snapshot.Value.ToString();
-              // Do something with snapshot...
-          }
-      });
-    }
-    public void refresh()
-    {
-        FirebaseDatabase.DefaultInstance
-      .GetReference("CharHP")
-      .GetValueAsync().ContinueWith(task =>
-      {
-          if (task.IsFaulted)
-          {
-              // Handle the error...
-              Debug.Log(task);
-
-          }
-          else if (task.IsCompleted)
-          {
-              DataSnapshot snapshot = task.Result;
-              Debug.Log(snapshot.Value);
-              GameObject.Find("ServerMsg").GetComponent<TMPro.TextMeshProUGUI>().text = snapshot.Value.ToString();
-              // Do something with snapshot...
-          }
-      });
+        reference = FirebaseDatabase.DefaultInstance.RootReference;
     }
 }

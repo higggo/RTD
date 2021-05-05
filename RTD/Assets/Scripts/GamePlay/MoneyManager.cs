@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using ResponseMessage;
 
+using Firebase;
+using Firebase.Database;
+
 public class MoneyManager : MonoBehaviour
 {
     [SerializeField]
@@ -31,7 +34,6 @@ public class MoneyManager : MonoBehaviour
     {
         if (GoldText == null) GameObject.Find("Gold").GetComponent<TMPro.TextMeshProUGUI>();
 
-        Init();
     }
 
     // Update is called once per frame
@@ -41,13 +43,27 @@ public class MoneyManager : MonoBehaviour
 
     public void Init()
     {
+        FirebaseDatabase.DefaultInstance
+      .GetReference("GamePlay/System/Money")
+      .GetValueAsync().ContinueWith(task => {
+          if (task.IsFaulted)
+          {
+          }
+          else if (task.IsCompleted)
+          {
+              DataSnapshot result = task.Result;
+              Debug.Log(result.Key);
+              uint _money = uint.Parse(result.Value.ToString());
+              SetMoney(_money);
+          }
+      });
         // LJH: 돈조절
-        SetMoney(1000); 
+        //SetMoney(1000); 
         foreach(Transform child in gameObject.transform.Find("Account"))
         {
             Destroy(child.gameObject);
         }
-        GoldText.text = money.ToString();
+        //GoldText.text = money.ToString();
     }
 
     public float GetMoney()
@@ -58,6 +74,7 @@ public class MoneyManager : MonoBehaviour
     void SetMoney(uint money)
     {
         this.money = money;
+        GoldText.text = this.money.ToString();
     }
 
     public bool CalculateMoney(ACTION act, uint money, ResponseMessage.Trade.CODE respone, string Message)
