@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 
 /// <summary>
@@ -23,6 +23,9 @@ public class SkillController : MonoBehaviour
     public SKILLCLASS skillClass = SKILLCLASS.UNKNOWN;
     public SKILLSTATE skillState = SKILLSTATE.CREATE;
 
+    // Delegate
+    public UnityAction OnCoolTimeChangeDel;
+
     // Components
     [SerializeField] protected AnimEvent animEvent;
     [SerializeField] protected GameObject SkillParticle;
@@ -38,7 +41,7 @@ public class SkillController : MonoBehaviour
     [SerializeField] protected Transform SkillReadyParticleStartPos;
 
     // cool Time
-    [SerializeField] protected float coolTime;
+    [SerializeField] protected float _coolTime;
     protected float _remainCoolTime;
 
     // Flags
@@ -50,6 +53,11 @@ public class SkillController : MonoBehaviour
     protected int id;
 
     // property
+    public float coolTime
+    {
+        get { return _coolTime; }
+    }
+
     public float remainCoolTime
     {
         get { return _remainCoolTime; }
@@ -94,7 +102,7 @@ public class SkillController : MonoBehaviour
 
     public void ResetRemainCoolTime()
     {
-        _remainCoolTime = coolTime;
+        _remainCoolTime = _coolTime;
     }
 
     public void ResetAll()
@@ -164,9 +172,11 @@ public class SkillController : MonoBehaviour
         {
             case SKILLSTATE.WAIT:
                 ResetRemainCoolTime();
+                OnCoolTimeChangeDel?.Invoke();
                 break;
             case SKILLSTATE.STARTCOOLDOWN:
                 ResetRemainCoolTime();
+                OnCoolTimeChangeDel?.Invoke();
                 break;
             case SKILLSTATE.STOPCOOLDOWN:
                 // To Do SomeThing...
@@ -190,6 +200,8 @@ public class SkillController : MonoBehaviour
                     ChangeState(SKILLSTATE.STOPCOOLDOWN);
 
                 _remainCoolTime -= Time.deltaTime;
+                OnCoolTimeChangeDel?.Invoke();
+
                 if (_remainCoolTime < Mathf.Epsilon)
                     ChangeState(SKILLSTATE.USESKILL);
                 break;

@@ -8,7 +8,7 @@ namespace CharacterKit
 {
     public enum ENEMYSTATE
     { 
-        NONE, CREATE, RUN, GOAL, DEAD
+        NONE, CREATE, RUN, STUN, GOAL, DEAD
     }
 }
 
@@ -25,7 +25,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float moveSpeed = 0.0f;
     [SerializeField] float RotateSpeed = 0.0f;
     bool isDead = false;
-
+    public bool canMove { get; set; }
+    Coroutine StunNow;
     void Awake()
     {
         ChangeState(ENEMYSTATE.CREATE);
@@ -63,6 +64,9 @@ public class EnemyController : MonoBehaviour
             case ENEMYSTATE.RUN:
                 EnemyAnimator.SetBool("B_Run", true);
                 break;
+            case ENEMYSTATE.STUN:
+                EnemyAnimator.SetBool("B_Run", false);
+                break;
             case ENEMYSTATE.GOAL:
                 DestroyEnemy();
                 break;
@@ -80,6 +84,12 @@ public class EnemyController : MonoBehaviour
                 ChangeState(ENEMYSTATE.RUN);
                 break;
             case ENEMYSTATE.RUN:
+                if (!canMove)
+                    ChangeState(ENEMYSTATE.STUN);
+                break;
+            case ENEMYSTATE.STUN:
+                if (!canMove)
+                    ChangeState(ENEMYSTATE.RUN);
                 break;
             case ENEMYSTATE.GOAL:
                 break;
@@ -102,5 +112,25 @@ public class EnemyController : MonoBehaviour
     public ENEMYSTATE GetState()
     {
         return enemyState;
+    }
+
+    // @Summary 적들을 스턴 상태로 만들떄 호출하십시오.
+    public void SetStun(float time)
+    {
+        if (StunNow == null)
+            StopCoroutine(StunNow);
+
+        StunNow = StartCoroutine(StartStun(time));
+    }
+
+    IEnumerator StartStun(float time)
+    {
+        canMove = false;
+        while (time > Time.deltaTime)
+        {
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        canMove = true;
     }
 }
