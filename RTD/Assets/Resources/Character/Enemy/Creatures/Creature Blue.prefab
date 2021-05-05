@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 4184911796087027147}
+  HitMessagePrintPos: {fileID: 0}
 --- !u!114 &-8031502227321506570
 MonoBehaviour:
   m_ObjectHideFlags: 0

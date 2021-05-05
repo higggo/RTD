@@ -160,8 +160,7 @@ public class ProjectileController : MonoBehaviour
             {
                 HitDel?.Invoke();
                 ChangeState(STATE.ENDMOVE);
-            }
-                
+            }    
         }
         else
         {

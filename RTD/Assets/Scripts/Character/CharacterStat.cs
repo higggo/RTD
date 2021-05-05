@@ -53,6 +53,72 @@ public class CharacterStat : MonoBehaviour
     // Buff
     List<BuffSkill> buffList = new List<BuffSkill>();
 
+    IEnumerator PrintBuff(BuffSkill skill, float lifeTime)
+    {
+        List<string> printList = new List<string>();
+        Color color = new Color();
+        
+        if (skill.attackDamage != 0)
+        {
+            if (skill.attackDamage > 0)
+                printList.Add("Damage Up!");
+            else if (skill.attackDamage < 0)
+                printList.Add("Damage Down");
+        }
+        if (skill.attackSpeed != 0)
+        {
+            if (skill.attackSpeed > 0)
+                printList.Add("AtkSpeed Up!");
+            else if (skill.attackSpeed < 0)
+                printList.Add("AtkSpeed Down");
+        }
+        if (skill.moveSpeed != 0)
+        {
+            if (skill.moveSpeed > 0)
+                printList.Add("Speed Up!");
+            else if (skill.moveSpeed < 0)
+                printList.Add("Speed Down");
+        }
+
+
+        if (printList.Count > 0)
+        {
+            if (printList[0].Contains("!"))
+                color = Color.magenta;
+            else
+                color = Color.black;
+
+            float time = lifeTime / printList.Count;
+            float firstTime = time;
+            HPBar hpbar = GetComponentInChildren<HPBar>();
+            GameObject obj = Instantiate(Resources.Load("StatusMessage"), hpbar.transform.parent.position, Quaternion.identity, gameObject.transform) as GameObject;
+            obj.transform.Translate(0f, 1.0f, 0f);
+            obj.GetComponent<MessageUI>()?.SetText(printList[0], color);
+            while (printList.Count > 0)
+            {
+                obj.GetComponent<MessageUI>().txt.alpha = time / firstTime;
+                time -= Time.deltaTime;
+
+                if (time < 0)
+                {
+                    printList.RemoveAt(0);
+                    if (printList.Count > 0)
+                    {
+                        if (printList[0].Contains("!"))
+                            color = Color.magenta;
+                        else
+                            color = Color.black;
+                        obj.GetComponent<MessageUI>()?.SetText(printList[0], color);
+                        time = firstTime;
+                    }
+                }
+                yield return null;
+            }
+            Destroy(obj);
+        }
+    }
+
+
     public void AddBuff(BuffSkill skill)
     {
         // Checking has same buff
@@ -66,6 +132,7 @@ public class CharacterStat : MonoBehaviour
         }
 
         buffList.Add(skill);
+        StartCoroutine(PrintBuff(skill, 2.5f));
         StartCoroutine(StartBuffTimer(skill));
         UpdateStat(CharUtils.GetLevel(_union));
     }

@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1809972264422911490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4941707613946595791}
+  m_Layer: 8
+  m_Name: HitMessagePrintPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4941707613946595791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809972264422911490}
+  m_LocalRotation: {x: -0.50017583, y: 0.49982417, z: 0.50017583, w: 0.49982417}
+  m_LocalPosition: {x: -240, y: -0, z: 0}
+  m_LocalScale: {x: 133.33328, y: 133.33333, z: 133.33331}
+  m_Children: []
+  m_Father: {fileID: 2867733520193704035}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2865295368791129787
 GameObject:
   m_ObjectHideFlags: 0

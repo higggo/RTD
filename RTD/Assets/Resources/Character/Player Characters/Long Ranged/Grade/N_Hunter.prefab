@@ -268,7 +268,7 @@ MonoBehaviour:
   skillClass: -1
   skillState: 0
   animEvent: {fileID: 0}
-  SkillParticle: {fileID: 0}
+  SkillParticle: {fileID: 100010, guid: fef55202409955641b60c9a196a9d6af, type: 3}
   SkillReadyParticle: {fileID: 0}
   _attachToParent: 1
   SkillParticleStartPos: {fileID: 0}

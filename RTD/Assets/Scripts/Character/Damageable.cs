@@ -50,15 +50,22 @@ namespace CharacterKit
             if (msg.amount < 1)
                 msg.amount = 1;
 
+            // Set Damage Direct
             HP = Mathf.Clamp(HP - msg.amount, 0.0f, GetComponent<CharacterStat>().MaxHP);
             GetComponent<CharacterStat>()?.UpdateHP(HP);
+            
+            // Print Damage Amount in UI
+            HPBar hpbar = GetComponentInChildren<HPBar>();
+            GameObject obj = Instantiate(Resources.Load("DamageMessage"), hpbar.transform.parent.position, Quaternion.identity, gameObject.transform) as GameObject;
+            obj.transform.Translate(0f, 1.0f, 0f);           
+            obj.GetComponent<MessageUI>()?.SetDamage(msg.amount);
 
+            // Set Dead if HP Equal or Under Zero
             if (!isDead && HP <= Mathf.Epsilon)
             {
                 Debug.Log("SetDead");
                 isDead = true;
                 onDeadDel?.Invoke();
-                
             }
                 
         }

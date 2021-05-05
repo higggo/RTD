@@ -47,16 +47,46 @@ MonoBehaviour:
   skillClass: -1
   skillState: 0
   animEvent: {fileID: 0}
-  SkillParticle: {fileID: 0}
+  SkillParticle: {fileID: 100008, guid: a8b8bf30d53ab464ab8dc2c54c585e8c, type: 3}
   SkillReadyParticle: {fileID: 0}
   _attachToParent: 1
-  SkillParticleStartPos: {fileID: 0}
+  SkillParticleStartPos: {fileID: 3967055120469648664}
   SkillReadyParticleStartPos: {fileID: 0}
   _coolTime: 12
   skillDamage: 50
   buffDuration: 5
   buffAtkDamageRatio: 0.75
   buffAtkSpeedRatio: 0.1
+--- !u!1 &3713898703800937445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3967055120469648664}
+  m_Layer: 12
+  m_Name: Effect Start Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3967055120469648664
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3713898703800937445}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5933015091150698176}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5933860560976491150
 GameObject:
   m_ObjectHideFlags: 0
@@ -2482,6 +2512,12 @@ Transform:
 --- !u!4 &5929096059566651628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4837637192133558, guid: 4f5581387e527a0479be01e91af3f265,
+    type: 3}
+  m_PrefabInstance: {fileID: 5933860561916842842}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5933015091150698176 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4225936447858074, guid: 4f5581387e527a0479be01e91af3f265,
     type: 3}
   m_PrefabInstance: {fileID: 5933860561916842842}
   m_PrefabAsset: {fileID: 0}
