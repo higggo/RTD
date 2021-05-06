@@ -23,19 +23,20 @@ public class Moving : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        wayPoints = new Vector3[11];
+        wayPoints = new Vector3[12];
 
-        wayPoints.SetValue(new Vector3(-8.668f, 0, -4.71f), 0);
-        wayPoints.SetValue(new Vector3(14.86f, 0, -4.71f), 1);
-        wayPoints.SetValue(new Vector3(14.86f, 0, 3.61f), 2);
-        wayPoints.SetValue(new Vector3(6.89f, 0, 3.61f), 3);
-        wayPoints.SetValue(new Vector3(6.89f, 0, -21.22f), 4);
-        wayPoints.SetValue(new Vector3(14.77f, 0, -21.22f), 5);
-        wayPoints.SetValue(new Vector3(14.77f, 0, -12.73f), 6);
-        wayPoints.SetValue(new Vector3(-8.668f, 0, -12.73f), 7);
-        wayPoints.SetValue(new Vector3(-8.668f, 0, -21.22f), 8);
-        wayPoints.SetValue(new Vector3(-0.78f, 0, -21.22f), 9);
-        wayPoints.SetValue(new Vector3(-0.78f, 0, 10.08f), 10);
+        wayPoints.SetValue(new Vector3(-17.09f, 0, -4.71f), 0);
+        wayPoints.SetValue(new Vector3(-8.668f, 0, -4.71f), 1);
+        wayPoints.SetValue(new Vector3(14.86f, 0, -4.71f), 2);
+        wayPoints.SetValue(new Vector3(14.86f, 0, 3.61f), 3);
+        wayPoints.SetValue(new Vector3(6.89f, 0, 3.61f), 4);
+        wayPoints.SetValue(new Vector3(6.89f, 0, -21.22f), 5);
+        wayPoints.SetValue(new Vector3(14.77f, 0, -21.22f), 6);
+        wayPoints.SetValue(new Vector3(14.77f, 0, -12.73f), 7);
+        wayPoints.SetValue(new Vector3(-8.668f, 0, -12.73f), 8);
+        wayPoints.SetValue(new Vector3(-8.668f, 0, -21.22f), 9);
+        wayPoints.SetValue(new Vector3(-0.78f, 0, -21.22f), 10);
+        wayPoints.SetValue(new Vector3(-0.78f, 0, 10.08f), 11);
         speed = GetComponent<CharacterStat>().moveSpeed;
     }
 
