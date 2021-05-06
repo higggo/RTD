@@ -98,7 +98,6 @@ public class GamePlay : MonoBehaviour
     {
         // "애들 경로", 갯수, 브레이크타임, 보상금액
         // 1 ~ 4 Round
-        //RoundList.Add(new BossRound("Character/Boss/Dragon Level1", 1, 25, 1000));
         RoundList.Add(new Round("Character/Enemy/TurtleShell", 15, 25, 350));
         RoundList.Add(new Round("Character/Enemy/RatDragon/RatDragon Blue", 15, 25, 350));
         RoundList.Add(new Round("Character/Enemy/Creatures/Creature Blue", 15, 25, 350));
@@ -174,7 +173,13 @@ public class GamePlay : MonoBehaviour
                 Init();
                 SetRoundText(CurrentRound);
                 StartCoroutine(CountDownTime(GameStartBreakTime, ()=> {ChangeState(STATE.RoundStart); RoundText.SetActive(true); }));
-
+                if (CurrentRound < RoundList.Count)
+                {
+                    if (RoundList[CurrentRound].battle == Round.Type.Boss)
+                    {
+                        StartCoroutine(BossWarning.BossAlarm());
+                    }
+                }
                 break;
             case STATE.RoundStart:
                 // Start Attack
