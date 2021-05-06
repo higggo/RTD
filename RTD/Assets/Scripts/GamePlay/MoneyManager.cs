@@ -52,7 +52,6 @@ public class MoneyManager : MonoBehaviour
           else if (task.IsCompleted)
           {
               DataSnapshot result = task.Result;
-              Debug.Log(result.Key);
               uint _money = uint.Parse(result.Value.ToString());
               SetMoney(_money);
           }

@@ -66,6 +66,7 @@ public class GamePlay : MonoBehaviour
     public GameObject GameLifeText = null;
     public GameObject GameEndText = null;
     public GameObject LevelUpActiveButton = null;
+    public Warning BossWarning = null;
 
     public GameObject CurrentBoss;
 
@@ -147,6 +148,7 @@ public class GamePlay : MonoBehaviour
         if (GameLifeText == null) GameLifeText = GameObject.Find("GameLife");
         if (GameEndText == null) GameEndText = GameObject.Find("GameEnd");
         if (LevelUpActiveButton == null) LevelUpActiveButton = GameObject.Find("ActiveBtn");
+        if (BossWarning == null) BossWarning = GameObject.Find("BossWarning").GetComponent<Warning>();
 
         GameLifeText.GetComponent<TMPro.TextMeshProUGUI>().text = "Life " + GameLife.ToString();
 
@@ -239,6 +241,9 @@ public class GamePlay : MonoBehaviour
                     {
                         character.GetComponent<CharController>().InBossRoom(true);
                     }
+
+                    //  Skill Cool
+                    CharacterKit.CharUtils.SetSkillCoolDownTrigger(true);
                 }
                 break;
             case STATE.BossRoundEnd:
@@ -272,16 +277,6 @@ public class GamePlay : MonoBehaviour
                 //
                 GameObject.Find("Canvas").transform.Find("CharacterPickerUI").gameObject.SetActive(true);
 
-                // Receive Money
-                // LJH : Add receiveMoney
-                //uint receiveMoney;
-                //if (CurrentRound < 5)
-                //    receiveMoney = 350;
-                //else if (CurrentRound < 10)
-                //    receiveMoney = 500;
-                //else
-                //    receiveMoney = 750;
-
                 GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Receive, RoundList[CurrentRound - 1].reward, response, CurrentRound + "Round Clear");
 
                 // GameOver?
@@ -300,6 +295,14 @@ public class GamePlay : MonoBehaviour
                     StartCoroutine(CountDownTime(RoundList[CurrentRound - 1].breakTime, () => {
                             ChangeState(STATE.RoundStart);
                     }));
+
+                    if(CurrentRound < RoundList.Count)
+                    {
+                        if(RoundList[CurrentRound].battle == Round.Type.Boss)
+                        {
+                            StartCoroutine(BossWarning.BossAlarm());
+                        }
+                    }
                 }
 
                 break;
