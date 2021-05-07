@@ -34,9 +34,10 @@ public class Warning : MonoBehaviour
         bool timeOver = false;
         float time = 0.0f;
         float speed = 0.2f;
-        float colorDelta = Time.smoothDeltaTime;
+        float colorDelta = 0f;
         float min = 0.65f;
         float max = 0.9f;
+        float direction = 1f;
 
         WarningImage.color = new Color(max, max, max, max);
         BossRoundImage.color = new Color(max, max, max, max);
@@ -47,18 +48,20 @@ public class Warning : MonoBehaviour
         while (!(timeOver && color.r == 0))
         {
             if (color.r <= min || color.r >= max)
-                colorDelta = -colorDelta;
+                direction = -direction;
             if(time > 3.5f && color.r >= max)
             {
-                colorDelta = colorDelta < 0f ? colorDelta : -colorDelta;
+                direction = direction < 0f ? direction : -direction;
                 min = 0f;
                 speed = 1f;
                 timeOver = true;
             }
-            color.r = Mathf.Clamp(color.r + colorDelta * speed, min, max);
-            color.g = Mathf.Clamp(color.g + colorDelta * speed, min, max);
-            color.b = Mathf.Clamp(color.b + colorDelta * speed, min, max);
-            color.a = Mathf.Clamp(color.a + colorDelta * speed, min, max);
+            colorDelta = Time.smoothDeltaTime * direction * speed;
+
+            color.r = Mathf.Clamp(color.r + colorDelta, min, max);
+            color.g = Mathf.Clamp(color.g + colorDelta, min, max);
+            color.b = Mathf.Clamp(color.b + colorDelta, min, max);
+            color.a = Mathf.Clamp(color.a + colorDelta, min, max);
             WarningImage.color = color;
             BossRoundImage.color = color;
             BorderImage.color = color;
