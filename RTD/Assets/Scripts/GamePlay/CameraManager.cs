@@ -24,12 +24,6 @@ public struct CameraMovePos
 
 public class CameraManager : MonoBehaviour
 {
-
-    public enum STATE
-    {
-
-    }
-
     List<CameraMovePos> MovePos = new List<CameraMovePos>();
     public Camera MainCamera = null;
     public Camera DirectionCamera = null;

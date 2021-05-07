@@ -48,10 +48,12 @@ public class MoneyManager : MonoBehaviour
       .GetValueAsync().ContinueWith(task => {
           if (task.IsFaulted)
           {
+              Debug.Log("server connect fail");
           }
           else if (task.IsCompleted)
           {
               DataSnapshot result = task.Result;
+              Debug.Log(result.Value.ToString());
               uint _money = uint.Parse(result.Value.ToString());
               SetMoney(_money);
           }

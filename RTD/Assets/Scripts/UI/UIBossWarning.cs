@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Warning : MonoBehaviour
+public class UIBossWarning : MonoBehaviour
 {
     public Image WarningImage = null;
     public Image BossRoundImage = null;
@@ -15,25 +15,14 @@ public class Warning : MonoBehaviour
         if (BossRoundImage == null) BossRoundImage = transform.Find("BossRound").GetComponent<Image>();
         if (BorderImage == null) BorderImage = transform.Find("Border").GetComponent<Image>();
 
-
-        //StartCoroutine(BossAlarm());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            StartCoroutine(BossAlarm());
-
-        }
-    }
     public IEnumerator BossAlarm()
     {
 
         bool timeOver = false;
         float time = 0.0f;
-        float speed = 0.2f;
+        float speed = 0.5f;
         float colorDelta = 0f;
         float min = 0.65f;
         float max = 0.9f;
