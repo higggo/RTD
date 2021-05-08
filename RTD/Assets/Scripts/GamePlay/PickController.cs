@@ -21,6 +21,13 @@ public class PickController : MonoBehaviour
     TileManager TileManager;
     CharacterInfoManager CharacterInfoManager;
     public VoidDelGameObject UpgradeDelegate = null;
+
+    //
+    public AudioClip Audio_Pickup;
+    public AudioClip Audio_Pickdown;
+    public AudioClip Audio_UpGold;
+    public AudioClip Audio_UpGrade;
+
     //BossZoneWarp BossZoneWarp;
 
     // LJH : 드래그 시 파는 영역 계산을 위한 화면 높이 비율값
@@ -143,12 +150,14 @@ public class PickController : MonoBehaviour
 
                             // Success
                             UpgradeCharacter(PickUpObject.transform.gameObject, target);
+                            SoundManager.I.PlayEffectSound(Audio_UpGrade);
                         }
                         //이동
                         else if (target == null)
                         {
                             PickUpObject.transform.parent = targetTile;
                             PickUpObject.transform.localPosition = Vector3.zero;
+                            SoundManager.I.PlayEffectSound(Audio_Pickdown);
                         }
                         // 서로 자리 바꾸기
                         else
@@ -170,6 +179,7 @@ public class PickController : MonoBehaviour
                         ResponseMessage.Trade.CODE response = new ResponseMessage.Trade.CODE();
                         GetComponent<MoneyManager>()?.CalculateMoney(MoneyManager.ACTION.Receive, (uint)refund, response, "Character Refund");
                         Destroy(PickUpObject.gameObject);
+                        SoundManager.I.PlayEffectSound(Audio_UpGold);
                     }
                     else
                     {
@@ -211,6 +221,7 @@ public class PickController : MonoBehaviour
                         {
                             if (UpgradeCharacter(hits[i].transform.gameObject, null))
                             {
+                                SoundManager.I.PlayEffectSound(Audio_UpGrade);
                                 // Success
                             }
                             else
@@ -255,6 +266,7 @@ public class PickController : MonoBehaviour
                         {
                             Debug.Log("캐릭터 좌클릭");
                             PickUpObject = hits[i].transform.gameObject;
+                            SoundManager.I.PlayEffectSound(Audio_Pickup);
                         }
                     }
                     ChangeState(STATE.MouseButtonDown);
@@ -275,6 +287,7 @@ public class PickController : MonoBehaviour
                             refund *= 0.75f;
                             ResponseMessage.Trade.CODE response = new ResponseMessage.Trade.CODE();
                             GetComponent<MoneyManager>()?.CalculateMoney(MoneyManager.ACTION.Receive, (uint)refund, response, "Character Refund");
+                            SoundManager.I.PlayEffectSound(Audio_UpGold);
                             Destroy(hit.transform.gameObject);
                         }
                     }

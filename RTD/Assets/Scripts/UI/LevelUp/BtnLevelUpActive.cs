@@ -11,6 +11,8 @@ public class BtnLevelUpActive: ButtonUtil
     Sprite DefaultImage;
     Sprite DeactiveImage;
 
+    public AudioClip Audio_Button;
+
     bool bOpen = false;
 
     protected override void Awake()
@@ -24,6 +26,8 @@ public class BtnLevelUpActive: ButtonUtil
     void Start()
     {
         ChangeState(STATE.Create);
+
+
     }
 
     // Update is called once per frame
@@ -86,6 +90,7 @@ public class BtnLevelUpActive: ButtonUtil
     public override void OnClick()
     {
         SetOpen(!bOpen);
+        SoundManager.I.PlayEffectSound(Audio_Button);
     }
     protected override void MouseOver(PointerEventData eventData)
     {

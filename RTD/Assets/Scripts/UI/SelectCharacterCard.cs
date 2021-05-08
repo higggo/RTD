@@ -15,6 +15,9 @@ public class SelectCharacterCard : MonoBehaviour
     GameObject[] SalesList = new GameObject[5];
     ResponseMessage.Trade.CODE response;
 
+    public AudioClip Audio_Buy;
+    public AudioClip Audio_Button;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +48,7 @@ public class SelectCharacterCard : MonoBehaviour
                 SalesList[i] = obj;
                 SalesList[i].GetComponent<Button>().onClick.AddListener(() => BuyCard(temp));
             }
+            SoundManager.I.PlayEffectSound(Audio_Button);
         }
         else
         {
@@ -91,6 +95,8 @@ public class SelectCharacterCard : MonoBehaviour
             GameObject obj = Instantiate(Resources.Load(GameDB.Card[0]), CharacterSelectArea) as GameObject;
             obj.transform.SetSiblingIndex(i);
             SalesList[i] = obj;
+
+            SoundManager.I.PlayEffectSound(Audio_Buy);
         }
         else
         {

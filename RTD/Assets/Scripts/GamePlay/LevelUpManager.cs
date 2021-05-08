@@ -11,6 +11,9 @@ public class LevelUpManager : MonoBehaviour
     public BtnLevelUpWarrior WARRIOR = null;
     public BtnLevelUpArcher ARCHER = null;
 
+    public AudioClip Audio_Upgrade;
+    public AudioClip Audio_Fail;
+
     ResponseMessage.Trade.CODE response;
     // Start is called before the first frame update
     void Start()
@@ -35,10 +38,12 @@ public class LevelUpManager : MonoBehaviour
         {
             BtnLevelUpMage.Level += 1;
             CharUtils.UpdateSpecificUnion(CharacterKit.UNION.MAGE, BtnLevelUpMage.Level);
+            SoundManager.I.PlayEffectSound(Audio_Upgrade);
         }
         else
         {
             Debug.Log(ResponseMessage.Trade.Receive(response));
+            SoundManager.I.PlayEffectSound(Audio_Fail);
         }
     }
 
@@ -48,10 +53,12 @@ public class LevelUpManager : MonoBehaviour
         {
             BtnLevelUpWarrior.Level += 1;
             CharUtils.UpdateSpecificUnion(CharacterKit.UNION.WARRIOR, BtnLevelUpWarrior.Level);
+            SoundManager.I.PlayEffectSound(Audio_Upgrade);
         }
         else
         {
             Debug.Log(ResponseMessage.Trade.Receive(response));
+            SoundManager.I.PlayEffectSound(Audio_Fail);
         }
     }
 
@@ -61,10 +68,12 @@ public class LevelUpManager : MonoBehaviour
         {
             BtnLevelUpArcher.Level += 1;
             CharUtils.UpdateSpecificUnion(CharacterKit.UNION.ARCHER, BtnLevelUpArcher.Level);
+            SoundManager.I.PlayEffectSound(Audio_Upgrade);
         }
         else
         {
             Debug.Log(ResponseMessage.Trade.Receive(response));
+            SoundManager.I.PlayEffectSound(Audio_Fail);
         }
     }
 

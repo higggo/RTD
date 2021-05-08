@@ -75,6 +75,8 @@ public class GamePlay : MonoBehaviour
 
     public AudioClip IntroBGM;
     public AudioClip BattleBGM;
+    public AudioClip Audio_Button;
+    public AudioClip Audio_Gold;
 
     public GameObject CurrentBoss;
 
@@ -324,7 +326,7 @@ public class GamePlay : MonoBehaviour
                         }
                     }
                 }
-
+                SoundManager.I.PlayEffectSound(Audio_Gold);
                 break;
             case STATE.GameVictory:
                 BreakTimeText.SetActive(false);
@@ -502,6 +504,7 @@ public class GamePlay : MonoBehaviour
     {
         Debug.Log("get mission !!");
         GetComponent<MissionManager>().PushNewMission();
+        SoundManager.I.PlayEffectSound(Audio_Button);
     }
    
     public int GetRound()
