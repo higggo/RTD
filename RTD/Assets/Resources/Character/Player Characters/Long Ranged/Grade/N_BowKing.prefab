@@ -272,6 +272,7 @@ MonoBehaviour:
   AttackEffect: {fileID: 0}
   bulletStartPos: {fileID: 7793002801645905395}
   ArrowInMesh: {fileID: 7794962554101141471}
+  attackClip: {fileID: 8300000, guid: 2c2634635e4a1fe48b98512d86b4b8c6, type: 3}
 --- !u!114 &7793652470033010795
 MonoBehaviour:
   m_ObjectHideFlags: 0

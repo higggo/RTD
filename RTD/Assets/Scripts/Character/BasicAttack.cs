@@ -8,7 +8,7 @@ public class BasicAttack : MonoBehaviour
     protected CharacterStat statInfo;
     public Transform EffectStartPos;
     [SerializeField] protected GameObject AttackEffect;
-
+    [SerializeField] protected AudioClip attackClip;
     void Start()
     {
         Init();

@@ -3358,6 +3358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectStartPos: {fileID: 0}
   AttackEffect: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 2c2634635e4a1fe48b98512d86b4b8c6, type: 3}
   bulletStartPos: {fileID: 2598673943521478587}
   ArrowInMesh: {fileID: 2601765328693800343}
 --- !u!1 &8293187691528468761

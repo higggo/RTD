@@ -269,6 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectStartPos: {fileID: 0}
   AttackEffect: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 40530e479ac1a3443a29a8a6cd8cf565, type: 3}
 --- !u!114 &-835146530508746424
 MonoBehaviour:
   m_ObjectHideFlags: 0

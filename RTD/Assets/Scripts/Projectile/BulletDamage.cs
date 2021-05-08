@@ -8,6 +8,8 @@ public class BulletDamage : MonoBehaviour
     public GameObject hitEffect;
     protected ProjectileController controller;
     [SerializeField] protected Transform HitEffectPos;
+    [SerializeField] protected AudioClip HitSound;
+    public float hitSoundVolume = 0.0f;
 
     void Start()
     {
@@ -34,6 +36,9 @@ public class BulletDamage : MonoBehaviour
 
         target.GetComponent<Damageable>()?.GetDamage(msg);
         PlayHitEffect();
+
+        if (HitSound != null)
+            SoundManager.I.PlayEffectSound(target, HitSound, 0.5f, hitSoundVolume);
     }
 
     protected virtual void PlayHitEffect()

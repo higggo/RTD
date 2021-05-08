@@ -100,7 +100,29 @@ public class SoundManager : MonoBehaviour
         {
             audio = obj.AddComponent<AudioSource>();
         }
-
+        audio.spatialBlend = 0.8f;
         audio.PlayOneShot(eff, effectVolume);
+    }
+
+    public void PlayEffectSound(GameObject obj, AudioClip eff, float spatialBlend)
+    {
+        AudioSource audio = obj.GetComponent<AudioSource>();
+        if (audio == null)
+        {
+            audio = obj.AddComponent<AudioSource>();
+        }
+        audio.spatialBlend = spatialBlend;
+        audio.PlayOneShot(eff, effectVolume);
+    }
+
+    public void PlayEffectSound(GameObject obj, AudioClip eff, float spatialBlend, float volume)
+    {
+        AudioSource audio = obj.GetComponent<AudioSource>();
+        if (audio == null)
+        {
+            audio = obj.AddComponent<AudioSource>();
+        }
+        audio.spatialBlend = spatialBlend;
+        audio.PlayOneShot(eff, (volume != 0.0f) ? volume : effectVolume);
     }
 }

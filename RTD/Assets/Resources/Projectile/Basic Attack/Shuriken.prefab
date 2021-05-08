@@ -62,6 +62,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 0}
+  HitEffectPos: {fileID: 0}
+  HitSound: {fileID: 8300000, guid: e6c38d6dafc382a43baa2608e585084d, type: 3}
+  hitSoundVolume: 0.35
 --- !u!114 &5506878311478726358
 MonoBehaviour:
   m_ObjectHideFlags: 0

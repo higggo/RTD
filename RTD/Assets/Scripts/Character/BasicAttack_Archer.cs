@@ -6,7 +6,7 @@ public class BasicAttack_Archer : BasicAttack
 {
     [SerializeField] Transform bulletStartPos;
     [SerializeField] GameObject ArrowInMesh;
-
+    
     private void Start()
     {
         Init();
@@ -28,6 +28,9 @@ public class BasicAttack_Archer : BasicAttack
 
         if (ArrowInMesh != null)
             ArrowInMesh.GetComponent<MeshRenderer>().enabled = false;
+
+        if (attackClip != null)
+            SoundManager.I.PlayEffectSound(gameObject, attackClip);
 
         ProjectileManager manager = GetComponent<ProjectileManager>();
         manager.FireProjectile(bulletStartPos.position, gameObject, target, statInfo.attackDamage);

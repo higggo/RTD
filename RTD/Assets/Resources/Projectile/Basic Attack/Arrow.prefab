@@ -126,9 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4162647792bcf474680ccbc235f2e0e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletState: 0
-  _bulletDmg: 0
-  _bulletSpeed: 0
+  DestroyDelay: 0
   fireTrigger: 0
 --- !u!114 &5016943532057525191
 MonoBehaviour:
@@ -143,6 +141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 0}
+  HitEffectPos: {fileID: 0}
+  HitSound: {fileID: 8300000, guid: 18b3570774025054d9aae8e1f003485d, type: 3}
+  hitSoundVolume: 0.75
 --- !u!114 &2820982769132102291
 MonoBehaviour:
   m_ObjectHideFlags: 0

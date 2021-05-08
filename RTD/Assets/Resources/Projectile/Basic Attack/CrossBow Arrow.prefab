@@ -155,6 +155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 0}
+  HitEffectPos: {fileID: 0}
+  HitSound: {fileID: 8300000, guid: 18b3570774025054d9aae8e1f003485d, type: 3}
 --- !u!114 &1194015294666650817
 MonoBehaviour:
   m_ObjectHideFlags: 0

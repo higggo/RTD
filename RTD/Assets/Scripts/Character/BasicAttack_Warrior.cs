@@ -22,12 +22,11 @@ public class BasicAttack_Warrior : BasicAttack
     public override void OnAttack(GameObject Target)
     {
         base.OnAttack(Target);
+        if (attackClip != null)
+            SoundManager.I.PlayEffectSound(gameObject, attackClip);
 
         if (ResetCombo != null)
             StopCoroutine(ResetCombo);
-        
-            
-
         
         switch (statInfo.grade)
         {
