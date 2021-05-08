@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float destroyDelay = 0.0f;
     [SerializeField] float moveSpeed = 0.0f;
     [SerializeField] float RotateSpeed = 0.0f;
+    float defaultMoveSpeed;
     bool isDead = false;
     public bool canMove { get; set; }
     Coroutine StunNow;
