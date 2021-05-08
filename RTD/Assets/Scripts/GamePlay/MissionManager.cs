@@ -97,7 +97,6 @@ public class MissionManager : MonoBehaviour
                         Destroy(MissionInfoUI);
                     });
 
-                    GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Pay, 50, response, "Buy Mission");
                     none = true;
                     break;
                 }
