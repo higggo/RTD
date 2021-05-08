@@ -168,6 +168,7 @@ public class PickController : MonoBehaviour
 
                             target.transform.parent = myTile;
                             target.transform.localPosition = Vector3.zero;
+                            SoundManager.I.PlayEffectSound(Audio_Pickdown);
                         }
                     }
                     // LJH : 팔기
@@ -251,6 +252,7 @@ public class PickController : MonoBehaviour
                             hits[i].transform.parent = parent;
                             hits[i].transform.localPosition = Vector3.zero;
                             //GetComponent<CharacterInfoManager>().UpdateCharacterField(hits[i].transform.gameObject);
+                            SoundManager.I.PlayEffectSound(Audio_Pickdown);
                         }
                     }
                 }
