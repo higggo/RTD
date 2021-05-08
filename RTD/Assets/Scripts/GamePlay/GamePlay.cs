@@ -73,6 +73,9 @@ public class GamePlay : MonoBehaviour
     public UIGameVictory UIGameVictory = null;
     public IntroMenu IntroMenu = null;
 
+    public AudioClip IntroBGM;
+    public AudioClip BattleBGM;
+
     public GameObject CurrentBoss;
 
     WaveSpawner WaveSpawner;
@@ -158,6 +161,8 @@ public class GamePlay : MonoBehaviour
         GameLifeText.GetComponent<TMPro.TextMeshProUGUI>().text = "Life " + GameLife.ToString();
 
         WaveSpawner = GetComponent<WaveSpawner>();
+        SoundManager.I.SetEffectVolume(1f - PlayerPrefs.GetFloat("GameEffectVolume"));
+        SoundManager.I.SetMusicVolume(1f - PlayerPrefs.GetFloat("GameMusicVolume"));
     }
 
     // Update is called once per frame
@@ -176,8 +181,10 @@ public class GamePlay : MonoBehaviour
                 break;
             case STATE.StandBy:
                 Init();
+                SoundManager.I.PlayBGM(IntroBGM);
                 break;
             case STATE.GameStart:
+                SoundManager.I.PlayBGM(BattleBGM);
                 GetComponent<CameraManager>().StopDirectionCamera();
                 IntroMenu.Disable();
                 SetRoundText(CurrentRound);

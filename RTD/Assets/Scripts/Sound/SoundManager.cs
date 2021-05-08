@@ -64,6 +64,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBGM(AudioClip source, bool bLoop = true)
     {
+        MusicPlayer.Stop();
         MusicPlayer.clip = source;
         MusicPlayer.loop = bLoop;
         MusicPlayer.Play();
