@@ -453,6 +453,7 @@ public class GamePlay : MonoBehaviour
         GetComponent<PickController>().Init();
         GetComponent<LevelUpManager>().Init();
         GetComponent<BossRoundManager>().Init();
+        GetComponent<MissionManager>().Init();
         LevelUpActiveButton.GetComponent<BtnLevelUpActive>().Init();
         StopAllCoroutines();
         GetComponent<CameraManager>().StopDirectionCamera();

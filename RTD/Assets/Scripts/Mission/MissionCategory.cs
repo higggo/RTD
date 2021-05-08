@@ -139,7 +139,7 @@ public class MissionNextRoundAllKillMonster : MissionCategory
         {
             State = STATE.Fail;
         }
-        else if (CheckCnt > MaxCnt)
+        else if (CheckCnt >= MaxCnt)
         {
             State = STATE.Succeed;
         }

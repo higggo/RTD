@@ -46,28 +46,6 @@ public class MissionManager : MonoBehaviour
     {
         if(MissionsVertical == null) MissionsVertical = GameObject.Find("Missions");
         
-        MissionList.Add(new Mission_GetChar_NM7());
-        MissionList.Add(new Mission_GetChar_MW2MM2MA2());
-        MissionList.Add(new Mission_GetChar_MM3RM3());
-        MissionList.Add(new Mission_GetChar_QM3());
-        MissionList.Add(new Mission_GetChar_MM1RA1());
-        MissionList.Add(new Mission_GetChar_RW4());
-        MissionList.Add(new Mission_GetChar_RM2RA3());
-        MissionList.Add(new Mission_GetChar_MW3MA2());
-        MissionList.Add(new Mission_GetChar_RW2RM2());
-        MissionList.Add(new Mission_GetChar_QW1QM1QA1());
-        MissionList.Add(new Mission_GetChar_NW2NM2NA2());
-        MissionList.Add(new Mission_GetChar_MW1MM2());
-        MissionList.Add(new Mission_GetChar_RW1RM1RA1());
-        MissionList.Add(new Mission_GetChar_RW2RM2QA2());
-        MissionList.Add(new Mission_AllKillNextRound());
-        MissionList.Add(new Mission_Kill_H10());
-        MissionList.Add(new Mission_Kill_Monster15());
-        MissionList.Add(new Mission_Kill_Monster20());
-        MissionList.Add(new Mission_Kill_Monster30());
-        MissionList.Add(new Mission_Kill_L15());
-        MissionList.Add(new Mission_Kill_M15());
-        MissionList.Add(new Mission_Kill_H5L5M5());
 
     }
 
@@ -139,6 +117,37 @@ public class MissionManager : MonoBehaviour
     public void MissionReward(uint gold)
     {
         GetComponent<MoneyManager>().CalculateMoney(MoneyManager.ACTION.Receive, gold, response, "Reward");
+    }
+
+    public void Init()
+    {
+        foreach(Transform child in MissionsVertical.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        MissionList.Clear();
+        //MissionList.Add(new Mission_GetChar_NM7());
+        //MissionList.Add(new Mission_GetChar_MW2MM2MA2());
+        //MissionList.Add(new Mission_GetChar_MM3RM3());
+        //MissionList.Add(new Mission_GetChar_QM3());
+        //MissionList.Add(new Mission_GetChar_MM1RA1());
+        //MissionList.Add(new Mission_GetChar_RW4());
+        //MissionList.Add(new Mission_GetChar_RM2RA3());
+        //MissionList.Add(new Mission_GetChar_MW3MA2());
+        //MissionList.Add(new Mission_GetChar_RW2RM2());
+        //MissionList.Add(new Mission_GetChar_QW1QM1QA1());
+        //MissionList.Add(new Mission_GetChar_NW2NM2NA2());
+        //MissionList.Add(new Mission_GetChar_MW1MM2());
+        //MissionList.Add(new Mission_GetChar_RW1RM1RA1());
+        //MissionList.Add(new Mission_GetChar_RW2RM2QA2());
+        MissionList.Add(new Mission_AllKillNextRound());
+        //MissionList.Add(new Mission_Kill_H10());
+        //MissionList.Add(new Mission_Kill_Monster15());
+        //MissionList.Add(new Mission_Kill_Monster20());
+        //MissionList.Add(new Mission_Kill_Monster30());
+        //MissionList.Add(new Mission_Kill_L15());
+        //MissionList.Add(new Mission_Kill_M15());
+        //MissionList.Add(new Mission_Kill_H5L5M5());
     }
     
 }
