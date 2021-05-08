@@ -130,8 +130,8 @@ public class GamePlay : MonoBehaviour
 
         ////
         //// Final Boss
-        //RoundList.Add(new BossRound("Character/Boss/Dragon Level3", 1, 25, 2000));
-        ////
+        RoundList.Add(new BossRound("Character/Boss/Dragon Level3", 1, 25, 2000));
+        //
     }
 
     public enum MAP
@@ -176,8 +176,6 @@ public class GamePlay : MonoBehaviour
                 break;
             case STATE.StandBy:
                 Init();
-                IntroMenu.Create();
-                GetComponent<CameraManager>().ChangeCamera();
                 break;
             case STATE.GameStart:
                 GetComponent<CameraManager>().StopDirectionCamera();
@@ -343,6 +341,11 @@ public class GamePlay : MonoBehaviour
                 ChangeState(STATE.StandBy);
                 break;
             case STATE.StandBy:
+                if (GetComponent<TileManager>().GetCountGroundCharacter() == 0)
+                {
+                    IntroMenu.Create();
+                    GetComponent<CameraManager>().ChangeCamera();
+                }
                 if (!IntroPanel.activeSelf)
                     ChangeState(STATE.GameStart);
                 break;
@@ -451,9 +454,9 @@ public class GamePlay : MonoBehaviour
         GetComponent<LevelUpManager>().Init();
         GetComponent<BossRoundManager>().Init();
         LevelUpActiveButton.GetComponent<BtnLevelUpActive>().Init();
+        StopAllCoroutines();
         GetComponent<CameraManager>().StopDirectionCamera();
 
-        StopAllCoroutines();
     }
     void SetRoundText(int round)
     {
