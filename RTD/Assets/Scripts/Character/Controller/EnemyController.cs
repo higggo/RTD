@@ -60,6 +60,7 @@ public class EnemyController : MonoBehaviour
                 EnemyAnimEvent = GetComponentInChildren<AnimEvent>();
                 EnemyAnimEvent.DeadDel += DestroyEnemy;
                 GetComponent<Damageable>().onDeadDel += OnDead;
+                canMove = true;
                 break;
             case ENEMYSTATE.RUN:
                 EnemyAnimator.SetBool("B_Run", true);
@@ -88,7 +89,7 @@ public class EnemyController : MonoBehaviour
                     ChangeState(ENEMYSTATE.STUN);
                 break;
             case ENEMYSTATE.STUN:
-                if (!canMove)
+                if (canMove)
                     ChangeState(ENEMYSTATE.RUN);
                 break;
             case ENEMYSTATE.GOAL:
