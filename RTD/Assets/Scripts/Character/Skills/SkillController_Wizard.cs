@@ -60,6 +60,8 @@ public class SkillController_Wizard : SkillController
                         EffectPos.y += 0.5f;
                         GameObject obj = Instantiate(SkillParticle, EffectPos, Quaternion.identity);
                         obj.GetComponent<EffectDamageOnce>()?.Init(enemy.layer, damage);
+                        if (skillSound != null)
+                            SoundManager.I.PlayEffectSound(obj, skillSound);
                     }
                 }
                 return;
@@ -82,6 +84,8 @@ public class SkillController_Wizard : SkillController
                         EffectPos.y += 0.5f;
                         GameObject obj = Instantiate(SkillParticle, EffectPos, Quaternion.identity);
                         obj.GetComponent<EffectDamageOnce>()?.Init(Enemies[index].layer, damage);
+                        if (skillSound != null)
+                            SoundManager.I.PlayEffectSound(obj, skillSound);
                     }
                 }
             }

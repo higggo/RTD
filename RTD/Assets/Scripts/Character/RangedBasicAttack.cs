@@ -18,5 +18,8 @@ public class RangedBasicAttack : BasicAttack
 
         ProjectileManager manager = GetComponent<ProjectileManager>();
         manager.FireProjectile(bulletStartPos.position, gameObject, target, statInfo.attackDamage);
+
+        if (attackClip != null)
+            SoundManager.I.PlayEffectSound(gameObject, attackClip);
     }
 }

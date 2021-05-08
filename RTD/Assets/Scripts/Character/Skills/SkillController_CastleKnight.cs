@@ -46,6 +46,9 @@ public class SkillController_CastleKnight : SkillController
 
     protected override void SkillLogic()
     {
+        if (skillSound != null)
+            SoundManager.I.PlayEffectSound(gameObject, skillSound, 0.8f, 0.5f);
+
         List<GameObject> Alies = new List<GameObject>();
         Alies = CharUtils.GetInFieldAllCharacters(controller.gameObject);
         

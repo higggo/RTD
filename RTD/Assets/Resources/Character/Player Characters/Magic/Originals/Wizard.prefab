@@ -3411,6 +3411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectStartPos: {fileID: 6949243121002458859}
   AttackEffect: {fileID: 0}
+  attackClip: {fileID: 0}
   bulletStartPos: {fileID: 6949243121002458859}
 --- !u!114 &1030005903374763685
 MonoBehaviour:
@@ -3509,6 +3510,7 @@ MonoBehaviour:
   SkillParticleStartPos: {fileID: 0}
   SkillReadyParticleStartPos: {fileID: 0}
   _coolTime: 10
+  skillSound: {fileID: 8300000, guid: b30e84a2a06bb5f41b59e7330ab1f41e, type: 3}
   skillCount: 1
   skillRange: 15
   damage: 75

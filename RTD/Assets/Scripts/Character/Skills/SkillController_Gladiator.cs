@@ -40,6 +40,8 @@ public class SkillController_Gladiator : SkillController
 
         CharUtils.RotateToTarget(controller.transform, target.transform);
         GetComponent<ProjectileManager>().FireProjectile(SkillParticleStartPos.position, controller.gameObject, target, Damage, false);
+        if (skillSound != null)
+            SoundManager.I.PlayEffectSound(gameObject, skillSound);
     }
 
     public override bool PrepareSkill()

@@ -41,6 +41,8 @@ public class SkillController_BowKnight : SkillController
 
         CharUtils.RotateToTarget(controller.transform, target.transform);
         GetComponent<ProjectileManager>().FireProjectile(SkillParticleStartPos.position, controller.gameObject, target, Damage, false);
+        if (skillSound != null)
+            SoundManager.I.PlayEffectSound(gameObject, skillSound, 0.8f, 0.75f);
     }
 
     public override bool PrepareSkill()

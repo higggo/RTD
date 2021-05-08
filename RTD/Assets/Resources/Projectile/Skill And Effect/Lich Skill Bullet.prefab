@@ -14337,6 +14337,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 100010, guid: 6aa067201c4966e418456a15ae9459d9, type: 3}
   HitEffectPos: {fileID: 0}
+  HitSound: {fileID: 8300000, guid: 1c7a722587fdfd74193a40bdd9d0c932, type: 3}
+  hitSoundVolume: 0
   DebuffFieldDuration: 5
 --- !u!135 &8587292111757526672
 SphereCollider:

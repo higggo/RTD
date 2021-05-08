@@ -48,6 +48,9 @@ public class SkillController_DarkWizard : SkillController
         CharUtils.RotateToTarget(controller.transform, target.transform);
         var obj = Instantiate(PoisonEffect, target.transform.position, controller.transform.rotation);
         obj.GetComponent<EffectDamage>().Init(target.layer, Damage, PoisonLifeTime);
+
+        if (skillSound != null)
+            SoundManager.I.PlayEffectSound(obj, skillSound);
     }
 
     public override bool PrepareSkill()

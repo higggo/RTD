@@ -68,6 +68,7 @@ MonoBehaviour:
   SkillParticleStartPos: {fileID: 8161509765815388767}
   SkillReadyParticleStartPos: {fileID: 0}
   _coolTime: 12
+  skillSound: {fileID: 8300000, guid: 956532f8f088bb0419435983fadee2cd, type: 3}
   Damage: 50
 --- !u!1 &7425320487501757237
 GameObject:
@@ -294,6 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectStartPos: {fileID: 0}
   AttackEffect: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 956532f8f088bb0419435983fadee2cd, type: 3}
   bulletStartPos: {fileID: 8161509765815388767}
   ArrowInMesh: {fileID: 0}
 --- !u!114 &-3831436345620723553

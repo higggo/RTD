@@ -46,6 +46,9 @@ public class SkillController_Hunter : SkillController
 
     protected override void SkillLogic()
     {
+        if (skillSound != null)
+            SoundManager.I.PlayEffectSound(gameObject, skillSound, 0.8f, 0.35f);
+
         List<GameObject> Alies = new List<GameObject>();
         Alies = CharUtils.GetInFieldAllCharacters(controller.gameObject);
 

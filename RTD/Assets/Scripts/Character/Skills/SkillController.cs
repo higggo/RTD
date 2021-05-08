@@ -52,6 +52,9 @@ public class SkillController : MonoBehaviour
     // Id
     protected int id;
 
+    // Sound
+    public AudioClip skillSound;
+
     // property
     public float coolTime
     {

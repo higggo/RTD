@@ -28,6 +28,7 @@ public class BasicAttack_MageKnight : BasicAttack
         AttackEffect.GetComponent<LightningBoltScript>().StartObject = EffectStartPos.gameObject;
         AttackEffect.GetComponent<LightningBoltScript>().EndObject = Target.GetComponent<CharacterKit.Damageable>().HitPoint.gameObject;
         var obj = Instantiate(AttackEffect);
+        SoundManager.I.PlayEffectSound(obj, attackClip);
         if (Lightning != null)
             Destroy(Lightning);
         Lightning = obj;
@@ -42,6 +43,8 @@ public class BasicAttack_MageKnight : BasicAttack
                 if (Lightning == null) return;
                 Destroy(Lightning);
             };
+
+        GetComponent<CharacterKit.Damageable>().onDeadDel += () => { if (Lightning != null) Destroy(Lightning); };
     }
 
 

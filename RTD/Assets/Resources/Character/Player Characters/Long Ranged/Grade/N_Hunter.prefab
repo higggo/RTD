@@ -208,9 +208,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectStartPos: {fileID: 0}
   AttackEffect: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 2c2634635e4a1fe48b98512d86b4b8c6, type: 3}
   bulletStartPos: {fileID: 2598673943521478587}
   ArrowInMesh: {fileID: 2601765328693800343}
-  attackClip: {fileID: 8300000, guid: 2c2634635e4a1fe48b98512d86b4b8c6, type: 3}
 --- !u!114 &-1941940911311371912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,6 +307,7 @@ MonoBehaviour:
   SkillParticleStartPos: {fileID: 0}
   SkillReadyParticleStartPos: {fileID: 0}
   _coolTime: 8
+  skillSound: {fileID: 8300000, guid: 82963407a596f03458468b5d3e21b762, type: 3}
   buffCount: 1
   buffDuration: 5
   buffAtkSpeedRatio: 1

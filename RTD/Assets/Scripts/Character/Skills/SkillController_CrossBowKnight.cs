@@ -41,6 +41,8 @@ public class SkillController_CrossBowKnight : SkillController
 
         CharUtils.RotateToTarget(controller.transform, target.transform);
         GetComponent<ProjectileManager>().FireProjectile(SkillParticleStartPos.position, controller.gameObject, target, Damage);
+        if (skillSound != null)
+            SoundManager.I.PlayEffectSound(controller.gameObject, skillSound);
     }
 
     public override bool PrepareSkill()

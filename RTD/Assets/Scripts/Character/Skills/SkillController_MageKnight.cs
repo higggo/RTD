@@ -43,6 +43,9 @@ public class SkillController_MageKnight : SkillController
     {
         BuffSkill Buff = new BuffSkill(BUFFCATEGORY.RATIO, id, buffAtkDamageRatio, buffAtkSpeedRatio, 0.0f, buffDuration);
         controller.statInfo.AddBuff(Buff);
+
+        if (skillSound != null)
+            SoundManager.I.PlayEffectSound(gameObject, skillSound, 0.8f, 0.5f);
     }
 
     public override bool PrepareSkill()

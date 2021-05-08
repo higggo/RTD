@@ -62,6 +62,8 @@ public class SkillController_SwordMaster : SkillController
     {
         BuffSkill Buff = new BuffSkill(BUFFCATEGORY.RATIO, id, buffAtkDamageRatio, buffAtkSpeedRatio, 0.0f, buffDuration);
         controller.statInfo.AddBuff(Buff);
+        if (skillSound != null)
+            SoundManager.I.PlayEffectSound(gameObject, skillSound);
     }
 
     public override bool PrepareSkill()

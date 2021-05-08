@@ -83,6 +83,7 @@ MonoBehaviour:
   SkillParticleStartPos: {fileID: 0}
   SkillReadyParticleStartPos: {fileID: 0}
   _coolTime: 12
+  skillSound: {fileID: 8300000, guid: 3fb034d3349ce934b9d83a9bb0c479a9, type: 3}
   PoisonEffect: {fileID: 100006, guid: 4d2b27844b3892d40b9a774b69737ef6, type: 3}
   PoisonLifeTime: 5
   Damage: 125
@@ -3321,6 +3322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectStartPos: {fileID: 6573829176003064792}
   AttackEffect: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 5ad404ae20ca1064383e95a567db56f7, type: 3}
   bulletStartPos: {fileID: 6573829176003064792}
 --- !u!114 &-2478835311123976102
 MonoBehaviour:

@@ -53,7 +53,8 @@ MonoBehaviour:
   _attachToParent: 1
   SkillParticleStartPos: {fileID: 7793430647733219799}
   SkillReadyParticleStartPos: {fileID: 7793430647733219799}
-  _coolTime: 0
+  _coolTime: 10
+  skillSound: {fileID: 8300000, guid: 1dc7e64d17660384d92f928ac3488c68, type: 3}
   buffDuration: 5
   buffAtkDamageRatio: 0
   buffAtkSpeedRatio: 1

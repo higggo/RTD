@@ -3221,6 +3221,7 @@ MonoBehaviour:
   SkillParticleStartPos: {fileID: 6923668266626140631}
   SkillReadyParticleStartPos: {fileID: 2385734696867837444}
   _coolTime: 0
+  skillSound: {fileID: 8300000, guid: 8e588d32607c9bc4692b458a2f064865, type: 3}
   Damage: 150
 --- !u!114 &3406516757189637633
 MonoBehaviour:

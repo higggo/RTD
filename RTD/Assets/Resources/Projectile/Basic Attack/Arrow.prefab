@@ -143,7 +143,7 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   HitEffectPos: {fileID: 0}
   HitSound: {fileID: 8300000, guid: 18b3570774025054d9aae8e1f003485d, type: 3}
-  hitSoundVolume: 0.75
+  hitSoundVolume: 0.5
 --- !u!114 &2820982769132102291
 MonoBehaviour:
   m_ObjectHideFlags: 0
