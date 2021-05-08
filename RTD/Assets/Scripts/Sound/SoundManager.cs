@@ -123,6 +123,7 @@ public class SoundManager : MonoBehaviour
             audio = obj.AddComponent<AudioSource>();
         }
         audio.spatialBlend = spatialBlend;
+        volume *= effectVolume;
         audio.PlayOneShot(eff, (volume != 0.0f) ? volume : effectVolume);
     }
 }
