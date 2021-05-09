@@ -466,6 +466,7 @@ public class GamePlay : MonoBehaviour
         LevelUpActiveButton.GetComponent<BtnLevelUpActive>().Init();
         StopAllCoroutines();
         GetComponent<CameraManager>().StopDirectionCamera();
+        IntroPanel.SetActive(true);
 
     }
     void SetRoundText(int round)
