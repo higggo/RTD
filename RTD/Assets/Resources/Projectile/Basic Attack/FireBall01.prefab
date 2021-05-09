@@ -19077,6 +19077,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 100012, guid: ff7e77244aae62544833b12c266d9cf0, type: 3}
+  HitEffectPos: {fileID: 0}
+  HitSound: {fileID: 8300000, guid: 1b1e870555539084e867c27366722812, type: 3}
+  hitSoundVolume: 0
   explosionRange: 5
   targetLayer:
     serializedVersion: 2

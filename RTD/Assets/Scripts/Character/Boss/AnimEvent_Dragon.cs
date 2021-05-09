@@ -9,6 +9,8 @@ public class AnimEvent_Dragon : AnimEvent
     public UnityAction SkillInAirStartDel;
     public UnityAction SkillInAirEndDel;
 
+    public AudioClip cryingSound;
+    
     public void OnAttackInAir()
     {
         AttackInAirDel?.Invoke();
@@ -22,5 +24,11 @@ public class AnimEvent_Dragon : AnimEvent
     public void OnSkillInAirEnd()
     {
         SkillInAirEndDel?.Invoke();
+    }
+
+    public void DragonCrying()
+    {
+        if (cryingSound != null)
+            SoundManager.I.PlayEffectSound(transform.parent.gameObject, cryingSound);
     }
 }

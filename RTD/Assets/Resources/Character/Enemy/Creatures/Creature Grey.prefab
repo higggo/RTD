@@ -97,8 +97,8 @@ MonoBehaviour:
   _Weapon: 0
   _Armor: 2
   basicStat:
-    MaxHP: 600
-    HP: 600
+    MaxHP: 1800
+    HP: 1800
     attackDamage: 0
     attackSpeed: 0
     attackRange: 0
@@ -148,7 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitPoint: {fileID: 5930045041353553887}
-  HitMessagePrintPos: {fileID: 0}
 --- !u!114 &5769952161034096167
 MonoBehaviour:
   m_ObjectHideFlags: 0

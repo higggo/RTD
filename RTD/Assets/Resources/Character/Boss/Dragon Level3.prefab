@@ -42,6 +42,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47eb124dbb98a414a8ff45df28ab8b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cryingSound: {fileID: 8300000, guid: e37dd9b57256eee428b44321549ce7bb, type: 3}
 --- !u!1 &2122809798532288810
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +76,7 @@ Transform:
   m_GameObject: {fileID: 2122809798532288810}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -1.65, y: -6.9, z: 23.1}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 2122809797755646391}
   m_Father: {fileID: 0}
@@ -127,7 +128,7 @@ MonoBehaviour:
     m_Bits: 4096
   destroyDelay: 3
   Level: 3
-  _fireBallDamage: 75
+  _fireBallDamage: 100
   detectRange: 50
   flyAttackSpeed: 0.333
 --- !u!114 &6641023021140727988
@@ -147,10 +148,10 @@ MonoBehaviour:
   _Weapon: 0
   _Armor: 0
   basicStat:
-    MaxHP: 10000
-    HP: 10000
-    attackDamage: 15
-    attackSpeed: 1
+    MaxHP: 20000
+    HP: 20000
+    attackDamage: 50
+    attackSpeed: 1.5
     attackRange: 14
     moveSpeed: 10
     rotateSpeed: 200
@@ -231,6 +232,7 @@ MonoBehaviour:
   SkillParticleStartPos: {fileID: 1155683183452274593}
   SkillReadyParticleStartPos: {fileID: 0}
   _coolTime: 10
+  skillSound: {fileID: 0}
   skillEndCount: 3
   flameColliderRad: 5
   flameDamagePerSeconds: 150
@@ -2180,6 +2182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -89.99986
       objectReference: {fileID: 0}
+    - target: {fileID: 9586004, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
     - target: {fileID: 9586004, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
       propertyPath: m_Controller
       value: 

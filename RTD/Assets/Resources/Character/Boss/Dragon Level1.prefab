@@ -42,6 +42,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47eb124dbb98a414a8ff45df28ab8b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cryingSound: {fileID: 8300000, guid: e37dd9b57256eee428b44321549ce7bb, type: 3}
 --- !u!1 &2122809798532288810
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +76,7 @@ Transform:
   m_GameObject: {fileID: 2122809798532288810}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -1.65, y: -6.9, z: 23.1}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children:
   - {fileID: 2122809797755646391}
   m_Father: {fileID: 0}
@@ -147,9 +148,9 @@ MonoBehaviour:
   _Weapon: 0
   _Armor: 0
   basicStat:
-    MaxHP: 2500
-    HP: 2500
-    attackDamage: 15
+    MaxHP: 5000
+    HP: 5000
+    attackDamage: 35
     attackSpeed: 1
     attackRange: 14
     moveSpeed: 10
@@ -231,6 +232,7 @@ MonoBehaviour:
   SkillParticleStartPos: {fileID: 1155683183452274593}
   SkillReadyParticleStartPos: {fileID: 0}
   _coolTime: 10
+  skillSound: {fileID: 0}
   skillEndCount: 3
   flameColliderRad: 5
   flameDamagePerSeconds: 150
@@ -2184,6 +2186,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 205da644abdd8804e83545bbd89be0d7, type: 2}
+    - target: {fileID: 13772040, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: acd197acde96c544b8d8fd85cc2e8b20, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
 --- !u!1 &2122809797755861203 stripped

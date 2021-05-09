@@ -211,7 +211,8 @@ public class DragonController : BossController
                     }
 
                     // use to skill
-                    if (_skillController != null)
+                    if (_skillController != null
+                        && Level >= 2)
                     {
                         if (_skillController.canUseSkill)
                         {

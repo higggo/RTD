@@ -38,6 +38,8 @@ public class FireBallDamage : BulletDamage
             }
         }
         PlayHitEffect();
+        if (HitSound != null)
+            SoundManager.I.PlayEffectSound(hitList[0], HitSound);
     }
 
     protected override void PlayHitEffect()

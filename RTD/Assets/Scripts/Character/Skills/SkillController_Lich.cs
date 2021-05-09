@@ -40,6 +40,7 @@ public class SkillController_Lich : SkillController
 
         CharUtils.RotateToTarget(controller.transform, target.transform);
         GetComponent<ProjectileManager>().FireProjectile(SkillParticleStartPos.position, controller.gameObject, target, Damage);
+        
     }
 
     public override bool PrepareSkill()
